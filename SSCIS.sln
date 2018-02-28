@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSCIS", "SSCIS\SSCIS.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSCISResources", "SSCISResources\SSCISResources.csproj", "{8829B46C-1410-4774-8C73-FFC0B2FB99B5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DATABASE", "DATABASE", "{3B6834E3-CBC4-49A2-875C-956B5EC95E17}"
+	ProjectSection(SolutionItems) = preProject
+		DATABASE\00_CREATE_USER.sql = DATABASE\00_CREATE_USER.sql
+		DATABASE\01_CREATE_TABLES.sql = DATABASE\01_CREATE_TABLES.sql
+		DATABASE\02_INSERT_PARAM.sql = DATABASE\02_INSERT_PARAM.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
