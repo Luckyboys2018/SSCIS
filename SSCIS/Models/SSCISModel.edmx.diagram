@@ -5,7 +5,29 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d2f0f5f3157d4803aaf4cfc29de94fb9" Name="Diagram1">
-        <EntityTypeShape EntityType="SSCISModel.SSCISParam" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSCISModel.SSCISParam" Width="1.5" PointX="3.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSCISModel.Approval" Width="1.5" PointX="10.875" PointY="8.25" />
+        <EntityTypeShape EntityType="SSCISModel.Role" Width="1.5" PointX="3.375" PointY="8.375" />
+        <EntityTypeShape EntityType="SSCISModel.Subject" Width="1.5" PointX="5.625" PointY="3.25" />
+        <EntityTypeShape EntityType="SSCISModel.Event" Width="1.5" PointX="7.875" PointY="4.875" />
+        <EntityTypeShape EntityType="SSCISModel.SSCISContent" Width="1.5" PointX="7.875" PointY="17.625" />
+        <EntityTypeShape EntityType="SSCISModel.SSCISSession" Width="1.5" PointX="7.875" PointY="8.5" />
+        <EntityTypeShape EntityType="SSCISModel.SSCISUser" Width="1.5" PointX="5.625" PointY="6.75" />
+        <EntityTypeShape EntityType="SSCISModel.TutorApplication" Width="1.5" PointX="7.875" PointY="14.125" />
+        <EntityTypeShape EntityType="SSCISModel.TutorApplicationSubject" Width="1.5" PointX="10.125" PointY="14.5" />
+        <AssociationConnector Association="SSCISModel.FK_APPROVAL_SUBJECT" />
+        <AssociationConnector Association="SSCISModel.FK_APPROVAL_TUTOR" />
+        <AssociationConnector Association="SSCISModel.FK_SSCIS_USER_ROLE" />
+        <AssociationConnector Association="SSCISModel.FK_EVENT_SUBJECT" />
+        <AssociationConnector Association="SSCISModel.FK_TUTAPPSUB_SUBJECT" />
+        <AssociationConnector Association="SSCISModel.FK_EVENT_TUTOR" />
+        <AssociationConnector Association="SSCISModel.FK_SSCIS_CONTENT_AUTHOR" />
+        <AssociationConnector Association="SSCISModel.FK_SSCIS_CONTENT_EDITOR" />
+        <AssociationConnector Association="SSCISModel.FK_SSCIS_SESSION_USER" />
+        <AssociationConnector Association="SSCISModel.FK_SSCIS_USER_ACTBY" />
+        <AssociationConnector Association="SSCISModel.FK_TUTAPP_ACCBY" />
+        <AssociationConnector Association="SSCISModel.FK_TUTAPP_USER" />
+        <AssociationConnector Association="SSCISModel.FK_TUTAPPSUB_APPLICATION" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

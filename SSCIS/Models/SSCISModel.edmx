@@ -4,7 +4,81 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SSCISModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SSCISModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="APPROVAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID_TUTOR" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID_SUBJECT" Type="number" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ENUM_ROLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ROLE" Type="varchar2" MaxLength="6" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="ENUM_SUBJECT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CODE" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="EVENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TIME_FROM" Type="date" Nullable="false" />
+          <Property Name="TIME_TO" Type="date" Nullable="false" />
+          <Property Name="ID_SUBJECT" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID_TUTOR" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="IS_ACCEPTED" Type="number" Precision="1" Scale="0" />
+          <Property Name="IS_CANCELLED" Type="number" Precision="1" Scale="0" />
+          <Property Name="CANCELATION_COMMENT" Type="varchar2" MaxLength="120" />
+        </EntityType>
+        <EntityType Name="SSCIS_CONTENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID_AUTHOR" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID_EDITED_BY" Type="number" Precision="10" Scale="0" />
+          <Property Name="CREATED" Type="date" Nullable="false" />
+          <Property Name="EDITED" Type="date" />
+          <Property Name="TEXT_CONTENT" Type="varchar2" MaxLength="800" />
+        </EntityType>
+        <EntityType Name="SSCIS_SESSION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID_USER" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SESSION_START" Type="date" Nullable="false" />
+          <Property Name="EXPIRATION" Type="date" Nullable="false" />
+          <Property Name="HASH" Type="varchar2" MaxLength="120" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SSCIS_USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="LOGIN" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="varchar2" MaxLength="40" />
+          <Property Name="LASTNAME" Type="varchar2" MaxLength="40" />
+          <Property Name="PASSWORD" Type="varchar2" MaxLength="40" />
+          <Property Name="ID_ROLE" Type="number" Precision="10" Scale="0" />
+          <Property Name="IS_ACTIVE" Type="number" Precision="1" Scale="0" />
+          <Property Name="CREATED" Type="date" />
+          <Property Name="ACTIVATED" Type="date" />
+          <Property Name="ID_ACTIVATED_BY" Type="number" Precision="10" Scale="0" />
+          <Property Name="STUDENT_NUMBER" Type="varchar2" MaxLength="20" />
+        </EntityType>
         <EntityType Name="SSCISPARAM">
           <Key>
             <PropertyRef Name="ID" />
@@ -14,11 +88,247 @@
           <Property Name="PARAM_VALUE" Type="varchar2" MaxLength="60" Nullable="false" />
           <Property Name="DESCRIPTION" Type="varchar2" MaxLength="120" />
         </EntityType>
+        <EntityType Name="TUTOR_APPLICATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID_USER" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="APPLICATION_DATE" Type="date" Nullable="false" />
+          <Property Name="IS_ACCEPTED" Type="number" Precision="1" Scale="0" />
+          <Property Name="ACCEPTED_DATE" Type="date" />
+          <Property Name="ACCEPTED_BY_ID" Type="number" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="TUTOR_APPLICATION_SUBJECT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID_SUBJECT" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID_APPLICATION" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="DEGREE" Type="number" Precision="1" Scale="0" />
+        </EntityType>
+        <Association Name="FK_APPROVAL_SUBJECT">
+          <End Role="ENUM_SUBJECT" Type="Self.ENUM_SUBJECT" Multiplicity="1" />
+          <End Role="APPROVAL" Type="Self.APPROVAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENUM_SUBJECT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="APPROVAL">
+              <PropertyRef Name="ID_SUBJECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_APPROVAL_TUTOR">
+          <End Role="SSCIS_USER" Type="Self.SSCIS_USER" Multiplicity="1" />
+          <End Role="APPROVAL" Type="Self.APPROVAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="APPROVAL">
+              <PropertyRef Name="ID_TUTOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EVENT_SUBJECT">
+          <End Role="ENUM_SUBJECT" Type="Self.ENUM_SUBJECT" Multiplicity="1" />
+          <End Role="EVENT" Type="Self.EVENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENUM_SUBJECT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EVENT">
+              <PropertyRef Name="ID_SUBJECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EVENT_TUTOR">
+          <End Role="SSCIS_USER" Type="Self.SSCIS_USER" Multiplicity="1" />
+          <End Role="EVENT" Type="Self.EVENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EVENT">
+              <PropertyRef Name="ID_TUTOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSCIS_CONTENT_AUTHOR">
+          <End Role="SSCIS_USER" Type="Self.SSCIS_USER" Multiplicity="1" />
+          <End Role="SSCIS_CONTENT" Type="Self.SSCIS_CONTENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SSCIS_CONTENT">
+              <PropertyRef Name="ID_AUTHOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSCIS_CONTENT_EDITOR">
+          <End Role="SSCIS_USER" Type="Self.SSCIS_USER" Multiplicity="0..1" />
+          <End Role="SSCIS_CONTENT" Type="Self.SSCIS_CONTENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SSCIS_CONTENT">
+              <PropertyRef Name="ID_EDITED_BY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSCIS_SESSION_USER">
+          <End Role="SSCIS_USER" Type="Self.SSCIS_USER" Multiplicity="1" />
+          <End Role="SSCIS_SESSION" Type="Self.SSCIS_SESSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SSCIS_SESSION">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSCIS_USER_ACTBY">
+          <End Role="SSCIS_USER" Type="Self.SSCIS_USER" Multiplicity="0..1" />
+          <End Role="SSCIS_USER1" Type="Self.SSCIS_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SSCIS_USER1">
+              <PropertyRef Name="ID_ACTIVATED_BY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSCIS_USER_ROLE">
+          <End Role="ENUM_ROLE" Type="Self.ENUM_ROLE" Multiplicity="0..1" />
+          <End Role="SSCIS_USER" Type="Self.SSCIS_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENUM_ROLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SSCIS_USER">
+              <PropertyRef Name="ID_ROLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUTAPP_ACCBY">
+          <End Role="SSCIS_USER" Type="Self.SSCIS_USER" Multiplicity="0..1" />
+          <End Role="TUTOR_APPLICATION" Type="Self.TUTOR_APPLICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TUTOR_APPLICATION">
+              <PropertyRef Name="ACCEPTED_BY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUTAPP_USER">
+          <End Role="SSCIS_USER" Type="Self.SSCIS_USER" Multiplicity="1" />
+          <End Role="TUTOR_APPLICATION" Type="Self.TUTOR_APPLICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TUTOR_APPLICATION">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUTAPPSUB_APPLICATION">
+          <End Role="TUTOR_APPLICATION" Type="Self.TUTOR_APPLICATION" Multiplicity="1" />
+          <End Role="TUTOR_APPLICATION_SUBJECT" Type="Self.TUTOR_APPLICATION_SUBJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUTOR_APPLICATION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TUTOR_APPLICATION_SUBJECT">
+              <PropertyRef Name="ID_APPLICATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUTAPPSUB_SUBJECT">
+          <End Role="ENUM_SUBJECT" Type="Self.ENUM_SUBJECT" Multiplicity="1" />
+          <End Role="TUTOR_APPLICATION_SUBJECT" Type="Self.TUTOR_APPLICATION_SUBJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENUM_SUBJECT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TUTOR_APPLICATION_SUBJECT">
+              <PropertyRef Name="ID_SUBJECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SSCISModelStoreContainer">
+          <EntitySet Name="APPROVAL" EntityType="Self.APPROVAL" Schema="SSCIS" store:Type="Tables" />
+          <EntitySet Name="ENUM_ROLE" EntityType="Self.ENUM_ROLE" Schema="SSCIS" store:Type="Tables" />
+          <EntitySet Name="ENUM_SUBJECT" EntityType="Self.ENUM_SUBJECT" Schema="SSCIS" store:Type="Tables" />
+          <EntitySet Name="EVENT" EntityType="Self.EVENT" Schema="SSCIS" store:Type="Tables" />
+          <EntitySet Name="SSCIS_CONTENT" EntityType="Self.SSCIS_CONTENT" Schema="SSCIS" store:Type="Tables" />
+          <EntitySet Name="SSCIS_SESSION" EntityType="Self.SSCIS_SESSION" Schema="SSCIS" store:Type="Tables" />
+          <EntitySet Name="SSCIS_USER" EntityType="Self.SSCIS_USER" Schema="SSCIS" store:Type="Tables" />
           <EntitySet Name="SSCISPARAM" EntityType="Self.SSCISPARAM" Schema="SSCIS" store:Type="Tables" />
+          <EntitySet Name="TUTOR_APPLICATION" EntityType="Self.TUTOR_APPLICATION" Schema="SSCIS" store:Type="Tables" />
+          <EntitySet Name="TUTOR_APPLICATION_SUBJECT" EntityType="Self.TUTOR_APPLICATION_SUBJECT" Schema="SSCIS" store:Type="Tables" />
+          <AssociationSet Name="FK_APPROVAL_SUBJECT" Association="Self.FK_APPROVAL_SUBJECT">
+            <End Role="ENUM_SUBJECT" EntitySet="ENUM_SUBJECT" />
+            <End Role="APPROVAL" EntitySet="APPROVAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_APPROVAL_TUTOR" Association="Self.FK_APPROVAL_TUTOR">
+            <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
+            <End Role="APPROVAL" EntitySet="APPROVAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EVENT_SUBJECT" Association="Self.FK_EVENT_SUBJECT">
+            <End Role="ENUM_SUBJECT" EntitySet="ENUM_SUBJECT" />
+            <End Role="EVENT" EntitySet="EVENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EVENT_TUTOR" Association="Self.FK_EVENT_TUTOR">
+            <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
+            <End Role="EVENT" EntitySet="EVENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSCIS_CONTENT_AUTHOR" Association="Self.FK_SSCIS_CONTENT_AUTHOR">
+            <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
+            <End Role="SSCIS_CONTENT" EntitySet="SSCIS_CONTENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSCIS_CONTENT_EDITOR" Association="Self.FK_SSCIS_CONTENT_EDITOR">
+            <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
+            <End Role="SSCIS_CONTENT" EntitySet="SSCIS_CONTENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSCIS_SESSION_USER" Association="Self.FK_SSCIS_SESSION_USER">
+            <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
+            <End Role="SSCIS_SESSION" EntitySet="SSCIS_SESSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSCIS_USER_ACTBY" Association="Self.FK_SSCIS_USER_ACTBY">
+            <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
+            <End Role="SSCIS_USER1" EntitySet="SSCIS_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSCIS_USER_ROLE" Association="Self.FK_SSCIS_USER_ROLE">
+            <End Role="ENUM_ROLE" EntitySet="ENUM_ROLE" />
+            <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUTAPP_ACCBY" Association="Self.FK_TUTAPP_ACCBY">
+            <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
+            <End Role="TUTOR_APPLICATION" EntitySet="TUTOR_APPLICATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUTAPP_USER" Association="Self.FK_TUTAPP_USER">
+            <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
+            <End Role="TUTOR_APPLICATION" EntitySet="TUTOR_APPLICATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUTAPPSUB_APPLICATION" Association="Self.FK_TUTAPPSUB_APPLICATION">
+            <End Role="TUTOR_APPLICATION" EntitySet="TUTOR_APPLICATION" />
+            <End Role="TUTOR_APPLICATION_SUBJECT" EntitySet="TUTOR_APPLICATION_SUBJECT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUTAPPSUB_SUBJECT" Association="Self.FK_TUTAPPSUB_SUBJECT">
+            <End Role="ENUM_SUBJECT" EntitySet="ENUM_SUBJECT" />
+            <End Role="TUTOR_APPLICATION_SUBJECT" EntitySet="TUTOR_APPLICATION_SUBJECT" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SSCISModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -33,7 +343,344 @@
         </EntityType>
         <EntityContainer Name="SSCISEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="SSCISParam" EntityType="SSCISModel.SSCISParam" />
+          <EntitySet Name="Approval" EntityType="SSCISModel.Approval" />
+          <EntitySet Name="Role" EntityType="SSCISModel.Role" />
+          <EntitySet Name="Subject" EntityType="SSCISModel.Subject" />
+          <EntitySet Name="Event" EntityType="SSCISModel.Event" />
+          <EntitySet Name="SSCISContent" EntityType="SSCISModel.SSCISContent" />
+          <EntitySet Name="SSCISSession" EntityType="SSCISModel.SSCISSession" />
+          <EntitySet Name="SSCISUser" EntityType="SSCISModel.SSCISUser" />
+          <EntitySet Name="TutorApplication" EntityType="SSCISModel.TutorApplication" />
+          <EntitySet Name="TutorApplicationSubject" EntityType="SSCISModel.TutorApplicationSubject" />
+          <AssociationSet Name="FK_APPROVAL_SUBJECT" Association="SSCISModel.FK_APPROVAL_SUBJECT">
+            <End Role="ENUM_SUBJECT" EntitySet="Subject" />
+            <End Role="APPROVAL" EntitySet="Approval" />
+          </AssociationSet>
+          <AssociationSet Name="FK_APPROVAL_TUTOR" Association="SSCISModel.FK_APPROVAL_TUTOR">
+            <End Role="SSCIS_USER" EntitySet="SSCISUser" />
+            <End Role="APPROVAL" EntitySet="Approval" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSCIS_USER_ROLE" Association="SSCISModel.FK_SSCIS_USER_ROLE">
+            <End Role="ENUM_ROLE" EntitySet="Role" />
+            <End Role="SSCIS_USER" EntitySet="SSCISUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EVENT_SUBJECT" Association="SSCISModel.FK_EVENT_SUBJECT">
+            <End Role="ENUM_SUBJECT" EntitySet="Subject" />
+            <End Role="EVENT" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUTAPPSUB_SUBJECT" Association="SSCISModel.FK_TUTAPPSUB_SUBJECT">
+            <End Role="ENUM_SUBJECT" EntitySet="Subject" />
+            <End Role="TUTOR_APPLICATION_SUBJECT" EntitySet="TutorApplicationSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EVENT_TUTOR" Association="SSCISModel.FK_EVENT_TUTOR">
+            <End Role="SSCIS_USER" EntitySet="SSCISUser" />
+            <End Role="EVENT" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSCIS_CONTENT_AUTHOR" Association="SSCISModel.FK_SSCIS_CONTENT_AUTHOR">
+            <End Role="SSCIS_USER" EntitySet="SSCISUser" />
+            <End Role="SSCIS_CONTENT" EntitySet="SSCISContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSCIS_CONTENT_EDITOR" Association="SSCISModel.FK_SSCIS_CONTENT_EDITOR">
+            <End Role="SSCIS_USER" EntitySet="SSCISUser" />
+            <End Role="SSCIS_CONTENT" EntitySet="SSCISContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSCIS_SESSION_USER" Association="SSCISModel.FK_SSCIS_SESSION_USER">
+            <End Role="SSCIS_USER" EntitySet="SSCISUser" />
+            <End Role="SSCIS_SESSION" EntitySet="SSCISSession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSCIS_USER_ACTBY" Association="SSCISModel.FK_SSCIS_USER_ACTBY">
+            <End Role="SSCIS_USER" EntitySet="SSCISUser" />
+            <End Role="SSCIS_USER1" EntitySet="SSCISUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUTAPP_ACCBY" Association="SSCISModel.FK_TUTAPP_ACCBY">
+            <End Role="SSCIS_USER" EntitySet="SSCISUser" />
+            <End Role="TUTOR_APPLICATION" EntitySet="TutorApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUTAPP_USER" Association="SSCISModel.FK_TUTAPP_USER">
+            <End Role="SSCIS_USER" EntitySet="SSCISUser" />
+            <End Role="TUTOR_APPLICATION" EntitySet="TutorApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUTAPPSUB_APPLICATION" Association="SSCISModel.FK_TUTAPPSUB_APPLICATION">
+            <End Role="TUTOR_APPLICATION" EntitySet="TutorApplication" />
+            <End Role="TUTOR_APPLICATION_SUBJECT" EntitySet="TutorApplicationSubject" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Approval">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TutorID" Type="Int32" Nullable="false" />
+          <Property Name="SubjectID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Subject" Relationship="SSCISModel.FK_APPROVAL_SUBJECT" FromRole="APPROVAL" ToRole="ENUM_SUBJECT" />
+          <NavigationProperty Name="Tutor" Relationship="SSCISModel.FK_APPROVAL_TUTOR" FromRole="APPROVAL" ToRole="SSCIS_USER" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="RoleCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="SSCISModel.FK_SSCIS_USER_ROLE" FromRole="ENUM_ROLE" ToRole="SSCIS_USER" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Approvals" Relationship="SSCISModel.FK_APPROVAL_SUBJECT" FromRole="ENUM_SUBJECT" ToRole="APPROVAL" />
+          <NavigationProperty Name="Events" Relationship="SSCISModel.FK_EVENT_SUBJECT" FromRole="ENUM_SUBJECT" ToRole="EVENT" />
+          <NavigationProperty Name="TutorApplicationSubjects" Relationship="SSCISModel.FK_TUTAPPSUB_SUBJECT" FromRole="ENUM_SUBJECT" ToRole="TUTOR_APPLICATION_SUBJECT" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TimeFrom" Type="DateTime" Nullable="false" />
+          <Property Name="TimeTo" Type="DateTime" Nullable="false" />
+          <Property Name="SubjectID" Type="Int32" Nullable="false" />
+          <Property Name="TutorID" Type="Int32" Nullable="false" />
+          <Property Name="IsAccepted" Type="Boolean" />
+          <Property Name="IsCancelled" Type="Boolean" />
+          <Property Name="CancellationComment" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Subject" Relationship="SSCISModel.FK_EVENT_SUBJECT" FromRole="EVENT" ToRole="ENUM_SUBJECT" />
+          <NavigationProperty Name="Tutor" Relationship="SSCISModel.FK_EVENT_TUTOR" FromRole="EVENT" ToRole="SSCIS_USER" />
+        </EntityType>
+        <EntityType Name="SSCISContent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="AuthorID" Type="Int32" Nullable="false" />
+          <Property Name="EditedByID" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Nullable="false" />
+          <Property Name="Edited" Type="DateTime" />
+          <Property Name="TextContent" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Author" Relationship="SSCISModel.FK_SSCIS_CONTENT_AUTHOR" FromRole="SSCIS_CONTENT" ToRole="SSCIS_USER" />
+          <NavigationProperty Name="EditedBy" Relationship="SSCISModel.FK_SSCIS_CONTENT_EDITOR" FromRole="SSCIS_CONTENT" ToRole="SSCIS_USER" />
+        </EntityType>
+        <EntityType Name="SSCISSession">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="SessionStart" Type="DateTime" Nullable="false" />
+          <Property Name="Expiration" Type="DateTime" Nullable="false" />
+          <Property Name="Hash" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="SSCISModel.FK_SSCIS_SESSION_USER" FromRole="SSCIS_SESSION" ToRole="SSCIS_USER" />
+        </EntityType>
+        <EntityType Name="SSCISUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Firstname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Lastname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Created" Type="DateTime" />
+          <Property Name="Activated" Type="DateTime" />
+          <Property Name="ActivatedByID" Type="Int32" />
+          <Property Name="StudentNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Approvals" Relationship="SSCISModel.FK_APPROVAL_TUTOR" FromRole="SSCIS_USER" ToRole="APPROVAL" />
+          <NavigationProperty Name="Role" Relationship="SSCISModel.FK_SSCIS_USER_ROLE" FromRole="SSCIS_USER" ToRole="ENUM_ROLE" />
+          <NavigationProperty Name="Events" Relationship="SSCISModel.FK_EVENT_TUTOR" FromRole="SSCIS_USER" ToRole="EVENT" />
+          <NavigationProperty Name="CreatedContents" Relationship="SSCISModel.FK_SSCIS_CONTENT_AUTHOR" FromRole="SSCIS_USER" ToRole="SSCIS_CONTENT" />
+          <NavigationProperty Name="EditedContents" Relationship="SSCISModel.FK_SSCIS_CONTENT_EDITOR" FromRole="SSCIS_USER" ToRole="SSCIS_CONTENT" />
+          <NavigationProperty Name="Sessions" Relationship="SSCISModel.FK_SSCIS_SESSION_USER" FromRole="SSCIS_USER" ToRole="SSCIS_SESSION" />
+          <NavigationProperty Name="ActivatedUsers" Relationship="SSCISModel.FK_SSCIS_USER_ACTBY" FromRole="SSCIS_USER" ToRole="SSCIS_USER1" />
+          <NavigationProperty Name="ActivatedBy" Relationship="SSCISModel.FK_SSCIS_USER_ACTBY" FromRole="SSCIS_USER1" ToRole="SSCIS_USER" />
+          <NavigationProperty Name="TutorApplicationsAccepted" Relationship="SSCISModel.FK_TUTAPP_ACCBY" FromRole="SSCIS_USER" ToRole="TUTOR_APPLICATION" />
+          <NavigationProperty Name="TutorApplications" Relationship="SSCISModel.FK_TUTAPP_USER" FromRole="SSCIS_USER" ToRole="TUTOR_APPLICATION" />
+        </EntityType>
+        <EntityType Name="TutorApplication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationDate" Type="DateTime" Nullable="false" />
+          <Property Name="IsAccepted" Type="Boolean" />
+          <Property Name="AcceptedDate" Type="DateTime" />
+          <Property Name="AcceptedByID" Type="Int32" />
+          <NavigationProperty Name="AcceptedBy" Relationship="SSCISModel.FK_TUTAPP_ACCBY" FromRole="TUTOR_APPLICATION" ToRole="SSCIS_USER" />
+          <NavigationProperty Name="Applicant" Relationship="SSCISModel.FK_TUTAPP_USER" FromRole="TUTOR_APPLICATION" ToRole="SSCIS_USER" />
+          <NavigationProperty Name="Subjects" Relationship="SSCISModel.FK_TUTAPPSUB_APPLICATION" FromRole="TUTOR_APPLICATION" ToRole="TUTOR_APPLICATION_SUBJECT" />
+        </EntityType>
+        <EntityType Name="TutorApplicationSubject">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="SubjectID" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+          <Property Name="Degree" Type="Boolean" />
+          <NavigationProperty Name="Subject" Relationship="SSCISModel.FK_TUTAPPSUB_SUBJECT" FromRole="TUTOR_APPLICATION_SUBJECT" ToRole="ENUM_SUBJECT" />
+          <NavigationProperty Name="TutorApplication" Relationship="SSCISModel.FK_TUTAPPSUB_APPLICATION" FromRole="TUTOR_APPLICATION_SUBJECT" ToRole="TUTOR_APPLICATION" />
+        </EntityType>
+        <Association Name="FK_APPROVAL_SUBJECT">
+          <End Type="SSCISModel.Subject" Role="ENUM_SUBJECT" Multiplicity="1" />
+          <End Type="SSCISModel.Approval" Role="APPROVAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENUM_SUBJECT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="APPROVAL">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_APPROVAL_TUTOR">
+          <End Type="SSCISModel.SSCISUser" Role="SSCIS_USER" Multiplicity="1" />
+          <End Type="SSCISModel.Approval" Role="APPROVAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="APPROVAL">
+              <PropertyRef Name="TutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSCIS_USER_ROLE">
+          <End Type="SSCISModel.Role" Role="ENUM_ROLE" Multiplicity="0..1" />
+          <End Type="SSCISModel.SSCISUser" Role="SSCIS_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENUM_ROLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SSCIS_USER">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EVENT_SUBJECT">
+          <End Type="SSCISModel.Subject" Role="ENUM_SUBJECT" Multiplicity="1" />
+          <End Type="SSCISModel.Event" Role="EVENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENUM_SUBJECT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EVENT">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUTAPPSUB_SUBJECT">
+          <End Type="SSCISModel.Subject" Role="ENUM_SUBJECT" Multiplicity="1" />
+          <End Type="SSCISModel.TutorApplicationSubject" Role="TUTOR_APPLICATION_SUBJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENUM_SUBJECT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TUTOR_APPLICATION_SUBJECT">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EVENT_TUTOR">
+          <End Type="SSCISModel.SSCISUser" Role="SSCIS_USER" Multiplicity="1" />
+          <End Type="SSCISModel.Event" Role="EVENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EVENT">
+              <PropertyRef Name="TutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSCIS_CONTENT_AUTHOR">
+          <End Type="SSCISModel.SSCISUser" Role="SSCIS_USER" Multiplicity="1" />
+          <End Type="SSCISModel.SSCISContent" Role="SSCIS_CONTENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SSCIS_CONTENT">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSCIS_CONTENT_EDITOR">
+          <End Type="SSCISModel.SSCISUser" Role="SSCIS_USER" Multiplicity="0..1" />
+          <End Type="SSCISModel.SSCISContent" Role="SSCIS_CONTENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SSCIS_CONTENT">
+              <PropertyRef Name="EditedByID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSCIS_SESSION_USER">
+          <End Type="SSCISModel.SSCISUser" Role="SSCIS_USER" Multiplicity="1" />
+          <End Type="SSCISModel.SSCISSession" Role="SSCIS_SESSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SSCIS_SESSION">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSCIS_USER_ACTBY">
+          <End Type="SSCISModel.SSCISUser" Role="SSCIS_USER" Multiplicity="0..1" />
+          <End Type="SSCISModel.SSCISUser" Role="SSCIS_USER1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SSCIS_USER1">
+              <PropertyRef Name="ActivatedByID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUTAPP_ACCBY">
+          <End Type="SSCISModel.SSCISUser" Role="SSCIS_USER" Multiplicity="0..1" />
+          <End Type="SSCISModel.TutorApplication" Role="TUTOR_APPLICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TUTOR_APPLICATION">
+              <PropertyRef Name="AcceptedByID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUTAPP_USER">
+          <End Type="SSCISModel.SSCISUser" Role="SSCIS_USER" Multiplicity="1" />
+          <End Type="SSCISModel.TutorApplication" Role="TUTOR_APPLICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TUTOR_APPLICATION">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUTAPPSUB_APPLICATION">
+          <End Type="SSCISModel.TutorApplication" Role="TUTOR_APPLICATION" Multiplicity="1" />
+          <End Type="SSCISModel.TutorApplicationSubject" Role="TUTOR_APPLICATION_SUBJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUTOR_APPLICATION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TUTOR_APPLICATION_SUBJECT">
+              <PropertyRef Name="ApplicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -47,6 +694,109 @@
                 <ScalarProperty Name="ParamKey" ColumnName="PARAM_KEY" />
                 <ScalarProperty Name="ParamValue" ColumnName="PARAM_VALUE" />
                 <ScalarProperty Name="Description" ColumnName="DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Approval">
+            <EntityTypeMapping TypeName="SSCISModel.Approval">
+              <MappingFragment StoreEntitySet="APPROVAL">
+                <ScalarProperty Name="SubjectID" ColumnName="ID_SUBJECT" />
+                <ScalarProperty Name="TutorID" ColumnName="ID_TUTOR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="SSCISModel.Role">
+              <MappingFragment StoreEntitySet="ENUM_ROLE">
+                <ScalarProperty Name="Description" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="RoleCode" ColumnName="ROLE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subject">
+            <EntityTypeMapping TypeName="SSCISModel.Subject">
+              <MappingFragment StoreEntitySet="ENUM_SUBJECT">
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Code" ColumnName="CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Event">
+            <EntityTypeMapping TypeName="SSCISModel.Event">
+              <MappingFragment StoreEntitySet="EVENT">
+                <ScalarProperty Name="CancellationComment" ColumnName="CANCELATION_COMMENT" />
+                <ScalarProperty Name="IsCancelled" ColumnName="IS_CANCELLED" />
+                <ScalarProperty Name="IsAccepted" ColumnName="IS_ACCEPTED" />
+                <ScalarProperty Name="TutorID" ColumnName="ID_TUTOR" />
+                <ScalarProperty Name="SubjectID" ColumnName="ID_SUBJECT" />
+                <ScalarProperty Name="TimeTo" ColumnName="TIME_TO" />
+                <ScalarProperty Name="TimeFrom" ColumnName="TIME_FROM" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSCISContent">
+            <EntityTypeMapping TypeName="SSCISModel.SSCISContent">
+              <MappingFragment StoreEntitySet="SSCIS_CONTENT">
+                <ScalarProperty Name="TextContent" ColumnName="TEXT_CONTENT" />
+                <ScalarProperty Name="Edited" ColumnName="EDITED" />
+                <ScalarProperty Name="Created" ColumnName="CREATED" />
+                <ScalarProperty Name="EditedByID" ColumnName="ID_EDITED_BY" />
+                <ScalarProperty Name="AuthorID" ColumnName="ID_AUTHOR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSCISSession">
+            <EntityTypeMapping TypeName="SSCISModel.SSCISSession">
+              <MappingFragment StoreEntitySet="SSCIS_SESSION">
+                <ScalarProperty Name="Hash" ColumnName="HASH" />
+                <ScalarProperty Name="Expiration" ColumnName="EXPIRATION" />
+                <ScalarProperty Name="SessionStart" ColumnName="SESSION_START" />
+                <ScalarProperty Name="UserID" ColumnName="ID_USER" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSCISUser">
+            <EntityTypeMapping TypeName="SSCISModel.SSCISUser">
+              <MappingFragment StoreEntitySet="SSCIS_USER">
+                <ScalarProperty Name="StudentNumber" ColumnName="STUDENT_NUMBER" />
+                <ScalarProperty Name="ActivatedByID" ColumnName="ID_ACTIVATED_BY" />
+                <ScalarProperty Name="Activated" ColumnName="ACTIVATED" />
+                <ScalarProperty Name="Created" ColumnName="CREATED" />
+                <ScalarProperty Name="IsActive" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="RoleID" ColumnName="ID_ROLE" />
+                <ScalarProperty Name="Password" ColumnName="PASSWORD" />
+                <ScalarProperty Name="Lastname" ColumnName="LASTNAME" />
+                <ScalarProperty Name="Firstname" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="Login" ColumnName="LOGIN" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TutorApplication">
+            <EntityTypeMapping TypeName="SSCISModel.TutorApplication">
+              <MappingFragment StoreEntitySet="TUTOR_APPLICATION">
+                <ScalarProperty Name="AcceptedByID" ColumnName="ACCEPTED_BY_ID" />
+                <ScalarProperty Name="AcceptedDate" ColumnName="ACCEPTED_DATE" />
+                <ScalarProperty Name="IsAccepted" ColumnName="IS_ACCEPTED" />
+                <ScalarProperty Name="ApplicationDate" ColumnName="APPLICATION_DATE" />
+                <ScalarProperty Name="UserID" ColumnName="ID_USER" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TutorApplicationSubject">
+            <EntityTypeMapping TypeName="SSCISModel.TutorApplicationSubject">
+              <MappingFragment StoreEntitySet="TUTOR_APPLICATION_SUBJECT">
+                <ScalarProperty Name="Degree" ColumnName="DEGREE" />
+                <ScalarProperty Name="ApplicationID" ColumnName="ID_APPLICATION" />
+                <ScalarProperty Name="SubjectID" ColumnName="ID_SUBJECT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

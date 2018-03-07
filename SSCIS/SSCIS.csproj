@@ -251,7 +251,19 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Approval.cs">
+      <DependentUpon>SSCISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Event.cs">
+      <DependentUpon>SSCISModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>SSCISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SSCISContent.cs">
+      <DependentUpon>SSCISModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SSCISModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -268,6 +280,21 @@
       <DependentUpon>SSCISModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\SSCISParam.cs">
+      <DependentUpon>SSCISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SSCISSession.cs">
+      <DependentUpon>SSCISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SSCISUser.cs">
+      <DependentUpon>SSCISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Subject.cs">
+      <DependentUpon>SSCISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TutorApplication.cs">
+      <DependentUpon>SSCISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TutorApplicationSubject.cs">
       <DependentUpon>SSCISModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -356,6 +383,8 @@
     <Content Include="Views\SSCISParams\Details.cshtml" />
     <Content Include="Views\SSCISParams\Edit.cshtml" />
     <Content Include="Views\SSCISParams\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\ProcessLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

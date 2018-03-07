@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "ProcessLogin";
+}
+
+<h2>ProcessLogin</h2>
+@{ 
+    if (ViewData.ContainsKey("logged") && (bool)ViewData["logged"])
+    {
+        <h3>Logged in.</h3>
+    }
+    else
+    {
+        <h3>Not logged in.</h3>
+    }
+}
+

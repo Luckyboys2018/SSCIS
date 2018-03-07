@@ -26,5 +26,14 @@ namespace SSCIS.Models
         }
     
         public virtual DbSet<SSCISParam> SSCISParam { get; set; }
+        public virtual DbSet<Approval> Approval { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Subject> Subject { get; set; }
+        public virtual DbSet<Event> Event { get; set; }
+        public virtual DbSet<SSCISContent> SSCISContent { get; set; }
+        public virtual DbSet<SSCISSession> SSCISSession { get; set; }
+        public virtual DbSet<SSCISUser> SSCISUser { get; set; }
+        public virtual DbSet<TutorApplication> TutorApplication { get; set; }
+        public virtual DbSet<TutorApplicationSubject> TutorApplicationSubject { get; set; }
     }
 }
