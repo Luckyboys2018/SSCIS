@@ -1,0 +1,10 @@
+{
+"PORT":587,
+"TIMEOUT":10000,
+"HOST":"smtp.gmail.com",
+"LOGIN":"user@gmail.com",
+"PASSWORD":"password",
+"SENDER":"ssc@fav.zcu.cz.com",
+"TEST_SUBJECT":"This is test message.",
+"TEST_MESSAGE":"TEST"
+}
