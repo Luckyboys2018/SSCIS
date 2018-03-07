@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SSCIS.Models;
+using SSCIS.Attributes;
 
 namespace SSCIS.Controllers
 {
@@ -15,6 +16,7 @@ namespace SSCIS.Controllers
         private SSCISEntities db = new SSCISEntities();
 
         // GET: SSCISParams
+        [SSCISAuthorize(AccessLevel = "ADMIN")]
         public ActionResult Index()
         {
             return View(db.SSCISParam.ToList());

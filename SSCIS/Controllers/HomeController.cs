@@ -18,7 +18,7 @@ namespace SSCIS.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
+            Session["Role"] = "ADMIN";
             return View();
         }
 
