@@ -25,7 +25,6 @@ namespace SSCIS.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<SSCISParam> SSCISParam { get; set; }
         public virtual DbSet<Approval> Approval { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Subject> Subject { get; set; }
@@ -35,5 +34,6 @@ namespace SSCIS.Models
         public virtual DbSet<SSCISUser> SSCISUser { get; set; }
         public virtual DbSet<TutorApplication> TutorApplication { get; set; }
         public virtual DbSet<TutorApplicationSubject> TutorApplicationSubject { get; set; }
+        public virtual DbSet<SSCISParam> SSCISParam { get; set; }
     }
 }

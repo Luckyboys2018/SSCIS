@@ -16,6 +16,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                @{ if (Request.RequestContext.HttpContext.Session["login"] != null)
+                    {
+                        <p>@Request.RequestContext.HttpContext.Session["login"]</p>
+                    }
+                }
                 @Html.ActionLink(SSCISResources.Resource.APPLICATION_NAME, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">

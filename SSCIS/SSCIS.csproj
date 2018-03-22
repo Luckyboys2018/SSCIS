@@ -244,7 +244,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Attributes\SSCISAuthorize.cs" />
+    <Compile Include="Class\SessionHashGenerator.cs" />
+    <Compile Include="Class\SSCISSessionManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SSCISParamsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -354,6 +357,7 @@
     <Content Include="Models\SSCISModel.edmx.diagram">
       <DependentUpon>SSCISModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\SSCIS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -390,6 +394,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Entry\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

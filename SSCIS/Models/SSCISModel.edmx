@@ -53,11 +53,20 @@
           <Property Name="EDITED" Type="date" />
           <Property Name="TEXT_CONTENT" Type="varchar2" MaxLength="800" />
         </EntityType>
-        <EntityType Name="SSCIS_SESSION">
+        <EntityType Name="SSCIS_PARAM">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PARAM_KEY" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="PARAM_VALUE" Type="varchar2" MaxLength="60" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="120" />
+        </EntityType>
+        <EntityType Name="SSCIS_SESSION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ID_USER" Type="number" Precision="10" Scale="0" Nullable="false" />
           <Property Name="SESSION_START" Type="date" Nullable="false" />
           <Property Name="EXPIRATION" Type="date" Nullable="false" />
@@ -67,7 +76,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="LOGIN" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="FIRSTNAME" Type="varchar2" MaxLength="40" />
           <Property Name="LASTNAME" Type="varchar2" MaxLength="40" />
@@ -78,15 +87,6 @@
           <Property Name="ACTIVATED" Type="date" />
           <Property Name="ID_ACTIVATED_BY" Type="number" Precision="10" Scale="0" />
           <Property Name="STUDENT_NUMBER" Type="varchar2" MaxLength="20" />
-        </EntityType>
-        <EntityType Name="SSCISPARAM">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="PARAM_KEY" Type="varchar2" MaxLength="30" Nullable="false" />
-          <Property Name="PARAM_VALUE" Type="varchar2" MaxLength="60" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="120" />
         </EntityType>
         <EntityType Name="TUTOR_APPLICATION">
           <Key>
@@ -270,9 +270,9 @@
           <EntitySet Name="ENUM_SUBJECT" EntityType="Self.ENUM_SUBJECT" Schema="SSCIS" store:Type="Tables" />
           <EntitySet Name="EVENT" EntityType="Self.EVENT" Schema="SSCIS" store:Type="Tables" />
           <EntitySet Name="SSCIS_CONTENT" EntityType="Self.SSCIS_CONTENT" Schema="SSCIS" store:Type="Tables" />
+          <EntitySet Name="SSCIS_PARAM" EntityType="Self.SSCIS_PARAM" Schema="SSCIS" store:Type="Tables" />
           <EntitySet Name="SSCIS_SESSION" EntityType="Self.SSCIS_SESSION" Schema="SSCIS" store:Type="Tables" />
           <EntitySet Name="SSCIS_USER" EntityType="Self.SSCIS_USER" Schema="SSCIS" store:Type="Tables" />
-          <EntitySet Name="SSCISPARAM" EntityType="Self.SSCISPARAM" Schema="SSCIS" store:Type="Tables" />
           <EntitySet Name="TUTOR_APPLICATION" EntityType="Self.TUTOR_APPLICATION" Schema="SSCIS" store:Type="Tables" />
           <EntitySet Name="TUTOR_APPLICATION_SUBJECT" EntityType="Self.TUTOR_APPLICATION_SUBJECT" Schema="SSCIS" store:Type="Tables" />
           <AssociationSet Name="FK_APPROVAL_SUBJECT" Association="Self.FK_APPROVAL_SUBJECT">
@@ -332,17 +332,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SSCISModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="SSCISParam">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="ParamKey" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ParamValue" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityContainer Name="SSCISEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="SSCISParam" EntityType="SSCISModel.SSCISParam" />
           <EntitySet Name="Approval" EntityType="SSCISModel.Approval" />
           <EntitySet Name="Role" EntityType="SSCISModel.Role" />
           <EntitySet Name="Subject" EntityType="SSCISModel.Subject" />
@@ -404,6 +394,7 @@
             <End Role="TUTOR_APPLICATION" EntitySet="TutorApplication" />
             <End Role="TUTOR_APPLICATION_SUBJECT" EntitySet="TutorApplicationSubject" />
           </AssociationSet>
+          <EntitySet Name="SSCISParam" EntityType="SSCISModel.SSCISParam" />
         </EntityContainer>
         <EntityType Name="Approval">
           <Key>
@@ -467,7 +458,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="SessionStart" Type="DateTime" Nullable="false" />
           <Property Name="Expiration" Type="DateTime" Nullable="false" />
@@ -478,7 +469,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Login" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="Firstname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="Lastname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
@@ -681,22 +672,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SSCISParam">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ParamKey" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ParamValue" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SSCISModelStoreContainer" CdmEntityContainer="SSCISEntities">
-          <EntitySetMapping Name="SSCISParam">
-            <EntityTypeMapping TypeName="SSCISModel.SSCISParam">
-              <MappingFragment StoreEntitySet="SSCISPARAM">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ParamKey" ColumnName="PARAM_KEY" />
-                <ScalarProperty Name="ParamValue" ColumnName="PARAM_VALUE" />
-                <ScalarProperty Name="Description" ColumnName="DESCRIPTION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Approval">
             <EntityTypeMapping TypeName="SSCISModel.Approval">
               <MappingFragment StoreEntitySet="APPROVAL">
@@ -796,6 +786,16 @@
                 <ScalarProperty Name="Degree" ColumnName="DEGREE" />
                 <ScalarProperty Name="ApplicationID" ColumnName="ID_APPLICATION" />
                 <ScalarProperty Name="SubjectID" ColumnName="ID_SUBJECT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSCISParam">
+            <EntityTypeMapping TypeName="SSCISModel.SSCISParam">
+              <MappingFragment StoreEntitySet="SSCIS_PARAM">
+                <ScalarProperty Name="Description" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ParamValue" ColumnName="PARAM_VALUE" />
+                <ScalarProperty Name="ParamKey" ColumnName="PARAM_KEY" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

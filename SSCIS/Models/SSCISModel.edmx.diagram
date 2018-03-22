@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d2f0f5f3157d4803aaf4cfc29de94fb9" Name="Diagram1">
-        <EntityTypeShape EntityType="SSCISModel.SSCISParam" Width="1.5" PointX="3.5" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SSCISModel.Approval" Width="1.5" PointX="10.875" PointY="8.25" />
         <EntityTypeShape EntityType="SSCISModel.Role" Width="1.5" PointX="3.375" PointY="8.375" />
         <EntityTypeShape EntityType="SSCISModel.Subject" Width="1.5" PointX="5.625" PointY="3.25" />
@@ -28,6 +27,7 @@
         <AssociationConnector Association="SSCISModel.FK_TUTAPP_ACCBY" />
         <AssociationConnector Association="SSCISModel.FK_TUTAPP_USER" />
         <AssociationConnector Association="SSCISModel.FK_TUTAPPSUB_APPLICATION" />
+        <EntityTypeShape EntityType="SSCISModel.SSCISParam" Width="1.5" PointX="3.125" PointY="2.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
