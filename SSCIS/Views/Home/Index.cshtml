@@ -1,28 +1,148 @@
-﻿<div class="body-content container-fluid text-center" style="padding-top: 70px">
+﻿
+
+<div class="body-content container-fluid text-center" style="padding-top: 70px">
     <div class="row content">
         <div class="col-sm-2 sidenav">
         </div>
 
         <div class="col-sm-8 text-left">
-            <h1>Vítejte</h1>
-            <hr />
-            <div class="well">
-                <h3>Aktualita</h3>
-                <p>
-                    Pozor, změna: 29.3. SSC nefunguje!
-                </p>
-            </div>
-            <hr />
-            <div class="well">
-                <p>
-                    SCHVÁLENÝ ROZVRH HODIN
-                </p>
-            </div>
-            <p>
-                Student Support Centre (SSC) je společná aktivita kateder <a href="http://www.fav.zcu.cz/">Fakulty aplikovaných věd Západočeské univerzity v Plzni</a>. Projekt startuje ve zkouškovém období zimního semestru 2017/2018. Cílem je podpora studentů prvního ročníku, kteří mohou mít problémy s úvodními matematickými a informatickými předměty. Podpory se studentům dostane od kolegů ve vyšších ročnících pod dohledem pedagogických pracovníků zúčastněných kateder. Každý den v týdnu mohou studenti přijít do studovny FAV, kde získají bezplatnou pomoc se základními předměty, tj. KKMA/M1, KMA/M2, KMA/MA1, KMA/MA1, KMA/M1S, KMA/M2S, KMA/MA1E, KMA/M2E, KMA/ZM1, KMA/ZM2 (po dohodě také KMA/LAA), KIV/PPA1, KIV/PPA2 a KIV/UPG.
-            </p>
+            <h1>Chci pomáhat</h1>
+            <p>Hledáme tutory, tj. studenty/studentky 3.-5. ročníku FAV, kteří by si chtěli přivydělat poskytováním konzultací mladším spolužákům. Nabízíme 190,- Kč na hodinu, požadujeme dobré znalosti alespoň některého z doučovaných předmětů, tj. na úrovni známky výborně nebo alespoň velmi dobře.</p>
             <hr>
-
+            <p>Máte-li zájem, vyplňte prosím formulář níže.</p>
+            <div class="well">
+                <div class="container">
+                    <h2>Žádost o tutorství</h2>
+                    <form class="form-inline" action="/action_page.php">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="sel1">Vyber předmět:</label>
+                                <select class="form-control" id="predmet">
+                                    <option>KKMA/M1</option>
+                                    <option>KMA/M2</option>
+                                    <option>KMA/MA1</option>
+                                    <option>KMA/M2S</option>
+                                    <option>KMA/MA1E</option>
+                                    <option>KMA/M2E</option>
+                                    <option>KMA/ZM1</option>
+                                    <option>KMA/ZM2</option>
+                                    <option>KIV/PPA1</option>
+                                    <option>KIV/PPA2</option>
+                                    <option>KIV/UPG</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Známka:</label>
+                                <select class="form-control" id="znamka">
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Vyber den:</label>
+                                <select class="form-control" id="den">
+                                    <option>Pondělí</option>
+                                    <option>Úterý</option>
+                                    <option>Středa</option>
+                                    <option>Čtvrtek</option>
+                                    <option>Pátek</option>
+                                </select>
+                            </div>
+                         <!--   <div class="form-group">
+                                <label for="sel1">Od:</label>
+                                <div class='input-group date' id='datetimepicker'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                </div>
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $('#datetimepicker').datetimepicker({
+                                        format: 'LT'
+                                        });
+                                    });
+                                </script>
+                            </div>-->
+                            <div class="form-group">
+                                <label for="sel1">Od:</label>
+                                <select class="form-control" id="predmet">
+                                    <option>10:00</option>
+                                    <option>10:15</option>
+                                    <option>10:30</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Do:</label>
+                                <select class="form-control" id="predmet">
+                                    <option>11:00</option>
+                                    <option>11:15</option>
+                                    <option>11:30</option>
+                                    <option>11:45</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="sel1">Vyber předmět:</label>
+                                <select class="form-control" id="predmet">
+                                    <option>KKMA/M1</option>
+                                    <option>KMA/M2</option>
+                                    <option>KMA/MA1</option>
+                                    <option>KMA/M2S</option>
+                                    <option>KMA/MA1E</option>
+                                    <option>KMA/M2E</option>
+                                    <option>KMA/ZM1</option>
+                                    <option>KMA/ZM2</option>
+                                    <option>KIV/PPA1</option>
+                                    <option>KIV/PPA2</option>
+                                    <option>KIV/UPG</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Známka:</label>
+                                <select class="form-control" id="znamka">
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Vyber den:</label>
+                                <select class="form-control" id="den">
+                                    <option>Pondělí</option>
+                                    <option>Úterý</option>
+                                    <option>Středa</option>
+                                    <option>Čtvrtek</option>
+                                    <option>Pátek</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Od:</label>
+                                <select class="form-control" id="predmet">
+                                    <option>10:00</option>
+                                    <option>10:15</option>
+                                    <option>10:30</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Do:</label>
+                                <select class="form-control" id="predmet">
+                                    <option>11:00</option>
+                                    <option>11:15</option>
+                                    <option>11:30</option>
+                                    <option>11:45</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="form-group submit" style="vertical-align: bottom">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <p>Máte-li další dotazy, ozvěte se prosím Světlaně Tomiczkové na e-mail <a href="mailto:svetlana@kma.zcu.cz">svetlana@kma.zcu.cz</a>, případně přijďte osobně do UC 258.</p>
         </div>
         <div class="col-sm-2 sidenav">
             <div class="well">
@@ -34,3 +154,5 @@
         </div>
     </div>
 </div>
+
+
