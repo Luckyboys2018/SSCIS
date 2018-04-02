@@ -120,6 +120,9 @@
   <data name="APPLICATION_NAME" xml:space="preserve">
     <value>Student Support Centre</value>
   </data>
+  <data name="CHCI_POMOC" xml:space="preserve">
+    <value>Chci pomáhat</value>
+  </data>
   <data name="HOME" xml:space="preserve">
     <value>Domů</value>
   </data>

@@ -70,6 +70,15 @@ namespace SSCISResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chci pomáhat.
+        /// </summary>
+        public static string CHCI_POMOC {
+            get {
+                return ResourceManager.GetString("CHCI_POMOC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Domů.
         /// </summary>
         public static string HOME {

@@ -8,6 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -30,8 +31,7 @@
             <div class="collapse navbar-collapse" id="myNavbar" style="margin-left: 20px">
                 <ul class="nav navbar-nav">
                     <li class="active">@Html.ActionLink(SSCISResources.Resource.HOME, "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink(SSCISResources.Resource.SYSTEM_PARAMS, "Index", "SSCISParams", new { area = "" }, null)</li>
-                    <li><a href="#">Chci pomáhat</a></li>
+                    <li>@Html.ActionLink(SSCISResources.Resource.CHCI_POMOC, "ChciPomoct", "Home", new { area = "" }, null)</li>
                     <li><a href="#">Potřebuji pomoct</a></li>
                     <li><a href="#">Novinky</a></li>
                     <li><a href="#">Kontakt</a></li>
