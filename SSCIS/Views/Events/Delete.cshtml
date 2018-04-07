@@ -1,0 +1,80 @@
+﻿@model SSCIS.Models.Event
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAccepted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAccepted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCancelled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCancelled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CancellationComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CancellationComment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutor.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tutor.Login)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -3,6 +3,7 @@ using SSCIS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -53,31 +54,60 @@ namespace SSCIS.Controllers
         /// TEST ONLY
         /// </summary>
         /// <returns>Sets sesison with login is correct and redirects to Home/Index</returns>
-        [HttpGet]
-        public ActionResult Index(string login)
+        //[HttpGet]
+        //public ActionResult Index(string login)
+        //{
+        //    if (login != null)
+        //    {
+        //        bool userExistInDatabase = db.SSCISUser.Where(o => o.IsActive.HasValue && o.IsActive.Value && o.Login.Equals(login)).Count() > 0;
+        //        if (!userExistInDatabase)
+        //        {
+        //            SSCISUser user = new SSCISUser();
+        //            user.Login = login;
+        //            user.Role = db.Role.Where(r => r.RoleCode.Equals("USER")).Single();
+        //            user.IsActive = true;
+        //            user.Created = DateTime.Now;
+        //            user.Activated = DateTime.Now;
+        //            db.SSCISUser.Add(user);
+        //            db.SaveChanges();
+        //            sessionManager.SessionStart(user.Login, Session);
+        //        }
+        //        else
+        //        {
+        //            SSCISUser user = db.SSCISUser.Where(u => u.Login.Equals(login)).Single();
+        //            sessionManager.SessionStart(user.Login, Session);
+        //        }
+        //    }
+        //    return RedirectToAction("Index", "Home");
+        //}
+
+        public ActionResult Index()
         {
-            if (login != null)
+            StringBuilder sb = new StringBuilder();
+            foreach (var key in Request.Headers.AllKeys)
             {
-                bool userExistInDatabase = db.SSCISUser.Where(o => o.IsActive.HasValue && o.IsActive.Value && o.Login.Equals(login)).Count() > 0;
-                if (!userExistInDatabase)
-                {
-                    SSCISUser user = new SSCISUser();
-                    user.Login = login;
-                    user.Role = db.Role.Where(r => r.RoleCode.Equals("USER")).Single();
-                    user.IsActive = true;
-                    user.Created = DateTime.Now;
-                    user.Activated = DateTime.Now;
-                    db.SSCISUser.Add(user);
-                    db.SaveChanges();
-                    sessionManager.SessionStart(user.Login, Session);
-                }
-                else
-                {
-                    SSCISUser user = db.SSCISUser.Where(u => u.Login.Equals(login)).Single();
-                    sessionManager.SessionStart(user.Login, Session);
-                }
+                var val = Request.Headers[key];
+                sb.Append(key);
+                sb.Append(" = ");
+                sb.Append(val);
+                sb.Append("\n");
             }
-            return RedirectToAction("Index", "Home");
+            return Content(sb.ToString());
+        }
+
+        public ActionResult Info()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var key in Request.Headers.AllKeys)
+            {
+                var val = Request.Headers[key];
+                sb.Append(key);
+                sb.Append(" = ");
+                sb.Append(val);
+                sb.Append("\n");
+            }
+            ViewData["infoContent"] = sb.ToString();
+            return View();
         }
 
     }

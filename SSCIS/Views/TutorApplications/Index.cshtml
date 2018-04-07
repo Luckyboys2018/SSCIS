@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SSCIS.Models.TutorApplication>
+
+@{
+    ViewBag.Title = SSCISResources.Resource.TUTOR_APPLICATIONS;
+}
+
+<h2>@SSCISResources.Resource.TUTOR_APPLICATIONS</h2>
+
+<p>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAccepted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AcceptedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AcceptedBy.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant.Login)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAccepted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AcceptedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AcceptedBy.Login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applicant.Login)
+        </td>
+        <td>
+            @Html.ActionLink(SSCISResources.Resource.DETAIL, "Detail", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

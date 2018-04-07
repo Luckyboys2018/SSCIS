@@ -1,0 +1,42 @@
+﻿@model SSCIS.Models.TutorApplicationSubject
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TutorApplicationSubject</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Degree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Degree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TutorApplication.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TutorApplication.ID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

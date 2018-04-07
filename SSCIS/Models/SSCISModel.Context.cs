@@ -33,7 +33,9 @@ namespace SSCIS.Models
         public virtual DbSet<SSCISSession> SSCISSession { get; set; }
         public virtual DbSet<SSCISUser> SSCISUser { get; set; }
         public virtual DbSet<TutorApplication> TutorApplication { get; set; }
-        public virtual DbSet<TutorApplicationSubject> TutorApplicationSubject { get; set; }
         public virtual DbSet<SSCISParam> SSCISParam { get; set; }
+        public virtual DbSet<TutorApplicationSubject> TutorApplicationSubject { get; set; }
+        public virtual DbSet<Feedback> Feedback { get; set; }
+        public virtual DbSet<Participation> Participation { get; set; }
     }
 }

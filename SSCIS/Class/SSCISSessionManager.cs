@@ -34,6 +34,7 @@ namespace SSCIS.Class
             httpSession["role"] = session.User.Role.RoleCode;
             httpSession["hash"] = session.Hash;
             httpSession["login"] = login;
+            httpSession["userId"] = session.User.ID;
         }
 
         /// <summary>
@@ -48,6 +49,7 @@ namespace SSCIS.Class
             httpSession.Remove("sessionId");
             httpSession.Remove("role");
             httpSession.Remove("hash");
+            httpSession.Remove("userID");
         }
 
         /// <summary>

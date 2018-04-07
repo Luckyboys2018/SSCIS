@@ -14,6 +14,12 @@ namespace SSCIS.Models
     
     public partial class Event
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Event()
+        {
+            this.Participation = new HashSet<Participation>();
+        }
+    
         public int ID { get; set; }
         public System.DateTime TimeFrom { get; set; }
         public System.DateTime TimeTo { get; set; }
@@ -25,5 +31,7 @@ namespace SSCIS.Models
     
         public virtual Subject Subject { get; set; }
         public virtual SSCISUser Tutor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Participation> Participation { get; set; }
     }
 }

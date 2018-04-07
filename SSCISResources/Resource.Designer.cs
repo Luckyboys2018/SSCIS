@@ -59,32 +59,171 @@ namespace SSCISResources {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Student Support Centre.
         /// </summary>
-        public static string APPLICATION_NAME {
-            get {
+        public static string APPLICATION_NAME
+        {
+            get
+            {
                 return ResourceManager.GetString("APPLICATION_NAME", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Vytvořit rozvrhovou akci.
+        /// </summary>
+        public static string CREATE_SCHEDULE_EVENT
+        {
+            get
+            {
+                return ResourceManager.GetString("CREATE_SCHEDULE_EVENT", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Domů.
         /// </summary>
-        public static string HOME {
-            get {
+        public static string HOME
+        {
+            get
+            {
                 return ResourceManager.GetString("HOME", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Správa předmětů.
+        /// </summary>
+        public static string SUBJECTS_MANAGEMENT
+        {
+            get
+            {
+                return ResourceManager.GetString("SUBJECTS_MANAGEMENT", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Systémové parametry.
         /// </summary>
-        public static string SYSTEM_PARAMS {
-            get {
+        public static string SYSTEM_PARAMS
+        {
+            get
+            {
                 return ResourceManager.GetString("SYSTEM_PARAMS", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Přihláška tutora.
+        /// </summary>
+        public static string TUTOR_APPLICATION
+        {
+            get
+            {
+                return ResourceManager.GetString("TUTOR_APPLICATION", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Přidat předmět.
+        /// </summary>
+        public static string ADD_SUBJECT
+        {
+            get
+            {
+                return ResourceManager.GetString("ADD_SUBJECT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Známka.
+        /// </summary>
+        public static string DEGREE
+        {
+            get
+            {
+                return ResourceManager.GetString("DEGREE", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Píjmení.
+        /// </summary>
+        public static string LASTNAME
+        {
+            get
+            {
+                return ResourceManager.GetString("LASTNAME", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string LOGIN
+        {
+            get
+            {
+                return ResourceManager.GetString("LOGIN", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Jméno.
+        /// </summary>
+        public static string NAME
+        {
+            get
+            {
+                return ResourceManager.GetString("NAME", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Předmět.
+        /// </summary>
+        public static string SUBJECT
+        {
+            get
+            {
+                return ResourceManager.GetString("SUBJECT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Předměty.
+        /// </summary>
+        public static string SUBJECTS
+        {
+            get
+            {
+                return ResourceManager.GetString("SUBJECTS", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Příhlášky tutorů.
+        /// </summary>
+        public static string TUTOR_APPLICATIONS
+        {
+            get
+            {
+                return ResourceManager.GetString("TUTOR_APPLICATIONS", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Detail.
+        /// </summary>
+        public static string DETAIL
+        {
+            get
+            {
+                return ResourceManager.GetString("DETAIL", resourceCulture);
+            }
+        }
+
     }
 }

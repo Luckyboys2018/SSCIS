@@ -12,24 +12,21 @@ namespace SSCIS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TutorApplication
+    public partial class Participation
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TutorApplication()
+        public Participation()
         {
-            this.ApplicationSubjects = new HashSet<TutorApplicationSubject>();
+            this.Feedback = new HashSet<Feedback>();
         }
     
         public int ID { get; set; }
-        public int UserID { get; set; }
-        public System.DateTime ApplicationDate { get; set; }
-        public Nullable<bool> IsAccepted { get; set; }
-        public Nullable<System.DateTime> AcceptedDate { get; set; }
-        public Nullable<int> AcceptedByID { get; set; }
+        public Nullable<int> EventID { get; set; }
+        public Nullable<int> UserID { get; set; }
     
-        public virtual SSCISUser AcceptedBy { get; set; }
-        public virtual SSCISUser Applicant { get; set; }
+        public virtual Event Event { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TutorApplicationSubject> ApplicationSubjects { get; set; }
+        public virtual ICollection<Feedback> Feedback { get; set; }
+        public virtual SSCISUser User { get; set; }
     }
 }

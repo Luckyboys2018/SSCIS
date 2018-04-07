@@ -117,13 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ADD_SUBJECT" xml:space="preserve">
+    <value>Přidat předmět</value>
+  </data>
   <data name="APPLICATION_NAME" xml:space="preserve">
     <value>Student Support Centre</value>
+  </data>
+  <data name="CREATE_SCHEDULE_EVENT" xml:space="preserve">
+    <value>Vytvořit rozvrhovou akci</value>
+  </data>
+  <data name="DEGREE" xml:space="preserve">
+    <value>Známka</value>
+  </data>
+  <data name="DETAIL" xml:space="preserve">
+    <value>Detail</value>
   </data>
   <data name="HOME" xml:space="preserve">
     <value>Domů</value>
   </data>
+  <data name="LASTNAME" xml:space="preserve">
+    <value>Píjmení</value>
+  </data>
+  <data name="LOGIN" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="NAME" xml:space="preserve">
+    <value>Jméno</value>
+  </data>
+  <data name="SUBJECT" xml:space="preserve">
+    <value>Předmět</value>
+  </data>
+  <data name="SUBJECTS" xml:space="preserve">
+    <value>Předměty</value>
+  </data>
+  <data name="SUBJECTS_MANAGEMENT" xml:space="preserve">
+    <value>Správa předmětů</value>
+  </data>
   <data name="SYSTEM_PARAMS" xml:space="preserve">
     <value>Systémové parametry</value>
+  </data>
+  <data name="TUTOR_APPLICATION" xml:space="preserve">
+    <value>Přihláška tutora</value>
+  </data>
+  <data name="TUTOR_APPLICATIONS" xml:space="preserve">
+    <value>Příhlášky tutorů</value>
   </data>
 </root>

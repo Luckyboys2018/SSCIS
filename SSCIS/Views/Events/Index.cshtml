@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SSCIS.Models.Event>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAccepted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCancelled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CancellationComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tutor.Login)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeTo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAccepted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCancelled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CancellationComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tutor.Login)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

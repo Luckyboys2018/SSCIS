@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ID_TUTOR" Type="number" Precision="10" Scale="0" Nullable="false" />
           <Property Name="ID_SUBJECT" Type="number" Precision="10" Scale="0" Nullable="false" />
         </EntityType>
@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ROLE" Type="varchar2" MaxLength="6" Nullable="false" />
           <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
         </EntityType>
@@ -25,15 +25,16 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CODE" Type="varchar2" MaxLength="10" Nullable="false" />
           <Property Name="NAME" Type="varchar2" MaxLength="30" />
+          <Property Name="LESSON" Type="number" Precision="1" Scale="0" />
         </EntityType>
         <EntityType Name="EVENT">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TIME_FROM" Type="date" Nullable="false" />
           <Property Name="TIME_TO" Type="date" Nullable="false" />
           <Property Name="ID_SUBJECT" Type="number" Precision="10" Scale="0" Nullable="false" />
@@ -42,11 +43,27 @@
           <Property Name="IS_CANCELLED" Type="number" Precision="1" Scale="0" />
           <Property Name="CANCELATION_COMMENT" Type="varchar2" MaxLength="120" />
         </EntityType>
+        <EntityType Name="FEEDBACK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PARTICIPATION" Type="number" Precision="10" Scale="0" />
+          <Property Name="TEXT" Type="varchar2" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="PARTICIPATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_EVENT" Type="number" Precision="10" Scale="0" />
+          <Property Name="ID_USER" Type="number" Precision="10" Scale="0" />
+        </EntityType>
         <EntityType Name="SSCIS_CONTENT">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ID_AUTHOR" Type="number" Precision="10" Scale="0" Nullable="false" />
           <Property Name="ID_EDITED_BY" Type="number" Precision="10" Scale="0" />
           <Property Name="CREATED" Type="date" Nullable="false" />
@@ -57,7 +74,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="PARAM_KEY" Type="varchar2" MaxLength="30" Nullable="false" />
           <Property Name="PARAM_VALUE" Type="varchar2" MaxLength="60" Nullable="false" />
           <Property Name="DESCRIPTION" Type="varchar2" MaxLength="120" />
@@ -92,7 +109,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ID_USER" Type="number" Precision="10" Scale="0" Nullable="false" />
           <Property Name="APPLICATION_DATE" Type="date" Nullable="false" />
           <Property Name="IS_ACCEPTED" Type="number" Precision="1" Scale="0" />
@@ -103,10 +120,10 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ID_SUBJECT" Type="number" Precision="10" Scale="0" Nullable="false" />
           <Property Name="ID_APPLICATION" Type="number" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="DEGREE" Type="number" Precision="1" Scale="0" />
+          <Property Name="DEGREE" Type="number" Precision="2" Scale="0" />
         </EntityType>
         <Association Name="FK_APPROVAL_SUBJECT">
           <End Role="ENUM_SUBJECT" Type="Self.ENUM_SUBJECT" Multiplicity="1" />
@@ -153,6 +170,42 @@
             </Principal>
             <Dependent Role="EVENT">
               <PropertyRef Name="ID_TUTOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_PARTICIP">
+          <End Role="PARTICIPATION" Type="Self.PARTICIPATION" Multiplicity="0..1" />
+          <End Role="FEEDBACK" Type="Self.FEEDBACK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PARTICIPATION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FEEDBACK">
+              <PropertyRef Name="ID_PARTICIPATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTICIP_SUSER">
+          <End Role="SSCIS_USER" Type="Self.SSCIS_USER" Multiplicity="0..1" />
+          <End Role="PARTICIPATION" Type="Self.PARTICIPATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCIS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PARTICIPATION">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PATICIP_EVENT">
+          <End Role="EVENT" Type="Self.EVENT" Multiplicity="0..1" />
+          <End Role="PARTICIPATION" Type="Self.PARTICIPATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EVENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PARTICIPATION">
+              <PropertyRef Name="ID_EVENT" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -269,6 +322,8 @@
           <EntitySet Name="ENUM_ROLE" EntityType="Self.ENUM_ROLE" Schema="SSCIS" store:Type="Tables" />
           <EntitySet Name="ENUM_SUBJECT" EntityType="Self.ENUM_SUBJECT" Schema="SSCIS" store:Type="Tables" />
           <EntitySet Name="EVENT" EntityType="Self.EVENT" Schema="SSCIS" store:Type="Tables" />
+          <EntitySet Name="FEEDBACK" EntityType="Self.FEEDBACK" Schema="SSCIS" store:Type="Tables" />
+          <EntitySet Name="PARTICIPATION" EntityType="Self.PARTICIPATION" Schema="SSCIS" store:Type="Tables" />
           <EntitySet Name="SSCIS_CONTENT" EntityType="Self.SSCIS_CONTENT" Schema="SSCIS" store:Type="Tables" />
           <EntitySet Name="SSCIS_PARAM" EntityType="Self.SSCIS_PARAM" Schema="SSCIS" store:Type="Tables" />
           <EntitySet Name="SSCIS_SESSION" EntityType="Self.SSCIS_SESSION" Schema="SSCIS" store:Type="Tables" />
@@ -290,6 +345,18 @@
           <AssociationSet Name="FK_EVENT_TUTOR" Association="Self.FK_EVENT_TUTOR">
             <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
             <End Role="EVENT" EntitySet="EVENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_PARTICIP" Association="Self.FK_FEEDBACK_PARTICIP">
+            <End Role="PARTICIPATION" EntitySet="PARTICIPATION" />
+            <End Role="FEEDBACK" EntitySet="FEEDBACK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTICIP_SUSER" Association="Self.FK_PARTICIP_SUSER">
+            <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
+            <End Role="PARTICIPATION" EntitySet="PARTICIPATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PATICIP_EVENT" Association="Self.FK_PATICIP_EVENT">
+            <End Role="EVENT" EntitySet="EVENT" />
+            <End Role="PARTICIPATION" EntitySet="PARTICIPATION" />
           </AssociationSet>
           <AssociationSet Name="FK_SSCIS_CONTENT_AUTHOR" Association="Self.FK_SSCIS_CONTENT_AUTHOR">
             <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
@@ -341,7 +408,6 @@
           <EntitySet Name="SSCISSession" EntityType="SSCISModel.SSCISSession" />
           <EntitySet Name="SSCISUser" EntityType="SSCISModel.SSCISUser" />
           <EntitySet Name="TutorApplication" EntityType="SSCISModel.TutorApplication" />
-          <EntitySet Name="TutorApplicationSubject" EntityType="SSCISModel.TutorApplicationSubject" />
           <AssociationSet Name="FK_APPROVAL_SUBJECT" Association="SSCISModel.FK_APPROVAL_SUBJECT">
             <End Role="ENUM_SUBJECT" EntitySet="Subject" />
             <End Role="APPROVAL" EntitySet="Approval" />
@@ -357,10 +423,6 @@
           <AssociationSet Name="FK_EVENT_SUBJECT" Association="SSCISModel.FK_EVENT_SUBJECT">
             <End Role="ENUM_SUBJECT" EntitySet="Subject" />
             <End Role="EVENT" EntitySet="Event" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TUTAPPSUB_SUBJECT" Association="SSCISModel.FK_TUTAPPSUB_SUBJECT">
-            <End Role="ENUM_SUBJECT" EntitySet="Subject" />
-            <End Role="TUTOR_APPLICATION_SUBJECT" EntitySet="TutorApplicationSubject" />
           </AssociationSet>
           <AssociationSet Name="FK_EVENT_TUTOR" Association="SSCISModel.FK_EVENT_TUTOR">
             <End Role="SSCIS_USER" EntitySet="SSCISUser" />
@@ -390,17 +452,36 @@
             <End Role="SSCIS_USER" EntitySet="SSCISUser" />
             <End Role="TUTOR_APPLICATION" EntitySet="TutorApplication" />
           </AssociationSet>
-          <AssociationSet Name="FK_TUTAPPSUB_APPLICATION" Association="SSCISModel.FK_TUTAPPSUB_APPLICATION">
-            <End Role="TUTOR_APPLICATION" EntitySet="TutorApplication" />
+          <EntitySet Name="SSCISParam" EntityType="SSCISModel.SSCISParam" />
+          <EntitySet Name="TutorApplicationSubject" EntityType="SSCISModel.TutorApplicationSubject" />
+          <AssociationSet Name="FK_TUTAPPSUB_SUBJECT" Association="SSCISModel.FK_TUTAPPSUB_SUBJECT">
+            <End Role="Subject" EntitySet="Subject" />
             <End Role="TUTOR_APPLICATION_SUBJECT" EntitySet="TutorApplicationSubject" />
           </AssociationSet>
-          <EntitySet Name="SSCISParam" EntityType="SSCISModel.SSCISParam" />
+          <AssociationSet Name="FK_TUTAPPSUB_APPLICATION" Association="SSCISModel.FK_TUTAPPSUB_APPLICATION">
+            <End Role="TutorApplication" EntitySet="TutorApplication" />
+            <End Role="TUTOR_APPLICATION_SUBJECT" EntitySet="TutorApplicationSubject" />
+          </AssociationSet>
+          <EntitySet Name="Feedback" EntityType="SSCISModel.Feedback" />
+          <EntitySet Name="Participation" EntityType="SSCISModel.Participation" />
+          <AssociationSet Name="FK_PATICIP_EVENT" Association="SSCISModel.FK_PATICIP_EVENT">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="PARTICIPATION" EntitySet="Participation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_PARTICIP" Association="SSCISModel.FK_FEEDBACK_PARTICIP">
+            <End Role="PARTICIPATION" EntitySet="Participation" />
+            <End Role="FEEDBACK" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTICIP_SUSER" Association="SSCISModel.FK_PARTICIP_SUSER">
+            <End Role="SSCISUser" EntitySet="SSCISUser" />
+            <End Role="PARTICIPATION" EntitySet="Participation" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Approval">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TutorID" Type="Int32" Nullable="false" />
           <Property Name="SubjectID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Subject" Relationship="SSCISModel.FK_APPROVAL_SUBJECT" FromRole="APPROVAL" ToRole="ENUM_SUBJECT" />
@@ -410,7 +491,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Users" Relationship="SSCISModel.FK_SSCIS_USER_ROLE" FromRole="ENUM_ROLE" ToRole="SSCIS_USER" />
@@ -419,18 +500,19 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Approvals" Relationship="SSCISModel.FK_APPROVAL_SUBJECT" FromRole="ENUM_SUBJECT" ToRole="APPROVAL" />
           <NavigationProperty Name="Events" Relationship="SSCISModel.FK_EVENT_SUBJECT" FromRole="ENUM_SUBJECT" ToRole="EVENT" />
-          <NavigationProperty Name="TutorApplicationSubjects" Relationship="SSCISModel.FK_TUTAPPSUB_SUBJECT" FromRole="ENUM_SUBJECT" ToRole="TUTOR_APPLICATION_SUBJECT" />
+          <NavigationProperty Name="ApplicaitonSubjects" Relationship="SSCISModel.FK_TUTAPPSUB_SUBJECT" FromRole="Subject" ToRole="TUTOR_APPLICATION_SUBJECT" />
+          <Property Name="Lesson" Type="Boolean" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TimeFrom" Type="DateTime" Nullable="false" />
           <Property Name="TimeTo" Type="DateTime" Nullable="false" />
           <Property Name="SubjectID" Type="Int32" Nullable="false" />
@@ -440,12 +522,13 @@
           <Property Name="CancellationComment" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Subject" Relationship="SSCISModel.FK_EVENT_SUBJECT" FromRole="EVENT" ToRole="ENUM_SUBJECT" />
           <NavigationProperty Name="Tutor" Relationship="SSCISModel.FK_EVENT_TUTOR" FromRole="EVENT" ToRole="SSCIS_USER" />
+          <NavigationProperty Name="Participation" Relationship="SSCISModel.FK_PATICIP_EVENT" FromRole="Event" ToRole="PARTICIPATION" />
         </EntityType>
         <EntityType Name="SSCISContent">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AuthorID" Type="Int32" Nullable="false" />
           <Property Name="EditedByID" Type="Int32" />
           <Property Name="Created" Type="DateTime" Nullable="false" />
@@ -490,12 +573,13 @@
           <NavigationProperty Name="ActivatedBy" Relationship="SSCISModel.FK_SSCIS_USER_ACTBY" FromRole="SSCIS_USER1" ToRole="SSCIS_USER" />
           <NavigationProperty Name="TutorApplicationsAccepted" Relationship="SSCISModel.FK_TUTAPP_ACCBY" FromRole="SSCIS_USER" ToRole="TUTOR_APPLICATION" />
           <NavigationProperty Name="TutorApplications" Relationship="SSCISModel.FK_TUTAPP_USER" FromRole="SSCIS_USER" ToRole="TUTOR_APPLICATION" />
+          <NavigationProperty Name="Participations" Relationship="SSCISModel.FK_PARTICIP_SUSER" FromRole="SSCISUser" ToRole="PARTICIPATION" />
         </EntityType>
         <EntityType Name="TutorApplication">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="ApplicationDate" Type="DateTime" Nullable="false" />
           <Property Name="IsAccepted" Type="Boolean" />
@@ -503,18 +587,7 @@
           <Property Name="AcceptedByID" Type="Int32" />
           <NavigationProperty Name="AcceptedBy" Relationship="SSCISModel.FK_TUTAPP_ACCBY" FromRole="TUTOR_APPLICATION" ToRole="SSCIS_USER" />
           <NavigationProperty Name="Applicant" Relationship="SSCISModel.FK_TUTAPP_USER" FromRole="TUTOR_APPLICATION" ToRole="SSCIS_USER" />
-          <NavigationProperty Name="Subjects" Relationship="SSCISModel.FK_TUTAPPSUB_APPLICATION" FromRole="TUTOR_APPLICATION" ToRole="TUTOR_APPLICATION_SUBJECT" />
-        </EntityType>
-        <EntityType Name="TutorApplicationSubject">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="SubjectID" Type="Int32" Nullable="false" />
-          <Property Name="ApplicationID" Type="Int32" Nullable="false" />
-          <Property Name="Degree" Type="Boolean" />
-          <NavigationProperty Name="Subject" Relationship="SSCISModel.FK_TUTAPPSUB_SUBJECT" FromRole="TUTOR_APPLICATION_SUBJECT" ToRole="ENUM_SUBJECT" />
-          <NavigationProperty Name="TutorApplication" Relationship="SSCISModel.FK_TUTAPPSUB_APPLICATION" FromRole="TUTOR_APPLICATION_SUBJECT" ToRole="TUTOR_APPLICATION" />
+          <NavigationProperty Name="ApplicationSubjects" Relationship="SSCISModel.FK_TUTAPPSUB_APPLICATION" FromRole="TutorApplication" ToRole="TUTOR_APPLICATION_SUBJECT" />
         </EntityType>
         <Association Name="FK_APPROVAL_SUBJECT">
           <End Type="SSCISModel.Subject" Role="ENUM_SUBJECT" Multiplicity="1" />
@@ -560,18 +633,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="EVENT">
-              <PropertyRef Name="SubjectID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TUTAPPSUB_SUBJECT">
-          <End Type="SSCISModel.Subject" Role="ENUM_SUBJECT" Multiplicity="1" />
-          <End Type="SSCISModel.TutorApplicationSubject" Role="TUTOR_APPLICATION_SUBJECT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ENUM_SUBJECT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TUTOR_APPLICATION_SUBJECT">
               <PropertyRef Name="SubjectID" />
             </Dependent>
           </ReferentialConstraint>
@@ -660,11 +721,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TUTAPPSUB_APPLICATION">
-          <End Type="SSCISModel.TutorApplication" Role="TUTOR_APPLICATION" Multiplicity="1" />
+        <EntityType Name="SSCISParam">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParamKey" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ParamValue" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TutorApplicationSubject">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectID" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+          <Property Name="Degree" Type="Byte" />
+          <NavigationProperty Name="Subject" Relationship="SSCISModel.FK_TUTAPPSUB_SUBJECT" FromRole="TUTOR_APPLICATION_SUBJECT" ToRole="Subject" />
+          <NavigationProperty Name="Application" Relationship="SSCISModel.FK_TUTAPPSUB_APPLICATION" FromRole="TUTOR_APPLICATION_SUBJECT" ToRole="TutorApplication" />
+        </EntityType>
+        <Association Name="FK_TUTAPPSUB_SUBJECT">
+          <End Type="SSCISModel.Subject" Role="Subject" Multiplicity="1" />
           <End Type="SSCISModel.TutorApplicationSubject" Role="TUTOR_APPLICATION_SUBJECT" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TUTOR_APPLICATION">
+            <Principal Role="Subject">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TUTOR_APPLICATION_SUBJECT">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUTAPPSUB_APPLICATION">
+          <End Type="SSCISModel.TutorApplication" Role="TutorApplication" Multiplicity="1" />
+          <End Type="SSCISModel.TutorApplicationSubject" Role="TUTOR_APPLICATION_SUBJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TutorApplication">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TUTOR_APPLICATION_SUBJECT">
@@ -672,15 +765,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SSCISParam">
+        <EntityType Name="Feedback">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="ParamKey" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ParamValue" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParticipationID" Type="Int32" />
+          <Property Name="Text" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Participation" Relationship="SSCISModel.FK_FEEDBACK_PARTICIP" FromRole="FEEDBACK" ToRole="PARTICIPATION" />
         </EntityType>
+        <EntityType Name="Participation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="Event" Relationship="SSCISModel.FK_PATICIP_EVENT" FromRole="PARTICIPATION" ToRole="Event" />
+          <NavigationProperty Name="Feedback" Relationship="SSCISModel.FK_FEEDBACK_PARTICIP" FromRole="PARTICIPATION" ToRole="FEEDBACK" />
+          <NavigationProperty Name="User" Relationship="SSCISModel.FK_PARTICIP_SUSER" FromRole="PARTICIPATION" ToRole="SSCISUser" />
+        </EntityType>
+        <Association Name="FK_PATICIP_EVENT">
+          <End Type="SSCISModel.Event" Role="Event" Multiplicity="0..1" />
+          <End Type="SSCISModel.Participation" Role="PARTICIPATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PARTICIPATION">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_PARTICIP">
+          <End Type="SSCISModel.Participation" Role="PARTICIPATION" Multiplicity="0..1" />
+          <End Type="SSCISModel.Feedback" Role="FEEDBACK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PARTICIPATION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FEEDBACK">
+              <PropertyRef Name="ParticipationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTICIP_SUSER">
+          <End Type="SSCISModel.SSCISUser" Role="SSCISUser" Multiplicity="0..1" />
+          <End Type="SSCISModel.Participation" Role="PARTICIPATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSCISUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PARTICIPATION">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -708,6 +848,7 @@
           <EntitySetMapping Name="Subject">
             <EntityTypeMapping TypeName="SSCISModel.Subject">
               <MappingFragment StoreEntitySet="ENUM_SUBJECT">
+                <ScalarProperty Name="Lesson" ColumnName="LESSON" />
                 <ScalarProperty Name="Name" ColumnName="NAME" />
                 <ScalarProperty Name="Code" ColumnName="CODE" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -780,6 +921,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SSCISParam">
+            <EntityTypeMapping TypeName="SSCISModel.SSCISParam">
+              <MappingFragment StoreEntitySet="SSCIS_PARAM">
+                <ScalarProperty Name="Description" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ParamValue" ColumnName="PARAM_VALUE" />
+                <ScalarProperty Name="ParamKey" ColumnName="PARAM_KEY" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TutorApplicationSubject">
             <EntityTypeMapping TypeName="SSCISModel.TutorApplicationSubject">
               <MappingFragment StoreEntitySet="TUTOR_APPLICATION_SUBJECT">
@@ -790,12 +941,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SSCISParam">
-            <EntityTypeMapping TypeName="SSCISModel.SSCISParam">
-              <MappingFragment StoreEntitySet="SSCIS_PARAM">
-                <ScalarProperty Name="Description" ColumnName="DESCRIPTION" />
-                <ScalarProperty Name="ParamValue" ColumnName="PARAM_VALUE" />
-                <ScalarProperty Name="ParamKey" ColumnName="PARAM_KEY" />
+          <EntitySetMapping Name="Feedback">
+            <EntityTypeMapping TypeName="SSCISModel.Feedback">
+              <MappingFragment StoreEntitySet="FEEDBACK">
+                <ScalarProperty Name="Text" ColumnName="TEXT" />
+                <ScalarProperty Name="ParticipationID" ColumnName="ID_PARTICIPATION" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Participation">
+            <EntityTypeMapping TypeName="SSCISModel.Participation">
+              <MappingFragment StoreEntitySet="PARTICIPATION">
+                <ScalarProperty Name="UserID" ColumnName="ID_USER" />
+                <ScalarProperty Name="EventID" ColumnName="ID_EVENT" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

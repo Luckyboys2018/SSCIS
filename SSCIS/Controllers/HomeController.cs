@@ -19,6 +19,7 @@ namespace SSCIS.Controllers
         {
             ViewBag.Title = "Home Page";
             Session["Role"] = "ADMIN";
+            Session["userId"] = 1;
             return View();
         }
 

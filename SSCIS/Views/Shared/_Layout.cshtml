@@ -27,6 +27,10 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(SSCISResources.Resource.HOME, "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink(SSCISResources.Resource.SYSTEM_PARAMS, "Index", "SSCISParams", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink(SSCISResources.Resource.SUBJECTS_MANAGEMENT, "Index", "Subjects", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink(SSCISResources.Resource.CREATE_SCHEDULE_EVENT, "Create", "Events", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink(SSCISResources.Resource.TUTOR_APPLICATION, "Create", "TutorApplications", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink(SSCISResources.Resource.TUTOR_APPLICATIONS, "Index", "TutorApplications", new { area = "" }, null)</li>
                 </ul>
             </div>
         </div>
@@ -38,6 +42,7 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

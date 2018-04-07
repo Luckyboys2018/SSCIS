@@ -12,14 +12,12 @@ namespace SSCIS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TutorApplicationSubject
+    public partial class Feedback
     {
         public int ID { get; set; }
-        public int SubjectID { get; set; }
-        public int ApplicationID { get; set; }
-        public Nullable<byte> Degree { get; set; }
+        public Nullable<int> ParticipationID { get; set; }
+        public string Text { get; set; }
     
-        public virtual Subject Subject { get; set; }
-        public virtual TutorApplication Application { get; set; }
+        public virtual Participation Participation { get; set; }
     }
 }

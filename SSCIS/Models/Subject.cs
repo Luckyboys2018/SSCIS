@@ -19,18 +19,19 @@ namespace SSCIS.Models
         {
             this.Approvals = new HashSet<Approval>();
             this.Events = new HashSet<Event>();
-            this.TutorApplicationSubjects = new HashSet<TutorApplicationSubject>();
+            this.ApplicaitonSubjects = new HashSet<TutorApplicationSubject>();
         }
     
         public int ID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
+        public Nullable<bool> Lesson { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Approval> Approvals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Event> Events { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TutorApplicationSubject> TutorApplicationSubjects { get; set; }
+        public virtual ICollection<TutorApplicationSubject> ApplicaitonSubjects { get; set; }
     }
 }

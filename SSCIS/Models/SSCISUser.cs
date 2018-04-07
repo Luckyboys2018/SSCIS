@@ -25,6 +25,7 @@ namespace SSCIS.Models
             this.ActivatedUsers = new HashSet<SSCISUser>();
             this.TutorApplicationsAccepted = new HashSet<TutorApplication>();
             this.TutorApplications = new HashSet<TutorApplication>();
+            this.Participations = new HashSet<Participation>();
         }
     
         public int ID { get; set; }
@@ -57,5 +58,7 @@ namespace SSCIS.Models
         public virtual ICollection<TutorApplication> TutorApplicationsAccepted { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TutorApplication> TutorApplications { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Participation> Participations { get; set; }
     }
 }

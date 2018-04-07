@@ -248,8 +248,12 @@
     <Compile Include="Class\SSCISSessionManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SSCISParamsController.cs" />
+    <Compile Include="Controllers\SubjectsController.cs" />
+    <Compile Include="Controllers\TutorApplicationsController.cs" />
+    <Compile Include="Controllers\TutorApplicationSubjectsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -263,6 +267,7 @@
       <DependentUpon>SSCISModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Meta\MetaTutorApplication.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>SSCISModel.tt</DependentUpon>
     </Compile>
@@ -391,10 +396,30 @@
     <Content Include="Views\SSCISParams\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\ProcessLogin.cshtml" />
+    <Content Include="Views\Entry\Info.cshtml" />
+    <Content Include="Views\Subjects\Create.cshtml" />
+    <Content Include="Views\Subjects\Delete.cshtml" />
+    <Content Include="Views\Subjects\Details.cshtml" />
+    <Content Include="Views\Subjects\Edit.cshtml" />
+    <Content Include="Views\Subjects\Index.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\TutorApplications\Create.cshtml" />
+    <Content Include="Views\TutorApplications\Delete.cshtml" />
+    <Content Include="Views\TutorApplications\Details.cshtml" />
+    <Content Include="Views\TutorApplications\Edit.cshtml" />
+    <Content Include="Views\TutorApplications\Index.cshtml" />
+    <Content Include="Views\TutorApplicationSubjects\Create.cshtml" />
+    <Content Include="Views\TutorApplicationSubjects\Delete.cshtml" />
+    <Content Include="Views\TutorApplicationSubjects\Details.cshtml" />
+    <Content Include="Views\TutorApplicationSubjects\Edit.cshtml" />
+    <Content Include="Views\TutorApplicationSubjects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Entry\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

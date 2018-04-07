@@ -1,0 +1,74 @@
+﻿@model SSCIS.Models.Event
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAccepted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAccepted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCancelled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCancelled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CancellationComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CancellationComment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutor.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tutor.Login)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
