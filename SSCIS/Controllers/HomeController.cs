@@ -23,7 +23,17 @@ namespace SSCIS.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            SSCISContent model = db.SSCISContent.OrderByDescending(c => c.Created).First();
+            SSCISContent model = null;
+            if (db.SSCISContent.Count() > 0)
+            {
+                model = db.SSCISContent.OrderByDescending(c => c.Created).First();
+            }
+            else
+            {
+                model = new SSCISContent();
+                model.Created = DateTime.Now;
+                model.TextContent = "Žádná aktualita nebyla nalezena";
+            }
             return View(model);
         }
 
