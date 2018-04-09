@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    ViewBag.ActiveMenuItem = "menu-subjects";
 }
 
 <h2>Index</h2>
@@ -17,6 +18,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lesson)
+        </th>
         <th></th>
     </tr>
 
@@ -27,6 +31,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lesson)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

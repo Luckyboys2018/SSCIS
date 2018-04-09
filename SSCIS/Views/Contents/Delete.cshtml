@@ -1,0 +1,62 @@
+﻿@model SSCIS.Models.SSCISContent
+
+@{
+    ViewBag.Title = "Smazat";
+}
+
+<h2>Delete</h2>
+
+<h3>Opravdu chcete smazat tento obsah?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edited)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edited)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TextContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TextContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author.Login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditedBy.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditedBy.Login)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+        </div>
+    }
+</div>

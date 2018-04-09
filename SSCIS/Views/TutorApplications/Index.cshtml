@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = SSCISResources.Resource.TUTOR_APPLICATIONS;
+    ViewBag.ActiveMenuItem = "menu-tutors";
 }
 
 <h2>@SSCISResources.Resource.TUTOR_APPLICATIONS</h2>
@@ -12,15 +13,6 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ApplicationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsAccepted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AcceptedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AcceptedBy.Login)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Applicant.Login)
@@ -34,19 +26,10 @@
             @Html.DisplayFor(modelItem => item.ApplicationDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsAccepted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AcceptedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AcceptedBy.Login)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Applicant.Login)
         </td>
         <td>
-            @Html.ActionLink(SSCISResources.Resource.DETAIL, "Detail", new { id=item.ID })
+            @Html.ActionLink(SSCISResources.Resource.DETAIL, "Details", new { id=item.ID })
         </td>
     </tr>
 }

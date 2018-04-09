@@ -39,6 +39,7 @@ namespace SSCIS.Class
 
         /// <summary>
         /// Destroys existing session
+        /// Session KAPUT
         /// </summary>
         /// <param name="sessionId">session id</param>
         /// <param name="httpSession">session in request conext</param>

@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.ActiveMenuItem = "menu-contact";
+}
+<div class="body-content container-fluid text-center" style="padding-top: 70px">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+        </div>
+
+        <div class="col-sm-8 text-left">
+            <h1>Kontakt</h1>
+            <hr />
+            <p>
+                Máte dotazy? Kontaktujte nás:
+                <br />
+                <br />
+                KMA:Světlana Tomiczková, svetlana@kma.zcu.cz
+                <br />
+                <br />
+                KIV: Libor Váša, lvasa@kiv.zcu.cz
+            </p>
+            <div class="well">
+                <div id="map" style="width:100%;height:400px;"></div>
+            </div>
+            <hr>
+        </div>
+
+
+        <script>
+                function myMap() {
+                    var mapCanvas = document.getElementById("map");
+                    var mapOptions = {
+                        center: new google.maps.LatLng(49.726903, 13.352262), zoom: 17
+                    };
+                    var map = new google.maps.Map(mapCanvas, mapOptions);
+                }
+        </script>
+        @Scripts.Render("https://maps.googleapis.com/maps/api/js?key=" + ViewBag.MapToken + "&callback=myMap")
+
+        <div class="col-sm-2 sidenav">
+            <div class="well">
+                <p>
+                    ROZVRH
+                    PO PRIHLASENI
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -44,6 +44,7 @@ namespace SSCIS.Controllers
         // GET: TutorApplications/Create
         public ActionResult Create(int count = 1)
         {
+            if (Session["role"] == null) return View("Create_public");
             MetaTutorApplication model = new MetaTutorApplication();
             for (int i = 0; i < count; i++)
             {

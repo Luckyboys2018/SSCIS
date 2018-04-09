@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Delete";
+    ViewBag.ActiveMenuItem = "menu-subjects";
 }
 
 <h2>Delete</h2>
@@ -25,6 +26,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lesson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lesson)
         </dd>
 
     </dl>

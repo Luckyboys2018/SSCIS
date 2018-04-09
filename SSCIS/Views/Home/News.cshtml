@@ -1,0 +1,46 @@
+﻿@model SSCIS.Models.Meta.MetaNews
+@{
+    ViewBag.ActiveMenuItem = "menu-news";
+}
+<div class="body-content container-fluid text-center" style="padding-top: 70px">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+        </div>
+
+        <div class="col-sm-8 text-left">
+            <h1>Novinky</h1>
+            @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
+            {
+                @Html.ActionLink("Add new", "Create", "Contents", new { area = "" }, null)
+            }
+            @foreach (var modelItem in Model.Contents)
+            {
+                <hr />
+                <div class="well">
+                    <h3>@Html.DisplayFor(m => modelItem.Created)</h3>
+                    <p>
+                        @Html.DisplayFor(m => modelItem.TextContent)
+                    </p>
+                    @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", "Contents", new { id = modelItem.ID }, null)
+                                <br>
+                        @Html.ActionLink("Delete", "Delete", "Contents", new { id = modelItem.ID }, null)
+                    }
+                </div>
+            }
+            <hr>
+        </div>
+
+        <div class="col-sm-2 sidenav">
+            <div class="well">
+                <p>
+                    ROZVRH
+                    PO PRIHLASENI
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+

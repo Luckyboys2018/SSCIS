@@ -1,24 +1,41 @@
-﻿<div class="jumbotron">
-    <h1>@SSCISResources.Resource.APPLICATION_NAME</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+﻿@model SSCIS.Models.SSCISContent
+@{
+    ViewBag.ActiveMenuItem = "menu-index";
+}
+
+<div class="body-content container-fluid text-center" style="padding-top: 70px">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+        </div>
+
+        <div class="col-sm-8 text-left">
+            <h1>Vítejte</h1>
+            <hr />
+            <div class="well">
+                <h3>Aktualita: @Html.DisplayFor(m => m.Created)</h3>
+                <p>
+                    @Html.DisplayFor(m => m.TextContent)
+                </p>
+            </div>
+            <hr />
+            <div class="well">
+                <p>
+                    SCHVÁLENÝ ROZVRH HODIN
+                </p>
+            </div>
+            <p>
+                Student Support Centre (SSC) je společná aktivita kateder <a href="http://www.fav.zcu.cz/">Fakulty aplikovaných věd Západočeské univerzity v Plzni</a>. Projekt startuje ve zkouškovém období zimního semestru 2017/2018. Cílem je podpora studentů prvního ročníku, kteří mohou mít problémy s úvodními matematickými a informatickými předměty. Podpory se studentům dostane od kolegů ve vyšších ročnících pod dohledem pedagogických pracovníků zúčastněných kateder. Každý den v týdnu mohou studenti přijít do studovny FAV, kde získají bezplatnou pomoc se základními předměty, tj. KKMA/M1, KMA/M2, KMA/MA1, KMA/MA1, KMA/M1S, KMA/M2S, KMA/MA1E, KMA/M2E, KMA/ZM1, KMA/ZM2 (po dohodě také KMA/LAA), KIV/PPA1, KIV/PPA2 a KIV/UPG.
+            </p>
+            <hr>
+
+        </div>
+        <div class="col-sm-2 sidenav">
+            <div class="well">
+                <p>
+                    ROZVRH
+                    PO PRIHLASENI
+                </p>
+            </div>
+        </div>
     </div>
 </div>

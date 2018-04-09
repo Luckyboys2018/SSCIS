@@ -247,6 +247,7 @@
     <Compile Include="Class\SessionHashGenerator.cs" />
     <Compile Include="Class\SSCISSessionManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContentsController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -266,8 +267,16 @@
     <Compile Include="Models\Event.cs">
       <DependentUpon>SSCISModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Feedback.cs">
+      <DependentUpon>SSCISModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Meta\MetaLogin.cs" />
+    <Compile Include="Models\Meta\MetaNews.cs" />
     <Compile Include="Models\Meta\MetaTutorApplication.cs" />
+    <Compile Include="Models\Participation.cs">
+      <DependentUpon>SSCISModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Role.cs">
       <DependentUpon>SSCISModel.tt</DependentUpon>
     </Compile>
@@ -316,6 +325,8 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\logo2.png" />
+    <Content Include="Content\Images\logozcu.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -362,6 +373,9 @@
     <Content Include="Models\SSCISModel.edmx.diagram">
       <DependentUpon>SSCISModel.edmx</DependentUpon>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
+    <Content Include="ClassDiagram3.cd" />
     <None Include="Properties\PublishProfiles\SSCIS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -417,6 +431,15 @@
     <Content Include="Views\TutorApplicationSubjects\Details.cshtml" />
     <Content Include="Views\TutorApplicationSubjects\Edit.cshtml" />
     <Content Include="Views\TutorApplicationSubjects\Index.cshtml" />
+    <Content Include="Views\TutorApplications\Create_public.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\HelpMe.cshtml" />
+    <Content Include="Views\Contents\Create.cshtml" />
+    <Content Include="Views\Contents\Delete.cshtml" />
+    <Content Include="Views\Contents\Details.cshtml" />
+    <Content Include="Views\Contents\Edit.cshtml" />
+    <Content Include="Views\Contents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

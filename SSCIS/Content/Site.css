@@ -1,17 +1,87 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+            min-height: 70px;
+        }
+        .navbar-inverse {
+            background-color: #2a5197;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+        .navbar-nav{
+            padding-left: 0px;
+            min-height: 70px;
+        }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
+        .navbar-nav>li>a {
+            padding-top: 25px;
+            padding-bottom: 25px;
+            font-size: 18px;
+            line-height: unset;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 1100px) {
+             .navbar-nav>li>a {
+            padding-top: 27px;
+            padding-bottom: 27px;
+            font-size: 15px;
+            line-height: unset;
+            }
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 990px) and (min-width: 768px) {
+             .navbar-nav>li>a {
+            padding-top: 30px;
+            padding-bottom: 30px;
+            font-size: 12px;
+            line-height: unset;
+            }
+        }
+
+        .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+            color: black;
+            background-color: white;
+        }
+
+        .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+            margin-right: 0;
+            margin-left: 0;
+            min-height: 70px;
+            min-width: 120px;
+        }
+
+
+        .navbar-logo {
+            max-width: 120px;
+            max-height: 47px;
+        }
+
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {
+            height: auto;
+            min-height: 722px;
+        }
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            padding-top: 20px;
+            background-color: #f1f1f1;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+            .row.content {height:auto;}
+        }
