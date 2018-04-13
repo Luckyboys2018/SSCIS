@@ -60,7 +60,8 @@ namespace SSCIS.Class
         /// <returns>True, if session data is correct, else false</returns>
         public bool VerifySession(HttpSessionStateBase httpSession)
         {
-            SSCISSession dbSession = db.SSCISSession.Where(s => s.ID == (long)httpSession["sessionId"]).Single();
+            //SSCISSession dbSession = db.SSCISSession.Where(s => s.ID == (int)httpSession["sessionId"]).Single();
+            SSCISSession dbSession = db.SSCISSession.Find(httpSession["sessionId"]);
             return dbSession.Hash.Equals((string)httpSession["hash"]);
         }
 
