@@ -44,6 +44,12 @@ namespace SSCIS.Controllers
             return View();
         }
 
+        public ActionResult Username()
+        {
+            ViewBag.Title = "Username - Profil";
+            return View();
+        }
+
         public ActionResult HelpMe()
         {
             ViewBag.Title = "Potřebuji pomoc";

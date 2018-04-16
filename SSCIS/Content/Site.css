@@ -4,6 +4,11 @@
             border-radius: 0;
             min-height: 70px;
         }
+
+        .navbar-toggle {
+            padding: 20px 10px;
+        }
+
         .navbar-inverse {
             background-color: #2a5197;
 }
@@ -18,6 +23,16 @@
             padding-bottom: 25px;
             font-size: 18px;
             line-height: unset;
+        }
+
+        .row {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        label.control-label.col-md-2{
+            padding-top: 6px;
+            padding-bottom: 6px;
         }
 
         /* On small screens, set height to 'auto' for sidenav and grid */
@@ -61,7 +76,7 @@
         /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
         .row.content {
             height: auto;
-            min-height: 722px;
+            min-height: initial;
         }
 
         /* Set gray background color and 100% height */
@@ -85,3 +100,5 @@
             }
             .row.content {height:auto;}
         }
+
+       

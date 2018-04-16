@@ -6,7 +6,6 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
 </head>
@@ -45,12 +44,16 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                   
+                        
+                   
                     @if (Session["role"] == null)
                     {
                         <li><a href="@Url.Action("Login", "Home")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     }
                     else
                     {
+                        <li><a href="@Url.Action("Username", "Home")">USERNAME</a></li>
                         <li><a href="@Url.Action("Logout", "Home")"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                     }
                 </ul>
