@@ -14,7 +14,17 @@ namespace SSCIS.Attributes
     {
         public string AccessLevel { get; set; }
 
-        private SSCISSessionManager sessionManager = new SSCISSessionManager();
+        private SSCISSessionManager _sessionManager = new SSCISSessionManager();
+
+        public SSCISAuthorize()
+        {
+            _sessionManager = new SSCISSessionManager();
+        }
+
+        public SSCISAuthorize(SSCISSessionManager sessionManager)
+        {
+            _sessionManager = sessionManager;
+        }
 
         /// <summary>
         /// Authorizes actionResultMethod
@@ -24,7 +34,7 @@ namespace SSCIS.Attributes
         {
             if (AccessLevel != null)
             {
-                if (!sessionManager.VerifySession(filterContext.HttpContext.Session))
+                if (!_sessionManager.VerifySession(filterContext.HttpContext.Session))
                 {
                     filterContext.Result = new RedirectResult(string.Format("/Home/Login", filterContext.HttpContext.Request.Url.AbsolutePath));
                 }

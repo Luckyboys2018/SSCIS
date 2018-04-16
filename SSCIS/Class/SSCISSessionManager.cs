@@ -15,6 +15,18 @@ namespace SSCIS.Class
         private SSCISEntities db = new SSCISEntities();
         private SessionHashGenerator hashgenerator = new SessionHashGenerator();
 
+        public SSCISSessionManager(SSCISEntities dbContext = null)
+        {
+            if (dbContext == null)
+            {
+                this.db = new SSCISEntities();
+            }
+            else
+            {
+                this.db = dbContext;
+            }
+        }
+
         /// <summary>
         /// Starts session for logging user
         /// </summary>
@@ -45,7 +57,7 @@ namespace SSCIS.Class
         /// <param name="httpSession">session in request conext</param>
         public void SessionDestroy(long sessionId, HttpSessionStateBase httpSession)
         {
-            db.SSCISSession.Remove(db.SSCISSession.Where(s => s.ID == sessionId).Single());
+            db.SSCISSession.Remove(db.SSCISSession.Find(sessionId));
             db.SaveChanges();
             httpSession.Remove("sessionId");
             httpSession.Remove("role");
