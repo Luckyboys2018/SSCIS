@@ -54,6 +54,23 @@ namespace SSCISTest.Class
             // 4) Vytvorit instanci SSCISSessionManageru a v konstruktoru predat mock object
             // 5) Vytvorit instanci tridy HttpSessionStateBaseTO a nastavit hodnoty pro klice sessionId a hash na zvolene hodnoty
             // 6) Zavolat metodu VerifySession na sessionManagerem a predat vytvoreny TO a jeji vysledek porovnat s hodnotou true
+
+            Mock<SSCISEntities> dbMock = new Mock<SSCISEntities>();
+            SSCISSession session = new SSCISSession();
+            
+            session.ID = 12;
+            session.Hash = "123456878";
+
+            dbMock.Setup(m => m.SSCISSession.Find(It.IsAny<int>())).Returns(session);
+
+            SSCISSessionManager sessionMan = new SSCISSessionManager(dbMock.Object);
+
+            HttpSessionStateBaseTO httpSession = new HttpSessionStateBaseTO();
+            httpSession["sessionId"] = 12;
+            httpSession["hash"] = "12345678";
+
+            Assert.IsTrue(sessionMan.VerifySession(httpSession));
+                
         }
 
         [TestMethod]
@@ -67,6 +84,23 @@ namespace SSCISTest.Class
             // 5) Vytvorit instanci tridy HttpSessionStateBaseTO a nastavit hodnoty pro klic sessionId
             // 6) Nastavit hodnotu pro klic hash na jinou hodnotu nez je puvodne zvoleny hash
             // 7) Zavolat metodu VerifySession na sessionManagerem a predat vytvoreny TO a jeji vysledek porovnat s hodnotou false
+
+            Mock<SSCISEntities> dbMock = new Mock<SSCISEntities>();
+            SSCISSession session = new SSCISSession();
+
+            session.ID = 12;
+            session.Hash = "123456878";
+
+            dbMock.Setup(m => m.SSCISSession.Find(It.IsAny<int>())).Returns(session);
+
+            SSCISSessionManager sessionMan = new SSCISSessionManager(dbMock.Object);
+
+            HttpSessionStateBaseTO httpSession = new HttpSessionStateBaseTO();
+            httpSession["sessionId"] = 11;
+            httpSession["hash"] = "12345678";
+
+            Assert.IsFalse(sessionMan.VerifySession(httpSession));
+
         }
 
     }
