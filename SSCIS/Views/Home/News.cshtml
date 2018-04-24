@@ -11,7 +11,7 @@
             <h1>Novinky</h1>
             @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
             {
-                @Html.ActionLink("Add new", "Create", "Contents", new { area = "" }, null)
+                @Html.ActionLink("Vytvořit novinku", "Create", "Contents", new { area = "" }, null)
             }
             @foreach (var modelItem in Model.Contents)
             {

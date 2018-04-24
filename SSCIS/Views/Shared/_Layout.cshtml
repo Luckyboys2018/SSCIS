@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand" href="https://www.zcu.cz/"><img class="navbar-logo" src="~/Content/Images/logo2.png"></a>
+                <a class="navbar-brand" href="https://www.zcu.cz/" target="_blank"><img class="navbar-logo" src="~/Content/Images/logo2.png"></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar" style="margin-left: 20px">
                 <ul class="nav navbar-nav">
@@ -65,7 +65,8 @@
         @RenderBody()
     </div>
     <footer class="container-fluid text-center">
-        <p>@DateTime.Now.Year - Footer Text</p>
+        <p>Copyright © 2018 - @DateTime.Now.Year Západočeská univerzita v Plzni</p>
+        <a href="http://fav.zcu.cz/" target="_blank">Fakulta aplikovaných věd</a>  -  @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, null)
     </footer>
 
     <script>

@@ -5,33 +5,45 @@
     ViewBag.ActiveMenuItem = "menu-tutors";
 }
 
-<h2>@SSCISResources.Resource.TUTOR_APPLICATIONS</h2>
+<div class="body-content container-fluid text-center" style="padding-top: 70px">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+        </div>
 
-<p>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Applicant.Login)
-        </th>
-        <th></th>
-    </tr>
+        <div class="col-sm-8 text-left">
+            <h1>@SSCISResources.Resource.TUTOR_APPLICATIONS</h1>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Applicant.Login)
-        </td>
-        <td>
-            @Html.ActionLink(SSCISResources.Resource.DETAIL, "Details", new { id=item.ID })
-        </td>
-    </tr>
-}
+            <p>
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ApplicationDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Applicant.Login)
+                    </th>
+                    <th></th>
+                </tr>
 
-</table>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Applicant.Login)
+                        </td>
+                        <td>
+                            @Html.ActionLink(SSCISResources.Resource.DETAIL, "Details", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <div class="col-sm-2 sidenav">
+        </div>
+    </div>
+</div>
