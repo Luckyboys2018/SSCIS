@@ -33,6 +33,12 @@ namespace SSCISTest.Class.TestObjects
             set { _dictionary[key] = value; }
         }
 
+        public override Object this[string key]
+        {
+            get { return _dictionary[key]; }
+            set { this._dictionary[key] = value; }
+        }
+
         public override void Remove(string name)
         {
             _dictionary.Remove(name);

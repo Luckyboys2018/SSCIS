@@ -67,7 +67,7 @@ namespace SSCISTest.Class
 
             HttpSessionStateBaseTO httpSession = new HttpSessionStateBaseTO();
             httpSession["sessionId"] = 12;
-            httpSession["hash"] = "12345678";
+            httpSession["hash"] = "123456878";
 
             Assert.IsTrue(sessionMan.VerifySession(httpSession));
                 
