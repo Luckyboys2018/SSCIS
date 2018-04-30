@@ -53,7 +53,7 @@ namespace SSCIS.Controllers
             int? userID = (int)Session["userID"];
             SSCISUser user = db.SSCISUser.Find(userID);
             model.Application.Applicant = user;
-            ViewBag.SubjectID = new SelectList(db.Subject, "ID", "Code");
+            ViewBag.SubjectID = new SelectList(db.Subject.Where(s => s.Lesson != null && !s.Lesson.Value).ToList(), "ID", "Code");
             ViewBag.AcceptedByID = new SelectList(db.SSCISUser, "ID", "Login");
             ViewBag.UserID = new SelectList(db.SSCISUser, "ID", "Login");
             int?[] degrees = new int?[] { null, 1, 2, 3, 4 };
