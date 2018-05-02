@@ -245,7 +245,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Attributes\SSCISAuthorize.cs" />
     <Compile Include="Class\ApplicationSubjectsResolver.cs" />
+    <Compile Include="Class\AuthorizationRoles.cs" />
     <Compile Include="Class\SessionHashGenerator.cs" />
+    <Compile Include="Class\SSCISHtml.cs" />
     <Compile Include="Class\SSCISSessionManager.cs" />
     <Compile Include="Class\TimetableRenderer.cs" />
     <Compile Include="Controllers\ContentsController.cs" />
@@ -375,9 +377,6 @@
     <Content Include="Models\SSCISModel.edmx.diagram">
       <DependentUpon>SSCISModel.edmx</DependentUpon>
     </Content>
-    <Content Include="ClassDiagram1.cd" />
-    <Content Include="ClassDiagram2.cd" />
-    <Content Include="ClassDiagram3.cd" />
     <None Include="Properties\PublishProfiles\SSCIS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -445,6 +444,9 @@
     <Content Include="Views\TutorApplications\Applied.cshtml" />
     <Content Include="Views\TutorApplications\ApplicationPending.cshtml" />
     <Content Include="Views\Home\Username.cshtml" />
+    <Content Include="Views\Events\Cancel.cshtml" />
+    <Content Include="Views\Events\TutorsEvents.cshtml" />
+    <Content Include="Views\Home\Unauthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

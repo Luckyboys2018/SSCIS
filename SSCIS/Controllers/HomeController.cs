@@ -11,15 +11,29 @@ using System.Web.Routing;
 
 namespace SSCIS.Controllers
 {
+    /// <summary>
+    /// Home controller
+    /// </summary>
     public class HomeController : Controller
     {
-
+        //Database context
         private SSCISEntities db = new SSCISEntities();
 
+        private TimetableRenderer timeTableRenderer = new TimetableRenderer();
+
+        /// <summary>
+        /// Inicialization of controller
+        /// </summary>
+        /// <param name="requestContext">Context of http request</param>
         protected override void Initialize(RequestContext requestContext)
         {
             base.Initialize(requestContext);
         }
+
+        /// <summary>
+        /// Home page
+        /// </summary>
+        /// <returns>Home page view</returns>
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
@@ -31,12 +45,17 @@ namespace SSCIS.Controllers
             else
             {
                 model = new SSCISContent();
-                model.Created = DateTime.Now;
+                //model.Created = DateTime.Now;
                 model.TextContent = "Žádná aktualita nebyla nalezena";
             }
+            ViewBag.PublicTimeTable = timeTableRenderer.RenderPublic(db);
             return View(model);
         }
 
+        /// <summary>
+        /// Contact
+        /// </summary>
+        /// <returns>Contact view</returns>
         public ActionResult Contact()
         {
             ViewBag.MapToken = db.SSCISParam.Where(p => p.ParamKey.Equals("MAP_TOKEN")).Single().ParamValue;
@@ -44,26 +63,41 @@ namespace SSCIS.Controllers
             return View();
         }
 
+        #region Unused
         public ActionResult Username()
         {
             ViewBag.Title = "Username - Profil";
             return View();
         }
+        #endregion
 
+        /// <summary>
+        /// Help me view
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult HelpMe()
         {
             ViewBag.Title = "Potřebuji pomoc";
             return View();
         }
 
+        /// <summary>
+        /// News
+        /// </summary>
+        /// <returns>View with news</returns>
         public ActionResult News()
         {
             ViewBag.Title = "Novniky";
             MetaNews model = new MetaNews();
-            model.Contents = db.SSCISContent.ToList();
+            model.Contents = db.SSCISContent.OrderByDescending(c => c.Created).ToList();
             return View(model);
         }
 
+        /// <summary>
+        /// Login UC
+        /// </summary>
+        /// <param name="validationMessage">validation message</param>
+        /// <returns>View with login form</returns>
         [HttpGet]
         public ActionResult Login(string validationMessage = null)
         {
@@ -74,6 +108,11 @@ namespace SSCIS.Controllers
             //return Redirect("https://fkmagion.zcu.cz/testauth");
         }
 
+        /// <summary>
+        /// Login process
+        /// </summary>
+        /// <param name="model">Data from login view</param>
+        /// <returns>Redirection</returns>
         [HttpPost]
         public ActionResult Login(MetaLogin model)
         {
@@ -86,6 +125,10 @@ namespace SSCIS.Controllers
             return Login("Invalid login");
         }
 
+        /// <summary>
+        /// Logout
+        /// </summary>
+        /// <returns>Redirection</returns>
         [HttpGet]
         public ActionResult Logout()
         {
@@ -93,21 +136,14 @@ namespace SSCIS.Controllers
             return RedirectToAction("Index");
         }
 
-        //public async Task<ActionResult> Login()
-        //{
-        //    service = new WebAuthService.IMPL.WebAuthService();
-        //    WebAuthParam model = await service.GenerateModel();
-        //    return View(model);
-        //}
+        /// <summary>
+        /// Unauthorized access view
+        /// </summary>
+        /// <returns>View</returns>
+        public ActionResult Unauthorized()
+        {
+            return View();
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Login(WebAuthParam webAuthParams)
-        //{
-        //    service = new WebAuthService.IMPL.WebAuthService();
-        //    bool logged = await service.Authentificate(webAuthParams);
-        //    ViewData["logged"] = logged;
-        //    return View("ProcessLogin");
-        //}
     }
 }

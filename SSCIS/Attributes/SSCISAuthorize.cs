@@ -43,12 +43,29 @@ namespace SSCIS.Attributes
             {
                 if (!_sessionManager.VerifySession(filterContext.HttpContext.Session))
                 {
-                    filterContext.Result = new RedirectResult(string.Format("/Home/Login", filterContext.HttpContext.Request.Url.AbsolutePath));
+                    filterContext.Result = new RedirectResult(string.Format("{0}Home/Login", _getBaseUrl()));
                 }
                 var role = filterContext.HttpContext.Session["role"];
-                if (role == null || !role.Equals(AccessLevel))
-                    filterContext.Result = new RedirectResult(string.Format("/Home/Login", filterContext.HttpContext.Request.Url.AbsolutePath));
+                if (role == null || !role.Equals(AccessLevel) && !role.Equals(AuthorizationRoles.Administrator))
+                    filterContext.Result = new RedirectResult(string.Format("{0}Home/Unauthorized", _getBaseUrl()));
             }
+        }
+
+        /// <summary>
+        /// Gets apps root url
+        /// </summary>
+        /// <returns>Root url</returns>
+        private string _getBaseUrl()
+        {
+            var request = HttpContext.Current.Request;
+            var appUrl = HttpRuntime.AppDomainAppVirtualPath;
+
+            if (appUrl != "/")
+                appUrl = "/" + appUrl;
+
+            var baseUrl = string.Format("{0}://{1}{2}", request.Url.Scheme, request.Url.Authority, appUrl);
+
+            return baseUrl;
         }
     }
 }

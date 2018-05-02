@@ -74,7 +74,11 @@ namespace SSCIS.Class
         {
             //SSCISSession dbSession = db.SSCISSession.Where(s => s.ID == (int)httpSession["sessionId"]).Single();
             SSCISSession dbSession = db.SSCISSession.Find(httpSession["sessionId"]);
-            return dbSession.Hash.Equals((string)httpSession["hash"]);
+            if (httpSession["hash"] != null)
+            {
+                return dbSession.Hash.Equals((string)httpSession["hash"]);
+            }
+            return false;
         }
 
         /// <summary>

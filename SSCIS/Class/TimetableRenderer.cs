@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Mvc;
 
 namespace SSCIS.Class
 {
@@ -12,51 +13,74 @@ namespace SSCIS.Class
     /// </summary>
     public class TimetableRenderer
     {
-        private static string[] TIMES = new string[] {
-            "8:00","8:15","8:30","8:45",
-            "9:00","9:15","9:30","9:45",
-            "10:00","10:15","10:30","10:45",
-            "11:00","11:15","11:30","11:45",
-            "12:00","12:15","12:30","12:45",
-            "13:00","13:15","13:30","13:45",
-            "14:00","14:15","14:30","14:45",
-            "15:00","15:15","15:30","15:45",
-            "16:00","16:15","16:30","16:45",
-            "17:00","17:15","17:30","17:45",
-            "18:00"
-        };
-
         /// <summary>
         /// Renders timetable component
         /// </summary>
         /// <param name="events">list of events to display</param>
         /// <returns>rendered component</returns>
-        public string Render(List<Event> events)
+        public MvcHtmlString Render(List<Event> events)
         {
-            List<DateTime> dates = new List<DateTime>();
-            foreach (Event e in events)
-            {
-                if (!dates.Contains(e.TimeFrom.Date))
-                {
-                    dates.Add(e.TimeFrom.Date);
-                }
-            }
-
-
             StringBuilder builder = new StringBuilder();
-            builder.Append("<table>\n");
-            builder.Append("<tr>\n");
-            builder.Append("<td>Datum</td>\n");
-            foreach (string time in TIMES)
+            builder.Append("<table class=\"table\">");
+            builder.Append("<tr>");
+            builder.Append("<th>Čas od</th>");
+            builder.Append("<th>Čas do</th>");
+            builder.Append("<th>Poznámka ke zrušení</th>");
+            builder.Append("<th>Předmět</th>");
+            builder.Append("<th>Tutor</th>");
+            builder.Append("</tr>");
+
+            foreach (var item in events)
             {
-                builder.Append("<td>" + time + "</td>");
+                builder.Append(item.IsCancelled != null && item.IsCancelled.Value ? "<tr class=\"canceled-evnt\">" : "<tr>");
+                builder.Append("<td>");
+                builder.Append(item.TimeFrom.ToString("d") + " " + item.TimeFrom.ToString("t"));
+                builder.Append("</td>");
+                builder.Append("<td>");
+                builder.Append(item.TimeTo.ToString("d") + " " + item.TimeTo.ToString("t"));
+                builder.Append("</td>");
+                builder.Append("<td>");
+                builder.Append(item.CancellationComment);
+                builder.Append("</td>");
+                builder.Append("<td>");
+                builder.Append(item.Subject.Code);
+                builder.Append("</td>");
+                builder.Append("<td>");
+                builder.Append(item.Tutor.Login);
+                builder.Append("</td>");
+                builder.Append("</tr>");
             }
-            builder.Append("</tr>\n");
-            builder.Append("</table>\n");
 
-            //TODO
+            builder.Append("</table>");
+            return new MvcHtmlString(builder.ToString());
+        }
 
-            return builder.ToString();
+        /// <summary>
+        /// Renders public event timetable component
+        /// </summary>
+        /// <param name="db">Databes context</param>
+        /// <returns>Html component</returns>
+        public MvcHtmlString RenderPublic(SSCISEntities db, int weeks = 0)
+        {
+            DateTime now = DateTime.Now;
+            now.AddDays(7 * weeks);
+            DateTime start = _startOfWeek(now, DayOfWeek.Monday);
+            DateTime end = start.AddDays(7);
+
+            List<Event> events = db.Event.Where(e => e.TimeFrom >= start && e.TimeTo <= end && e.IsAccepted != null && e.IsAccepted.Value).OrderBy(e => e.TimeFrom).ToList();
+            return Render(events);
+        }
+
+        /// <summary>
+        /// Finds start day of week
+        /// </summary>
+        /// <param name="dt">date</param>
+        /// <param name="startOfWeek">start day</param>
+        /// <returns>start date</returns>
+        private DateTime _startOfWeek(DateTime dt, DayOfWeek startOfWeek)
+        {
+            int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
+            return dt.AddDays(-1 * diff).Date;
         }
 
     }

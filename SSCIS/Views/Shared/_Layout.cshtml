@@ -61,7 +61,7 @@
                     }
                     else
                     {
-                        <li><a href="@Url.Action("Username", "Home")">USERNAME</a></li>
+                        <li><a href="@Url.Action("Index", "Home")">@Request.RequestContext.HttpContext.Session["login"]</a></li>
                         <li><a href="@Url.Action("Logout", "Home")"><span class="glyphicon glyphicon-log-in"></span> Odhlásit se</a></li>
                     }
                 </ul>

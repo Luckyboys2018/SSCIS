@@ -1,0 +1,78 @@
+﻿@model IEnumerable<SSCIS.Models.Event>
+@using SSCIS.Class
+
+@{
+    ViewBag.Title = "Moje události";
+    ViewBag.ActiveMenuItem = "menu-eventlist";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Čas od
+        </th>
+        <th>
+            Čas do
+        </th>
+        <th>
+            Schváleno
+        </th>
+        <th>
+            Zrušeno
+        </th>
+        <th>
+            Poznámka ke zrušení
+        </th>
+        <th>
+            Předmět
+        </th>
+        <th>
+            Tutor
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeTo)
+            </td>
+            <td>
+                @SSCISHtml.DisplayForBool(item.IsAccepted)
+            </td>
+            <td>
+                @SSCISHtml.DisplayForBool(item.IsAccepted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CancellationComment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tutor.Login)
+            </td>
+            <td>
+                @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals("ADMIN"))
+                    {
+
+                        <p>
+                            @Html.ActionLink("Schávlit", "Accept", new { id = item.ID }) |
+                            @Html.ActionLink("Zrušit", "Cancel", new { id = item.ID })
+                        </p>
+                    }
+                }
+            </td>
+        </tr>
+                    }
+
+</table>

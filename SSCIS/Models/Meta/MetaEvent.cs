@@ -20,5 +20,7 @@ namespace SSCIS.Models.Meta
         [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime TimeTo { get; set; }
+
+        public int? SubjectID { get; set; }
     }
 }

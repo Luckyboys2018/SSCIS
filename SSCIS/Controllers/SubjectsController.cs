@@ -7,14 +7,26 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SSCIS.Models;
+using SSCIS.Attributes;
+using SSCIS.Class;
 
 namespace SSCIS.Controllers
 {
+    /// <summary>
+    /// Subjects management controller
+    /// </summary>
     public class SubjectsController : Controller
     {
+        /// <summary>
+        /// Database context
+        /// </summary>
         private SSCISEntities db = new SSCISEntities();
 
-        // GET: Subjects
+        /// <summary>
+        /// List of subjects
+        /// </summary>
+        /// <returns>View with list of subjects</returns>
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Index()
         {
             return View(db.Subject.ToList());

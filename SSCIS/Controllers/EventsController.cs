@@ -77,12 +77,16 @@ namespace SSCIS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(MetaEvent model)
         {
+            model.Event = new Event();
             if (ModelState.IsValid)
             {
+                int userId = (int)Session["userID"];
+                model.Event.Tutor = db.SSCISUser.Find(userId);
                 model.Event.IsCancelled = false;
                 model.Event.IsAccepted = false;
                 model.Event.TimeFrom = new DateTime(model.Date.Year, model.Date.Month, model.Date.Day, model.TimeFrom.Hour, model.TimeFrom.Minute, 0);
                 model.Event.TimeFrom = new DateTime(model.Date.Year, model.Date.Month, model.Date.Day, model.TimeTo.Hour, model.TimeTo.Minute, 0);
+                model.Event.Subject = db.Subject.Find(model.SubjectID);
                 db.Event.Add(model.Event);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -113,10 +117,10 @@ namespace SSCIS.Controllers
         }
 
         /// <summary>
-        /// Cancellation of created event
+        /// Cancellation of created event form
         /// </summary>
         /// <param name="id">Event ID</param>
-        /// <returns>Redirection to list of events</returns>
+        /// <returns>View with form</returns>
         [HttpGet]
         public ActionResult Cancel(int? id)
         {
@@ -129,7 +133,23 @@ namespace SSCIS.Controllers
             {
                 return HttpNotFound();
             }
+            return View(@event);
+        }
+
+        /// <summary>
+        /// Cancellation of created event
+        /// </summary>
+        /// <param name="model">Event model</param>
+        /// <returns>Redirection to list</returns>
+        public ActionResult Cancel(Event model)
+        {
+            Event @event = db.Event.Find(model.ID);
+            if (@event == null)
+            {
+                return HttpNotFound();
+            }
             @event.IsCancelled = true;
+            @event.CancellationComment = model.CancellationComment;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
