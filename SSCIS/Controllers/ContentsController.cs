@@ -7,21 +7,27 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SSCIS.Models;
+using SSCIS.Attributes;
+using SSCIS.Class;
 
 namespace SSCIS.Controllers
 {
+    /// <summary>
+    /// Static contents controller
+    /// </summary>
     public class ContentsController : Controller
     {
+        /// <summary>
+        /// Database context
+        /// </summary>
         private SSCISEntities db = new SSCISEntities();
 
-        // GET: Contents
-        //public ActionResult Index()
-        //{
-        //    var sSCISContent = db.SSCISContent.Include(s => s.Author).Include(s => s.EditedBy);
-        //    return View(sSCISContent.ToList());
-        //}
-
-        // GET: Contents/Details/5
+        /// <summary>
+        /// Content detail
+        /// </summary>
+        /// <param name="id">content id</param>
+        /// <returns>View with content detail</returns>
+        [HttpGet]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +42,12 @@ namespace SSCIS.Controllers
             return View(sSCISContent);
         }
 
-        // GET: Contents/Create
+        /// <summary>
+        /// Creates new content
+        /// </summary>
+        /// <returns>View with form</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Create()
         {
             SSCISContent model = new SSCISContent();
@@ -44,11 +55,14 @@ namespace SSCIS.Controllers
             return View(model);
         }
 
-        // POST: Contents/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Creates new content and saves it to db
+        /// </summary>
+        /// <param name="sSCISContent">Content model</param>
+        /// <returns>Redirection to List</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Create([Bind(Include = "ID,AuthorID,EditedByID,Created,Edited,TextContent")] SSCISContent sSCISContent)
         {
             if (ModelState.IsValid)
@@ -64,7 +78,13 @@ namespace SSCIS.Controllers
             return View(sSCISContent);
         }
 
-        // GET: Contents/Edit/5
+        /// <summary>
+        /// Editation of existing content
+        /// </summary>
+        /// <param name="id">Content ID</param>
+        /// <returns>Editation form view</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,11 +101,14 @@ namespace SSCIS.Controllers
             return View(sSCISContent);
         }
 
-        // POST: Contents/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Editation of existing content - saves changes
+        /// </summary>
+        /// <param name="sSCISContent">Content model</param>
+        /// <returns>Redirection to list</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Edit([Bind(Include = "ID,AuthorID,EditedByID,Created,Edited,TextContent")] SSCISContent sSCISContent)
         {
             if (ModelState.IsValid)
@@ -101,7 +124,13 @@ namespace SSCIS.Controllers
             return View(sSCISContent);
         }
 
-        // GET: Contents/Delete/5
+        /// <summary>
+        /// Deletion dialog
+        /// </summary>
+        /// <param name="id">Content id</param>
+        /// <returns>View with deletion digalog</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,9 +145,14 @@ namespace SSCIS.Controllers
             return View(sSCISContent);
         }
 
-        // POST: Contents/Delete/5
+        /// <summary>
+        /// Delete existing content
+        /// </summary>
+        /// <param name="id">Content id</param>
+        /// <returns>Redirectio to list</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult DeleteConfirmed(int id)
         {
             SSCISContent sSCISContent = db.SSCISContent.Find(id);
@@ -127,6 +161,10 @@ namespace SSCIS.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Disposes controller
+        /// </summary>
+        /// <param name="disposing">Dispose db context</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

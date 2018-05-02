@@ -14,6 +14,8 @@ namespace SSCIS.Controllers
     {
         private SSCISEntities db = new SSCISEntities();
 
+        #region Unused
+
         // GET: TutorApplicationSubjects
         public ActionResult Index()
         {
@@ -132,5 +134,6 @@ namespace SSCIS.Controllers
             }
             base.Dispose(disposing);
         }
+        #endregion
     }
 }

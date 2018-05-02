@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using SSCIS.Models;
 using SSCIS.Class;
 using SSCIS.Models.Meta;
+using SSCIS.Attributes;
 
 namespace SSCIS.Controllers
 {
@@ -17,7 +18,9 @@ namespace SSCIS.Controllers
     /// </summary>
     public class EventsController : Controller
     {
+        /// <summary>
         /// Database context
+        /// </summary>
         private SSCISEntities db = new SSCISEntities();
 
         /// <summary>
@@ -25,6 +28,7 @@ namespace SSCIS.Controllers
         /// </summary>
         /// <returns>View with list of events</returns>
         [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Tutor)]
         public ActionResult Index()
         {
             DateTime now = DateTime.Now;
@@ -54,6 +58,7 @@ namespace SSCIS.Controllers
         /// </summary>
         /// <returns>Form view</returns>
         [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Tutor)]
         public ActionResult Create()
         {
             int userId = (int)Session["userID"];
@@ -75,6 +80,7 @@ namespace SSCIS.Controllers
         /// <returns>Creation result</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Tutor)]
         public ActionResult Create(MetaEvent model)
         {
             model.Event = new Event();
@@ -99,6 +105,7 @@ namespace SSCIS.Controllers
         /// </summary>
         /// <param name="id">Event ID</param>
         /// <returns>Redirection to list of events</returns>
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         [HttpGet]
         public ActionResult Accept(int? id)
         {
@@ -122,6 +129,7 @@ namespace SSCIS.Controllers
         /// <param name="id">Event ID</param>
         /// <returns>View with form</returns>
         [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Cancel(int? id)
         {
             if (id == null)
@@ -141,6 +149,8 @@ namespace SSCIS.Controllers
         /// </summary>
         /// <param name="model">Event model</param>
         /// <returns>Redirection to list</returns>
+        [HttpPost]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Cancel(Event model)
         {
             Event @event = db.Event.Find(model.ID);

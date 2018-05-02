@@ -16,9 +16,14 @@ namespace SSCIS.Controllers
     /// </summary>
     public class HomeController : Controller
     {
-        //Database context
+        /// <summary>
+        /// Database context
+        /// </summary>
         private SSCISEntities db = new SSCISEntities();
 
+        /// <summary>
+        /// Time table components renderer
+        /// </summary>
         private TimetableRenderer timeTableRenderer = new TimetableRenderer();
 
         /// <summary>
@@ -34,6 +39,7 @@ namespace SSCIS.Controllers
         /// Home page
         /// </summary>
         /// <returns>Home page view</returns>
+        [HttpGet]
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
@@ -56,6 +62,7 @@ namespace SSCIS.Controllers
         /// Contact
         /// </summary>
         /// <returns>Contact view</returns>
+        [HttpGet]
         public ActionResult Contact()
         {
             ViewBag.MapToken = db.SSCISParam.Where(p => p.ParamKey.Equals("MAP_TOKEN")).Single().ParamValue;
@@ -75,6 +82,7 @@ namespace SSCIS.Controllers
         /// Help me view
         /// </summary>
         /// <returns>View</returns>
+        [HttpGet]
         public ActionResult HelpMe()
         {
             ViewBag.Title = "Potřebuji pomoc";
@@ -85,6 +93,7 @@ namespace SSCIS.Controllers
         /// News
         /// </summary>
         /// <returns>View with news</returns>
+        [HttpGet]
         public ActionResult News()
         {
             ViewBag.Title = "Novniky";
@@ -140,6 +149,7 @@ namespace SSCIS.Controllers
         /// Unauthorized access view
         /// </summary>
         /// <returns>View</returns>
+        [HttpGet]
         public ActionResult Unauthorized()
         {
             return View();

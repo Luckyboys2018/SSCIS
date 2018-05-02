@@ -10,6 +10,8 @@ namespace SSCIS.Controllers
     [Authorize]
     public class ValuesController : ApiController
     {
+        #region Unused
+
         // GET api/values
         public IEnumerable<string> Get()
         {
@@ -36,5 +38,7 @@ namespace SSCIS.Controllers
         public void Delete(int id)
         {
         }
+
+        #endregion
     }
 }

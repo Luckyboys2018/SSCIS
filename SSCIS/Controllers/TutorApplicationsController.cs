@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using SSCIS.Models;
 using SSCIS.Models.Meta;
 using SSCIS.Class;
+using SSCIS.Attributes;
 
 namespace SSCIS.Controllers
 {
@@ -17,13 +18,17 @@ namespace SSCIS.Controllers
     /// </summary>
     public class TutorApplicationsController : Controller
     {
+        /// <summary>
         /// Database context
+        /// </summary>
         private SSCISEntities db = new SSCISEntities();
 
         /// <summary>
         /// Index UC - list of tutors applications
         /// </summary>
         /// <returns>List of tutors applications view</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Index()
         {
             var tutorApplication = db.TutorApplication.Include(t => t.AcceptedBy).Include(t => t.Applicant).Where(t => t.IsAccepted == null || !t.IsAccepted.Value);
@@ -35,6 +40,8 @@ namespace SSCIS.Controllers
         /// </summary>
         /// <param name="id">Application ID</param>
         /// <returns>View with details of application</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -58,6 +65,8 @@ namespace SSCIS.Controllers
         /// </summary>
         /// <param name="count">Count of subjects</param>
         /// <returns>View with form</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.User)]
         public ActionResult Create(int count = 1)
         {
             if (Session["role"] == null) return View("Create_public");
@@ -100,6 +109,7 @@ namespace SSCIS.Controllers
         /// <returns>Result of creation</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.User)]
         public ActionResult Create(MetaTutorApplication model)
         {
             if (ModelState.IsValid)
@@ -131,6 +141,8 @@ namespace SSCIS.Controllers
         /// </summary>
         /// <param name="id">Applications ID</param>
         /// <returns>View</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Accept(int? id)
         {
             if (id == null)
@@ -177,6 +189,8 @@ namespace SSCIS.Controllers
         /// </summary>
         /// <param name="id">Application ID</param>
         /// <returns>View</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Decline(int? id)
         {
             if (id == null)

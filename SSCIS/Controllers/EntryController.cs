@@ -14,7 +14,14 @@ namespace SSCIS.Controllers
     /// </summary>
     public class EntryController : Controller
     {
+        /// <summary>
+        /// Database context
+        /// </summary>
         private SSCISEntities db = new SSCISEntities();
+
+        /// <summary>
+        /// Session manager
+        /// </summary>
         private SSCISSessionManager sessionManager = new SSCISSessionManager();
 
         /// <summary>
@@ -81,6 +88,10 @@ namespace SSCIS.Controllers
         //    return RedirectToAction("Index", "Home");
         //}
 
+        /// <summary>
+        /// Info for testing purposes
+        /// </summary>
+        /// <returns>Content of request</returns>
         public ActionResult Index()
         {
             StringBuilder sb = new StringBuilder();
@@ -95,6 +106,10 @@ namespace SSCIS.Controllers
             return Content(sb.ToString());
         }
 
+        /// <summary>
+        /// Info for testing purposes
+        /// </summary>
+        /// <returns>Content of request</returns>
         public ActionResult Info()
         {
             StringBuilder sb = new StringBuilder();

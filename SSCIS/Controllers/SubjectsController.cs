@@ -32,7 +32,13 @@ namespace SSCIS.Controllers
             return View(db.Subject.ToList());
         }
 
-        // GET: Subjects/Details/5
+        /// <summary>
+        /// Shows detail of subject
+        /// </summary>
+        /// <param name="id">Subject ID</param>
+        /// <returns>View with detail</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -47,18 +53,26 @@ namespace SSCIS.Controllers
             return View(subject);
         }
 
-        // GET: Subjects/Create
+        /// <summary>
+        /// Form for cretation of new subject
+        /// </summary>
+        /// <returns>View with form</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Create()
         {
             ViewBag.ParentID = new SelectList(db.Subject.Where(s => s.Lesson != null && s.Lesson.Value).ToList(), "ID", "Code");
             return View();
         }
 
-        // POST: Subjects/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Creates new subject
+        /// </summary>
+        /// <param name="subject">Subject model</param>
+        /// <returns>Redirection to list</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Create([Bind(Include = "ID,Code,Name")] Subject subject)
         {
             if (ModelState.IsValid)
@@ -71,7 +85,13 @@ namespace SSCIS.Controllers
             return View(subject);
         }
 
-        // GET: Subjects/Edit/5
+        /// <summary>
+        /// From for editation of existing subject
+        /// </summary>
+        /// <param name="id">Subject ID</param>
+        /// <returns>View with form for editation</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -86,11 +106,14 @@ namespace SSCIS.Controllers
             return View(subject);
         }
 
-        // POST: Subjects/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Saves changes from editatoin of existing subject
+        /// </summary>
+        /// <param name="subject">Subject model</param>
+        /// <returns>Redirection to list</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Edit([Bind(Include = "ID,Code,Name")] Subject subject)
         {
             if (ModelState.IsValid)
@@ -102,7 +125,13 @@ namespace SSCIS.Controllers
             return View(subject);
         }
 
-        // GET: Subjects/Delete/5
+        /// <summary>
+        /// Dialog for deletion of existing subject
+        /// </summary>
+        /// <param name="id">Subject ID</param>
+        /// <returns>View with dialog</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,9 +146,14 @@ namespace SSCIS.Controllers
             return View(subject);
         }
 
-        // POST: Subjects/Delete/5
+        /// <summary>
+        /// Removes existing subject
+        /// </summary>
+        /// <param name="id">Subject ID</param>
+        /// <returns>Redirection to list</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult DeleteConfirmed(int id)
         {
             Subject subject = db.Subject.Find(id);
@@ -128,6 +162,10 @@ namespace SSCIS.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Disposes controller
+        /// </summary>
+        /// <param name="disposing">Dispose db context</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
