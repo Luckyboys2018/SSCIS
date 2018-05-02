@@ -4,6 +4,11 @@
             border-radius: 0;
             min-height: 70px;
         }
+
+        .navbar-toggle {
+            padding: 20px 10px;
+        }
+
         .navbar-inverse {
             background-color: #2a5197;
 }
@@ -14,30 +19,60 @@
         }
 
         .navbar-nav>li>a {
-            padding-top: 25px;
-            padding-bottom: 25px;
-            font-size: 18px;
+            padding-top: 38px;
+            padding-bottom: 38px;
+            font-size: 20px;
             line-height: unset;
         }
 
+        .row {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        .row.content{
+            padding-top: 104px;
+        }
+
+        .label.control-label.col-md-2{
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+
+        .body{
+            min-width:250px;
+            padding-bottom: 70px !important;
+        }
+
+      
+
         /* On small screens, set height to 'auto' for sidenav and grid */
-        @media screen and (max-width: 1100px) {
+        @media screen and (max-width: 1284px) {
              .navbar-nav>li>a {
-            padding-top: 27px;
-            padding-bottom: 27px;
+            padding-top: 41px;
+            padding-bottom: 41px;
             font-size: 15px;
             line-height: unset;
             }
         }
 
         /* On small screens, set height to 'auto' for sidenav and grid */
-        @media screen and (max-width: 990px) and (min-width: 768px) {
+        @media screen and (max-width: 1074px) and (min-width: 768px) {
              .navbar-nav>li>a {
-            padding-top: 30px;
-            padding-bottom: 30px;
+            padding-top: 31px;
+            padding-bottom: 31px;
             font-size: 12px;
             line-height: unset;
             }
+
+             .navbar-header>a>img{
+                height: 50px !important;
+            }
+
+             .row.content{
+            padding-top: 80px;
+        }
+
         }
 
         .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
@@ -53,15 +88,10 @@
         }
 
 
-        .navbar-logo {
-            max-width: 120px;
-            max-height: 47px;
-        }
-
         /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
         .row.content {
             height: auto;
-            min-height: 722px;
+            min-height: initial;
         }
 
         /* Set gray background color and 100% height */
@@ -83,5 +113,23 @@
                 height: auto;
                 padding: 15px;
             }
-            .row.content {height:auto;}
+            .row.content {
+                height:auto;
+            }
+
+            .navbar-header>a>img{
+                height: 50px !important;
+            }
+            .row.content {
+                padding-top: 80px;
+            }
+             .navbar-nav>li>a {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            font-size: 20px;
+            line-height: unset;
+            }
+        
         }
+
+       

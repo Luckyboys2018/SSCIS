@@ -2,7 +2,7 @@
 @{
     ViewBag.ActiveMenuItem = "menu-news";
 }
-<div class="body-content container-fluid text-center" style="padding-top: 70px">
+
     <div class="row content">
         <div class="col-sm-2 sidenav">
         </div>
@@ -11,7 +11,7 @@
             <h1>Novinky</h1>
             @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
             {
-                @Html.ActionLink("Add new", "Create", "Contents", new { area = "" }, null)
+                @Html.ActionLink("Vytvořit novinku", "Create", "Contents", new { area = "" }, null)
             }
             @foreach (var modelItem in Model.Contents)
             {
@@ -23,24 +23,32 @@
                     </p>
                     @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
                     {
-                        @Html.ActionLink("Edit", "Edit", "Contents", new { id = modelItem.ID }, null)
+                        @Html.ActionLink("Upravit", "Edit", "Contents", new { id = modelItem.ID }, null)
                                 <br>
-                        @Html.ActionLink("Delete", "Delete", "Contents", new { id = modelItem.ID }, null)
+                        @Html.ActionLink("Smazat", "Delete", "Contents", new { id = modelItem.ID }, null)
                     }
                 </div>
             }
             <hr>
         </div>
 
-        <div class="col-sm-2 sidenav">
-            <div class="well">
-                <p>
-                    ROZVRH
-                    PO PRIHLASENI
-                </p>
-            </div>
+@if (Session["role"] != null && Session["role"].Equals("ADMIN"))
+{
+    <div class="col-sm-2 sidenav">
+    </div>
+}
+else
+{
+    <div class="col-sm-2 sidenav">
+        <div class="well">
+            <p>
+                ROZVRH
+                PO PRIHLASENI
+            </p>
         </div>
     </div>
-</div>
+}
+    </div>
+
 
 

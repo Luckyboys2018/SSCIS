@@ -3,7 +3,7 @@
     ViewBag.ActiveMenuItem = "menu-index";
 }
 
-<div class="body-content container-fluid text-center" style="padding-top: 70px">
+
     <div class="row content">
         <div class="col-sm-2 sidenav">
         </div>
@@ -24,18 +24,39 @@
                 </p>
             </div>
             <p>
-                Student Support Centre (SSC) je společná aktivita kateder <a href="http://www.fav.zcu.cz/">Fakulty aplikovaných věd Západočeské univerzity v Plzni</a>. Projekt startuje ve zkouškovém období zimního semestru 2017/2018. Cílem je podpora studentů prvního ročníku, kteří mohou mít problémy s úvodními matematickými a informatickými předměty. Podpory se studentům dostane od kolegů ve vyšších ročnících pod dohledem pedagogických pracovníků zúčastněných kateder. Každý den v týdnu mohou studenti přijít do studovny FAV, kde získají bezplatnou pomoc se základními předměty, tj. KKMA/M1, KMA/M2, KMA/MA1, KMA/MA1, KMA/M1S, KMA/M2S, KMA/MA1E, KMA/M2E, KMA/ZM1, KMA/ZM2 (po dohodě také KMA/LAA), KIV/PPA1, KIV/PPA2 a KIV/UPG.
-            </p>
+                <strong>Student Support Centre (SSC)</strong> je společná aktivita kateder <a href="http://www.fav.zcu.cz/" target="_blank">Fakulty aplikovaných věd Západočeské univerzity v Plzni</a>.
+                <br /> <br />
+                Projekt startuje ve zkouškovém období zimního semestru 2017/2018. Cílem je podpora studentů prvního ročníku, kteří mohou mít problémy s úvodními matematickými a 
+                informatickými předměty. Podpory se studentům dostane od kolegů ve vyšších ročnících pod dohledem pedagogických pracovníků zúčastněných kateder. 
+                Každý den v týdnu mohou studenti přijít do <a href="https://goo.gl/r9ozbP" target="_blank">studovny FAV</a>, kde získají bezplatnou pomoc se základními předměty:
+    <ul>
+        <li><strong>matematika</strong> - KKMA/M1, KMA/M2, KMA/MA1, KMA/MA1, KMA/M1S, KMA/M2S, KMA/MA1E, KMA/M2E, KMA/ZM1, KMA/ZM2 (po dohodě také KMA/LAA)</li>
+
+        <li><strong>programování</strong> - KIV/PPA1, KIV/PPA2 a KIV/UPG</li>
+
+        <li><strong>mechanika</strong></li>
+    </ul>
+</p>
             <hr>
 
         </div>
-        <div class="col-sm-2 sidenav">
-            <div class="well">
-                <p>
-                    ROZVRH
-                    PO PRIHLASENI
-                </p>
+           
+            @if(Session["role"] != null && Session["role"].Equals("ADMIN"))
+            {
+            <div class="col-sm-2 sidenav">
             </div>
-        </div>
+            }
+            else
+            {
+            <div class="col-sm-2 sidenav">
+                <div class="well">
+                    <p>
+                        ROZVRH
+                        PO PRIHLASENI
+                    </p>
+                </div>
+            </div>
+            }
+             
     </div>
-</div>
+

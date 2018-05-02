@@ -6,11 +6,10 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
 </head>
-<body>
+<body style="padding-bottom: 70px;">
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid navtop">
             <div class="navbar-header">
@@ -20,7 +19,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand" href="https://www.zcu.cz/"><img class="navbar-logo" src="~/Content/Images/logo2.png"></a>
+                <a class="navbar-brand" href="https://www.zcu.cz/" target="_blank"><img src="~/Content/Images/logo2.png"></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar" style="margin-left: 20px">
                 <ul class="nav navbar-nav">
@@ -41,8 +40,8 @@
                             <li class="menu-params">@Html.ActionLink(SSCISResources.Resource.SYSTEM_PARAMS, "Index", "SSCISParams", new { area = "" }, null)</li>
                             <li class="menu-subjects">@Html.ActionLink(SSCISResources.Resource.SUBJECTS_MANAGEMENT, "Index", "Subjects", new { area = "" }, null)</li>
                             <li class="menu-tutors">@Html.ActionLink("Žádosti tutorů", "Index", "TutorApplications", new { area = "" }, null)</li>
+                            }
                         }
-                    }
 
                     @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals("TUTOR"))
                         {
@@ -53,13 +52,17 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                   
+                        
+                   
                     @if (Session["role"] == null)
                     {
-                        <li><a href="@Url.Action("Login", "Home")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="@Url.Action("Login", "Home")"><span class="glyphicon glyphicon-log-in"></span> Přihlásit se</a></li>
                     }
                     else
                     {
-                        <li><a href="@Url.Action("Logout", "Home")"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                        <li><a href="@Url.Action("Username", "Home")">USERNAME</a></li>
+                        <li><a href="@Url.Action("Logout", "Home")"><span class="glyphicon glyphicon-log-in"></span> Odhlásit se</a></li>
                     }
                 </ul>
             </div>
@@ -69,8 +72,9 @@
     <div class="body-content container-fluid text-center">
         @RenderBody()
     </div>
-    <footer class="container-fluid text-center">
-        <p>@DateTime.Now.Year - Footer Text</p>
+    <footer class="container-fluid text-center navbar-fixed-bottom">
+        <p>Copyright © 2018 - @DateTime.Now.Year Západočeská univerzita v Plzni</p>
+        <a href="http://fav.zcu.cz/" target="_blank">Fakulta aplikovaných věd</a>  -  @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, null)
     </footer>
 
     <script>

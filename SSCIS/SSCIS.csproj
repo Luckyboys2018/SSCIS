@@ -447,6 +447,7 @@
     <Content Include="Views\Contents\Index.cshtml" />
     <Content Include="Views\TutorApplications\Applied.cshtml" />
     <Content Include="Views\TutorApplications\ApplicationPending.cshtml" />
+    <Content Include="Views\Home\Username.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
