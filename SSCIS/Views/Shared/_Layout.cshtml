@@ -37,9 +37,17 @@
 
                     @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals("ADMIN"))
                         {
+                            <li class="menu-eventlist">@Html.ActionLink("Seznam lekcí", "Index", "Events", new { area = "" }, null)</li>
                             <li class="menu-params">@Html.ActionLink(SSCISResources.Resource.SYSTEM_PARAMS, "Index", "SSCISParams", new { area = "" }, null)</li>
                             <li class="menu-subjects">@Html.ActionLink(SSCISResources.Resource.SUBJECTS_MANAGEMENT, "Index", "Subjects", new { area = "" }, null)</li>
-                            <li class="menu-tutors">@Html.ActionLink("Žádosti tutotů", "Index", "TutorApplications", new { area = "" }, null)</li>
+                            <li class="menu-tutors">@Html.ActionLink("Žádosti tutorů", "Index", "TutorApplications", new { area = "" }, null)</li>
+                        }
+                    }
+
+                    @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals("TUTOR"))
+                        {
+                            <li class="menu-event">@Html.ActionLink("Vypsat lekci", "Create", "Events", new { area = "" }, null)</li>
+                            <li class="menu-eventlist">@Html.ActionLink("Seznam lekcí", "Index", "Events", new { area = "" }, null)</li>
                         }
                     }
 

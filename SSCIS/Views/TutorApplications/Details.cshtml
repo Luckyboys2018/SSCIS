@@ -5,53 +5,63 @@
     ViewBag.ActiveMenuItem = "menu-tutors";
 }
 
-<h2>Žádost o tutora</h2>
+<div class="body-content container text-center" style="padding-top: 70px">
+    <div class="row content">
+        <div class="col-sm-12 text-left">
+            <div class="well">
+                <div class="container">
+                    <h2>Žádost o tutorství</h2>
+                    <div>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                Datum žádosti
+                            </dt>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Application.ApplicationDate)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Application.ApplicationDate)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Application.ApplicationDate)
-        </dd>
+                            <dt>
+                                Login uživatele
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Application.Applicant.Login)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Application.Applicant.Login)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Application.Applicant.Login)
-        </dd>
+                        </dl>
+                    </div>
+                        @foreach (var subject in Model.ApplicationSubjects)
+                        {
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    Předmět
+                                </dt>
 
-    </dl>
+                                <dd>
+                                    @Html.DisplayFor(m => subject.Subject.Code)
+                                </dd>
+
+                                <dt>
+                                    Známka
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(m => subject.Degree)
+                                </dd>
+
+                            </dl>
+                            <p>
+                                @Html.ActionLink("Accept", "Accept", new { id = Model.Application.ID }) |
+                                @Html.ActionLink("Decline", "Decline", new { id = Model.Application.ID }) |
+                                @Html.ActionLink("Back to List", "Index")
+                            </p>
+                        <br />
+                        <br />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div>
-    @foreach (var subject in Model.ApplicationSubjects)
-    {
-        <dl>
-            <dt>
-                @Html.DisplayNameFor(model => subject.Subject.Name)
-            </dt>
-            <dt>
-                @Html.DisplayFor(model => subject.Subject.Name)
-            </dt>
-
-            <dt>
-                @Html.DisplayNameFor(model => subject.Degree)
-            </dt>
-            <dt>
-                @Html.DisplayFor(model => subject.Degree)
-            </dt>
-        </dl>
-    }
-</div>
-
-<p>
-    @Html.ActionLink("Accept", "Decline", new { id = Model.Application.ID }) |
-    @Html.ActionLink("Decline", "Accept", new { id = Model.Application.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

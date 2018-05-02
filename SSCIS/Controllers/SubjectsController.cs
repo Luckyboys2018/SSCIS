@@ -38,6 +38,7 @@ namespace SSCIS.Controllers
         // GET: Subjects/Create
         public ActionResult Create()
         {
+            ViewBag.ParentID = new SelectList(db.Subject.Where(s => s.Lesson != null && s.Lesson.Value).ToList(), "ID", "Code");
             return View();
         }
 

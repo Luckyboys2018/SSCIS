@@ -29,6 +29,7 @@
           <Property Name="CODE" Type="varchar2" MaxLength="10" Nullable="false" />
           <Property Name="NAME" Type="varchar2" MaxLength="30" />
           <Property Name="LESSON" Type="number" Precision="1" Scale="0" />
+          <Property Name="ID_PARENT" Type="number" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="EVENT">
           <Key>
@@ -269,6 +270,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SUBJECT_PARENT">
+          <End Role="ENUM_SUBJECT" Type="Self.ENUM_SUBJECT" Multiplicity="0..1" />
+          <End Role="ENUM_SUBJECT1" Type="Self.ENUM_SUBJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENUM_SUBJECT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ENUM_SUBJECT1">
+              <PropertyRef Name="ID_PARENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TUTAPP_ACCBY">
           <End Role="SSCIS_USER" Type="Self.SSCIS_USER" Multiplicity="0..1" />
           <End Role="TUTOR_APPLICATION" Type="Self.TUTOR_APPLICATION" Multiplicity="*" />
@@ -378,6 +391,10 @@
             <End Role="ENUM_ROLE" EntitySet="ENUM_ROLE" />
             <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
           </AssociationSet>
+          <AssociationSet Name="FK_SUBJECT_PARENT" Association="Self.FK_SUBJECT_PARENT">
+            <End Role="ENUM_SUBJECT" EntitySet="ENUM_SUBJECT" />
+            <End Role="ENUM_SUBJECT1" EntitySet="ENUM_SUBJECT" />
+          </AssociationSet>
           <AssociationSet Name="FK_TUTAPP_ACCBY" Association="Self.FK_TUTAPP_ACCBY">
             <End Role="SSCIS_USER" EntitySet="SSCIS_USER" />
             <End Role="TUTOR_APPLICATION" EntitySet="TUTOR_APPLICATION" />
@@ -476,6 +493,10 @@
             <End Role="SSCISUser" EntitySet="SSCISUser" />
             <End Role="PARTICIPATION" EntitySet="Participation" />
           </AssociationSet>
+          <AssociationSet Name="FK_SUBJECT_PARENT" Association="SSCISModel.FK_SUBJECT_PARENT">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Subject1" EntitySet="Subject" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Approval">
           <Key>
@@ -507,6 +528,9 @@
           <NavigationProperty Name="Events" Relationship="SSCISModel.FK_EVENT_SUBJECT" FromRole="ENUM_SUBJECT" ToRole="EVENT" />
           <NavigationProperty Name="ApplicaitonSubjects" Relationship="SSCISModel.FK_TUTAPPSUB_SUBJECT" FromRole="Subject" ToRole="TUTOR_APPLICATION_SUBJECT" />
           <Property Name="Lesson" Type="Boolean" />
+          <Property Name="ParentID" Type="Int32" />
+          <NavigationProperty Name="Children" Relationship="SSCISModel.FK_SUBJECT_PARENT" FromRole="Subject" ToRole="Subject1" />
+          <NavigationProperty Name="Parent" Relationship="SSCISModel.FK_SUBJECT_PARENT" FromRole="Subject1" ToRole="Subject" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -821,6 +845,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SUBJECT_PARENT">
+          <End Type="SSCISModel.Subject" Role="Subject" Multiplicity="0..1" />
+          <End Type="SSCISModel.Subject" Role="Subject1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subject1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -848,6 +884,7 @@
           <EntitySetMapping Name="Subject">
             <EntityTypeMapping TypeName="SSCISModel.Subject">
               <MappingFragment StoreEntitySet="ENUM_SUBJECT">
+                <ScalarProperty Name="ParentID" ColumnName="ID_PARENT" />
                 <ScalarProperty Name="Lesson" ColumnName="LESSON" />
                 <ScalarProperty Name="Name" ColumnName="NAME" />
                 <ScalarProperty Name="Code" ColumnName="CODE" />

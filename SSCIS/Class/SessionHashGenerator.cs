@@ -23,7 +23,6 @@ namespace SSCIS.Class
                 rng.GetBytes(bytes);
             }
 
-            // and if you need it as a string...
             return BitConverter.ToString(bytes);
         }
     }

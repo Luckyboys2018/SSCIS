@@ -33,6 +33,7 @@
         <AssociationConnector Association="SSCISModel.FK_PATICIP_EVENT" />
         <AssociationConnector Association="SSCISModel.FK_FEEDBACK_PARTICIP" />
         <AssociationConnector Association="SSCISModel.FK_PARTICIP_SUSER" />
+        <AssociationConnector Association="SSCISModel.FK_SUBJECT_PARENT" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

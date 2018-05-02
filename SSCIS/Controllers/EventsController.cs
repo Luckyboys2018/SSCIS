@@ -7,20 +7,32 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SSCIS.Models;
+using SSCIS.Class;
+using SSCIS.Models.Meta;
 
 namespace SSCIS.Controllers
 {
+    /// <summary>
+    /// Events controller
+    /// </summary>
     public class EventsController : Controller
     {
+        /// Database context
         private SSCISEntities db = new SSCISEntities();
 
-        // GET: Events
+        /// <summary>
+        /// List of created events
+        /// </summary>
+        /// <returns>View with list of events</returns>
+        [HttpGet]
         public ActionResult Index()
         {
-            var eventModel = db.Event.Include(@e => @e.Subject).Include(@e => @e.Tutor);
+            DateTime now = DateTime.Now;
+            var eventModel = db.Event.Where(e => e.TimeFrom > now).Include(@e => @e.Subject).Include(@e => @e.Tutor);
             return View(eventModel.ToList());
         }
 
+        #region Unused
         // GET: Events/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,36 +47,98 @@ namespace SSCIS.Controllers
             }
             return View(@event);
         }
+        #endregion
 
-        // GET: Events/Create
+        /// <summary>
+        /// Creates new event
+        /// </summary>
+        /// <returns>Form view</returns>
+        [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.SubjectID = new SelectList(db.Subject, "ID", "Code");
-            ViewBag.TutorID = new SelectList(db.SSCISUser, "ID", "Login");
+            int userId = (int)Session["userID"];
+            List<Approval> approvals = db.Approval.Where(a => a.TutorID == userId).ToList();
+            List<int> subjectsIds = new List<int>();
+            foreach (Approval app in approvals)
+            {
+                subjectsIds.Add(app.SubjectID);
+            }
+
+            TimeItemsGenerator timeItemsGenerator = new TimeItemsGenerator();
+            ViewBag.TimeFrom = new SelectList(timeItemsGenerator.GenerateTimeItems());
+            ViewBag.TimeTo = new SelectList(timeItemsGenerator.GenerateTimeItems());
+            ViewBag.SubjectID = new SelectList(db.Subject.Where(s => subjectsIds.Contains(s.ID)), "ID", "Code");
+            ViewBag.TutorID = new SelectList(db.SSCISUser.Where(t => t.ID == userId), "ID", "Login");
             return View();
         }
 
-        // POST: Events/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cretes new event
+        /// </summary>
+        /// <param name="@event">Event model</param>
+        /// <returns>Creation result</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,TimeFrom,TimeTo,SubjectID,TutorID,IsAccepted,IsCancelled,CancellationComment")] Event @event)
+        public ActionResult Create(MetaEvent model)
         {
             if (ModelState.IsValid)
             {
-                @event.IsCancelled = false;
-                @event.IsAccepted = false;
-                db.Event.Add(@event);
+                model.Event.IsCancelled = false;
+                model.Event.IsAccepted = false;
+                model.Event.TimeFrom = new DateTime(model.Date.Year, model.Date.Month, model.Date.Day, model.TimeFrom.Hour, model.TimeFrom.Minute, 0);
+                model.Event.TimeFrom = new DateTime(model.Date.Year, model.Date.Month, model.Date.Day, model.TimeTo.Hour, model.TimeTo.Minute, 0);
+                db.Event.Add(model.Event);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.SubjectID = new SelectList(db.Subject, "ID", "Code", @event.SubjectID);
-            ViewBag.TutorID = new SelectList(db.SSCISUser, "ID", "Login", @event.TutorID);
-            return View(@event);
+            return RedirectToAction("Create");
         }
 
+        /// <summary>
+        /// Acceptation of created event
+        /// </summary>
+        /// <param name="id">Event ID</param>
+        /// <returns>Redirection to list of events</returns>
+        [HttpGet]
+        public ActionResult Accept(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Event @event = db.Event.Find(id);
+            if (@event == null)
+            {
+                return HttpNotFound();
+            }
+            @event.IsAccepted = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// Cancellation of created event
+        /// </summary>
+        /// <param name="id">Event ID</param>
+        /// <returns>Redirection to list of events</returns>
+        [HttpGet]
+        public ActionResult Cancel(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Event @event = db.Event.Find(id);
+            if (@event == null)
+            {
+                return HttpNotFound();
+            }
+            @event.IsCancelled = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        #region Unused
         // GET: Events/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -125,7 +199,12 @@ namespace SSCIS.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
 
+        /// <summary>
+        /// Disposed controller
+        /// </summary>
+        /// <param name="disposing">dispose db context</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

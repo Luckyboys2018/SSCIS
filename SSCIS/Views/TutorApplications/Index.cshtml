@@ -5,33 +5,42 @@
     ViewBag.ActiveMenuItem = "menu-tutors";
 }
 
-<h2>@SSCISResources.Resource.TUTOR_APPLICATIONS</h2>
+<div class="body-content container text-center" style="padding-top: 70px">
+    <div class="row content">
+        <div class="col-sm-12 text-left">
+            <h2>@SSCISResources.Resource.TUTOR_APPLICATIONS</h2>
 
-<p>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Applicant.Login)
-        </th>
-        <th></th>
-    </tr>
+            <p>
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        Datum přihlášky
+                    </th>
+                    <th>
+                        Login uživatele
+                    </th>
+                    <th></th>
+                </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Applicant.Login)
-        </td>
-        <td>
-            @Html.ActionLink(SSCISResources.Resource.DETAIL, "Details", new { id=item.ID })
-        </td>
-    </tr>
-}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Applicant.Login)
+                        </td>
+                        <td>
+                            @Html.ActionLink(SSCISResources.Resource.DETAIL, "Details", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
 
-</table>
+            </table>
+        </div>
+    </div>
+</div>
+
+

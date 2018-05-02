@@ -16,11 +16,18 @@ namespace SSCIS.Attributes
 
         private SSCISSessionManager _sessionManager = new SSCISSessionManager();
 
+        /// <summary>
+        /// Contructor
+        /// </summary>
         public SSCISAuthorize()
         {
             _sessionManager = new SSCISSessionManager();
         }
 
+        /// <summary>
+        /// Contructor
+        /// </summary>
+        /// <param name="sessionManager">Session manager</param>
         public SSCISAuthorize(SSCISSessionManager sessionManager)
         {
             _sessionManager = sessionManager;

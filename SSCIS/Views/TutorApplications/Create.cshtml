@@ -21,22 +21,23 @@
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken();
-                        foreach (var subject in Model.ApplicationSubjects)
+                        <div style="display: none;">
+                            @Html.EditorFor(m => m.SubjectData);
+                        </div>
+                        for (int i = 0; i <  Model.CountOfSubjects; i++)
                         {
                             <div class="row">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => subject.SubjectID, SSCISResources.Resource.SUBJECT, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.Application.ApplicationSubjects.ElementAt(i).SubjectID, SSCISResources.Resource.SUBJECT, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.DropDownList("SubjectID", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => subject.SubjectID, "", new { @class = "text-danger" })
+                                        @Html.DropDownList("SubjectID", null, htmlAttributes: new { @class = "form-control subject" })
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    @Html.LabelFor(model => subject.Degree, SSCISResources.Resource.DEGREE, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.Application.ApplicationSubjects.ElementAt(i).Degree, SSCISResources.Resource.DEGREE, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         <div class="checkbox">
-                                            @Html.DropDownList("Degree", null, htmlAttributes: new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => subject.Degree, "", new { @class = "text-danger" })
+                                            @Html.DropDownList("Degree", null, htmlAttributes: new { @class = "form-control degree" })
                                         </div>
                                     </div>
                                 </div>
@@ -64,4 +65,31 @@
     </div>
 </div>
 
+<script>
+    function setData() {
+        $('#SubjectData')[0].value = '';
 
+        $('.subject').each(function (index) {
+            $('#SubjectData')[0].value += $('.subject')[index].value;
+            $('#SubjectData')[0].value += ' '
+        });
+
+        $('#SubjectData')[0].value += ';'
+
+        $('.degree').each(function (index) {
+            $('#SubjectData')[0].value += $('.degree')[index].value;
+            $('#SubjectData')[0].value += ' '
+        });
+    }
+
+    $(document).ready(function () {
+        $('.subject').each(function () {
+            $(this).change(setData);
+        });
+        $('.degree').each(function () {
+            $(this).change(setData);
+        });
+    });
+
+    setData();
+</script>

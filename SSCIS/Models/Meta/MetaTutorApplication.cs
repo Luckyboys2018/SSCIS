@@ -8,6 +8,11 @@ namespace SSCIS.Models.Meta
     public class MetaTutorApplication
     {
         public TutorApplication Application { get; set; }
+
+        public int CountOfSubjects { get; set; }
+
+        public string SubjectData { get; set; }
+
         public List<TutorApplicationSubject> ApplicationSubjects { get; set; }
 
         public MetaTutorApplication()

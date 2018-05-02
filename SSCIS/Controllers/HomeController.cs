@@ -65,6 +65,7 @@ namespace SSCIS.Controllers
             MetaLogin model = new MetaLogin();
             model.ValidationMessage = validationMessage;
             return View(model);
+            //return Redirect("https://fkmagion.zcu.cz/testauth");
         }
 
         [HttpPost]

@@ -244,8 +244,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Attributes\SSCISAuthorize.cs" />
+    <Compile Include="Class\ApplicationSubjectsResolver.cs" />
     <Compile Include="Class\SessionHashGenerator.cs" />
     <Compile Include="Class\SSCISSessionManager.cs" />
+    <Compile Include="Class\TimeItem.cs" />
+    <Compile Include="Class\TimeItemsGenerator.cs" />
+    <Compile Include="Class\TimetableRenderer.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContentsController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
@@ -271,6 +275,7 @@
       <DependentUpon>SSCISModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Meta\MetaEvent.cs" />
     <Compile Include="Models\Meta\MetaLogin.cs" />
     <Compile Include="Models\Meta\MetaNews.cs" />
     <Compile Include="Models\Meta\MetaTutorApplication.cs" />
@@ -440,6 +445,8 @@
     <Content Include="Views\Contents\Details.cshtml" />
     <Content Include="Views\Contents\Edit.cshtml" />
     <Content Include="Views\Contents\Index.cshtml" />
+    <Content Include="Views\TutorApplications\Applied.cshtml" />
+    <Content Include="Views\TutorApplications\ApplicationPending.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
