@@ -5,7 +5,7 @@
     ViewBag.ActiveMenuItem = "menu-subjects";
 }
 
-<div class="body-content container-fluid text-center" style="padding-top: 70px">
+<div class="body-content container-fluid text-center">
     <div class="row content">
         <div class="col-sm-2 sidenav">
         </div>
@@ -42,9 +42,9 @@
                             @Html.DisplayFor(modelItem => item.Lesson)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            @Html.ActionLink("Upravit", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Detaily", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Smazat", "Delete", new { id = item.ID })
                         </td>
                     </tr>
                 }
