@@ -1,4 +1,4 @@
-﻿@model SSCIS.Models.SSCISContent
+﻿v@model SSCIS.Models.SSCISContent
 
 @{
     ViewBag.Title = "Vytvořit novinku";
@@ -35,13 +35,21 @@
                 </div>
             }
             </div>
-        <div class="col-sm-2 sidenav">
-            <div class="well">
-                <p>
-                    ROZVRH
-                    PO PRIHLASENI
-                </p>
+        @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
+        {
+            <div class="col-sm-2 sidenav">
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="col-sm-2 sidenav">
+                <div class="well">
+                    <p>
+                        ROZVRH
+                        PO PRIHLASENI
+                    </p>
+                </div>
+            </div>
+        }
         </div>
     </div>

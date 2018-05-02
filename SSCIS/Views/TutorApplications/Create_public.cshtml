@@ -20,14 +20,22 @@
             </div>
             <p>Máte-li další dotazy, ozvěte se prosím Světlaně Tomiczkové na e-mail <a href="mailto:svetlana@kma.zcu.cz">svetlana@kma.zcu.cz</a>, případně přijďte osobně do UC 258.</p>
         </div>
-        <div class="col-sm-2 sidenav">
-            <div class="well">
-                <p>
-                    ROZVRH
-                    PO PRIHLASENI
-                </p>
+        @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
+        {
+            <div class="col-sm-2 sidenav">
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="col-sm-2 sidenav">
+                <div class="well">
+                    <p>
+                        ROZVRH
+                        PO PRIHLASENI
+                    </p>
+                </div>
+            </div>
+        }
     </div>
 </div>
 
