@@ -247,10 +247,7 @@
     <Compile Include="Class\ApplicationSubjectsResolver.cs" />
     <Compile Include="Class\SessionHashGenerator.cs" />
     <Compile Include="Class\SSCISSessionManager.cs" />
-    <Compile Include="Class\TimeItem.cs" />
-    <Compile Include="Class\TimeItemsGenerator.cs" />
     <Compile Include="Class\TimetableRenderer.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContentsController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
