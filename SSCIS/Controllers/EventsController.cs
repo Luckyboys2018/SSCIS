@@ -63,6 +63,8 @@ namespace SSCIS.Controllers
             {
                 subjectsIds.Add(app.SubjectID);
             }
+            ViewBag.SubjectID = new SelectList(db.Subject.Where(s => subjectsIds.Contains(s.ID)), "ID", "Code");
+            ViewBag.TutorID = new SelectList(db.SSCISUser.Where(t => t.ID == userId), "ID", "Login");
             return View();
         }
 
