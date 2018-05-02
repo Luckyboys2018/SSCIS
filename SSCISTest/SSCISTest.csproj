@@ -70,7 +70,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Class\ApplicationSubjectsResolverTest.cs" />
     <Compile Include="Class\SessionHashGeneratorTest.cs" />
+    <Compile Include="Class\SSCISHtmlTest.cs" />
     <Compile Include="Class\SSCISSessionManagerTest.cs" />
     <Compile Include="Class\TestObjects\HttpSessionStateBaseTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
