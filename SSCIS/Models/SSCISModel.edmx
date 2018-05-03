@@ -70,6 +70,7 @@
           <Property Name="CREATED" Type="date" Nullable="false" />
           <Property Name="EDITED" Type="date" />
           <Property Name="TEXT_CONTENT" Type="varchar2" MaxLength="800" />
+          <Property Name="HEADER" Type="varchar2" MaxLength="45" />
         </EntityType>
         <EntityType Name="SSCIS_PARAM">
           <Key>
@@ -560,6 +561,7 @@
           <Property Name="TextContent" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Author" Relationship="SSCISModel.FK_SSCIS_CONTENT_AUTHOR" FromRole="SSCIS_CONTENT" ToRole="SSCIS_USER" />
           <NavigationProperty Name="EditedBy" Relationship="SSCISModel.FK_SSCIS_CONTENT_EDITOR" FromRole="SSCIS_CONTENT" ToRole="SSCIS_USER" />
+          <Property Name="Header" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SSCISSession">
           <Key>
@@ -909,6 +911,7 @@
           <EntitySetMapping Name="SSCISContent">
             <EntityTypeMapping TypeName="SSCISModel.SSCISContent">
               <MappingFragment StoreEntitySet="SSCIS_CONTENT">
+                <ScalarProperty Name="Header" ColumnName="HEADER" />
                 <ScalarProperty Name="TextContent" ColumnName="TEXT_CONTENT" />
                 <ScalarProperty Name="Edited" ColumnName="EDITED" />
                 <ScalarProperty Name="Created" ColumnName="CREATED" />

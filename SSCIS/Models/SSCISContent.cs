@@ -20,6 +20,7 @@ namespace SSCIS.Models
         public System.DateTime Created { get; set; }
         public Nullable<System.DateTime> Edited { get; set; }
         public string TextContent { get; set; }
+        public string Header { get; set; }
     
         public virtual SSCISUser Author { get; set; }
         public virtual SSCISUser EditedBy { get; set; }
