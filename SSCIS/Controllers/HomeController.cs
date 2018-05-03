@@ -51,7 +51,7 @@ namespace SSCIS.Controllers
             else
             {
                 model = new SSCISContent();
-                //model.Created = DateTime.Now;
+                model.Created = DateTime.Now;
                 model.TextContent = "Žádná aktualita nebyla nalezena";
             }
             ViewBag.PublicTimeTable = timeTableRenderer.RenderPublic(db);

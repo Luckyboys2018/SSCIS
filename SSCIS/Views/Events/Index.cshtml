@@ -64,7 +64,8 @@
             @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals("ADMIN")) {
 
                 <p>
-                    @if (item.IsAccepted == null || !item.IsAccepted.Value) {
+                    @Html.ActionLink("Detail", "Details", new { id = item.ID })
+                    | @if (item.IsAccepted == null || !item.IsAccepted.Value) {
                     @Html.ActionLink("Schávlit", "Accept", new { id = item.ID })
                     }|
                     @if (item.IsCancelled == null || !item.IsCancelled.Value ) { 
