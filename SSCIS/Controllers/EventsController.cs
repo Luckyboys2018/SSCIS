@@ -24,6 +24,11 @@ namespace SSCIS.Controllers
         private SSCISEntities db = new SSCISEntities();
 
         /// <summary>
+        /// Timetable component renderer
+        /// </summary>
+        private TimetableRenderer timetableRenderer = new TimetableRenderer();
+
+        /// <summary>
         /// List of created events
         /// </summary>
         /// <returns>View with list of events</returns>
@@ -95,7 +100,7 @@ namespace SSCIS.Controllers
                 model.Event.Subject = db.Subject.Find(model.SubjectID);
                 db.Event.Add(model.Event);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("TutorEvents");
             }
             return RedirectToAction("Create");
         }
@@ -162,6 +167,19 @@ namespace SSCIS.Controllers
             @event.CancellationComment = model.CancellationComment;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// Shows tutors events
+        /// </summary>
+        /// <returns>Tutors events view</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Tutor)]
+        public ActionResult TutorEvents()
+        {
+            int userId = (int)Session["userID"];
+            ViewBag.TutorEventsTable = timetableRenderer.RenderTutor(db, userId);
+            return View();
         }
 
         #region Unused

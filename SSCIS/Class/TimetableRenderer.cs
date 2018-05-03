@@ -16,9 +16,10 @@ namespace SSCIS.Class
         /// <summary>
         /// Renders timetable component
         /// </summary>
-        /// <param name="events">list of events to display</param>
+        /// <param name="events">List of events to display</param>
+        /// <param name="showState">Show state of event</param>
         /// <returns>rendered component</returns>
-        public MvcHtmlString Render(List<Event> events)
+        public MvcHtmlString Render(List<Event> events, bool showState = false)
         {
             StringBuilder builder = new StringBuilder();
             builder.Append("<table class=\"table\">");
@@ -28,6 +29,11 @@ namespace SSCIS.Class
             builder.Append("<th>Poznámka ke zrušení</th>");
             builder.Append("<th>Předmět</th>");
             builder.Append("<th>Tutor</th>");
+            if (showState)
+            {
+                builder.Append("<th>Akceptováno</th>");
+                builder.Append("<th>Zrušeno</th>");
+            }
             builder.Append("</tr>");
 
             foreach (var item in events)
@@ -48,6 +54,15 @@ namespace SSCIS.Class
                 builder.Append("<td>");
                 builder.Append(item.Tutor.Login);
                 builder.Append("</td>");
+                if (showState)
+                {
+                    builder.Append("<td>");
+                    builder.Append(SSCISHtml.DisplayForBool(item.IsAccepted));
+                    builder.Append("</td>");
+                    builder.Append("<td>");
+                    builder.Append(SSCISHtml.DisplayForBool(item.IsCancelled));
+                    builder.Append("</td>");
+                }
                 builder.Append("</tr>");
             }
 
@@ -58,7 +73,8 @@ namespace SSCIS.Class
         /// <summary>
         /// Renders public event timetable component
         /// </summary>
-        /// <param name="db">Databes context</param>
+        /// <param name="db">Database context</param>
+        /// <param name="weeks">Weeks</param>
         /// <returns>Html component</returns>
         public MvcHtmlString RenderPublic(SSCISEntities db, int weeks = 0)
         {
@@ -69,6 +85,24 @@ namespace SSCIS.Class
 
             List<Event> events = db.Event.Where(e => e.TimeFrom >= start && e.TimeTo <= end && e.IsAccepted != null && e.IsAccepted.Value).OrderBy(e => e.TimeFrom).ToList();
             return Render(events);
+        }
+
+        /// <summary>
+        /// Renders tutors event timetable
+        /// </summary>
+        /// <param name="db">Database context</param>
+        /// <param name="tutorId">Tutor ID</param>
+        /// <param name="weeks">Weeks</param>
+        /// <returns>Html component</returns>
+        public MvcHtmlString RenderTutor(SSCISEntities db, int tutorId, int weeks = 0)
+        {
+            DateTime now = DateTime.Now;
+            now.AddDays(7 * weeks);
+            DateTime start = _startOfWeek(now, DayOfWeek.Monday);
+            DateTime end = start.AddDays(7);
+
+            List<Event> events = db.Event.Where(e => e.TimeFrom >= start && e.TimeTo <= end && e.TutorID == tutorId).OrderBy(e => e.TimeFrom).ToList();
+            return Render(events, true);
         }
 
         /// <summary>

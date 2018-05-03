@@ -457,7 +457,6 @@
     <Content Include="Views\TutorApplications\ApplicationPending.cshtml" />
     <Content Include="Views\Home\Username.cshtml" />
     <Content Include="Views\Events\Cancel.cshtml" />
-    <Content Include="Views\Events\TutorsEvents.cshtml" />
     <Content Include="Views\Home\Unauthorized.cshtml" />
     <Content Include="Views\Feedbacks\Create.cshtml" />
     <Content Include="Views\Feedbacks\Delete.cshtml" />
@@ -468,6 +467,7 @@
     <Content Include="Views\Feedbacks\Generate.cshtml" />
     <Content Include="Views\Home\Statistics.cshtml" />
     <Content Include="Views\Feedbacks\Sent.cshtml" />
+    <Content Include="Views\Events\TutorEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
