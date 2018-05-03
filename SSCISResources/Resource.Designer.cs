@@ -8,10 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SSCISResources {
+namespace SSCISResources
+{
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,107 +23,49 @@ namespace SSCISResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resource {
-        
+    public class Resource
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resource() {
+        internal Resource()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        public static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SSCISResources.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
-            get {
+        public static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Student Support Centre.
-        /// </summary>
-        public static string APPLICATION_NAME
-        {
-            get
-            {
-                return ResourceManager.GetString("APPLICATION_NAME", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Vytvořit rozvrhovou akci.
-        /// </summary>
-        public static string CREATE_SCHEDULE_EVENT
-        {
-            get
-            {
-                return ResourceManager.GetString("CREATE_SCHEDULE_EVENT", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Domů.
-        /// </summary>
-        public static string HOME
-        {
-            get
-            {
-                return ResourceManager.GetString("HOME", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Správa předmětů.
-        /// </summary>
-        public static string SUBJECTS_MANAGEMENT
-        {
-            get
-            {
-                return ResourceManager.GetString("SUBJECTS_MANAGEMENT", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Systémové parametry.
-        /// </summary>
-        public static string SYSTEM_PARAMS
-        {
-            get
-            {
-                return ResourceManager.GetString("SYSTEM_PARAMS", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Přihláška tutora.
-        /// </summary>
-        public static string TUTOR_APPLICATION
-        {
-            get
-            {
-                return ResourceManager.GetString("TUTOR_APPLICATION", resourceCulture);
             }
         }
 
@@ -138,6 +81,61 @@ namespace SSCISResources {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Student Support Centre.
+        /// </summary>
+        public static string APPLICATION_NAME
+        {
+            get
+            {
+                return ResourceManager.GetString("APPLICATION_NAME", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Obsah.
+        /// </summary>
+        public static string CONTENT
+        {
+            get
+            {
+                return ResourceManager.GetString("CONTENT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Vytvořit.
+        /// </summary>
+        public static string CREATE
+        {
+            get
+            {
+                return ResourceManager.GetString("CREATE", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Vytvořit novinku.
+        /// </summary>
+        public static string CREATE_NEWS
+        {
+            get
+            {
+                return ResourceManager.GetString("CREATE_NEWS", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Vytvořit rozvrhovou akci.
+        /// </summary>
+        public static string CREATE_SCHEDULE_EVENT
+        {
+            get
+            {
+                return ResourceManager.GetString("CREATE_SCHEDULE_EVENT", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Známka.
         /// </summary>
         public static string DEGREE
@@ -145,6 +143,61 @@ namespace SSCISResources {
             get
             {
                 return ResourceManager.GetString("DEGREE", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Smazat.
+        /// </summary>
+        public static string DELETE
+        {
+            get
+            {
+                return ResourceManager.GetString("DELETE", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Detail.
+        /// </summary>
+        public static string DETAIL
+        {
+            get
+            {
+                return ResourceManager.GetString("DETAIL", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Upravit.
+        /// </summary>
+        public static string EDIT
+        {
+            get
+            {
+                return ResourceManager.GetString("EDIT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Nadpis.
+        /// </summary>
+        public static string HEADER
+        {
+            get
+            {
+                return ResourceManager.GetString("HEADER", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Domů.
+        /// </summary>
+        public static string HOME
+        {
+            get
+            {
+                return ResourceManager.GetString("HOME", resourceCulture);
             }
         }
 
@@ -204,6 +257,50 @@ namespace SSCISResources {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Správa předmětů.
+        /// </summary>
+        public static string SUBJECTS_MANAGEMENT
+        {
+            get
+            {
+                return ResourceManager.GetString("SUBJECTS_MANAGEMENT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Systémové parametry.
+        /// </summary>
+        public static string SYSTEM_PARAMS
+        {
+            get
+            {
+                return ResourceManager.GetString("SYSTEM_PARAMS", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Rozvrh po přihlášení.
+        /// </summary>
+        public static string TIMETABLE_AFTER_LOGIN
+        {
+            get
+            {
+                return ResourceManager.GetString("TIMETABLE_AFTER_LOGIN", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Přihláška tutora.
+        /// </summary>
+        public static string TUTOR_APPLICATION
+        {
+            get
+            {
+                return ResourceManager.GetString("TUTOR_APPLICATION", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Příhlášky tutorů.
         /// </summary>
         public static string TUTOR_APPLICATIONS
@@ -213,17 +310,5 @@ namespace SSCISResources {
                 return ResourceManager.GetString("TUTOR_APPLICATIONS", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Detail.
-        /// </summary>
-        public static string DETAIL
-        {
-            get
-            {
-                return ResourceManager.GetString("DETAIL", resourceCulture);
-            }
-        }
-
     }
 }

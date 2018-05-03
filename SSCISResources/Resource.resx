@@ -123,14 +123,32 @@
   <data name="APPLICATION_NAME" xml:space="preserve">
     <value>Student Support Centre</value>
   </data>
+  <data name="CONTENT" xml:space="preserve">
+    <value>Obsah</value>
+  </data>
+  <data name="CREATE" xml:space="preserve">
+    <value>Vytvořit</value>
+  </data>
+  <data name="CREATE_NEWS" xml:space="preserve">
+    <value>Vytvořit novinku</value>
+  </data>
   <data name="CREATE_SCHEDULE_EVENT" xml:space="preserve">
     <value>Vytvořit rozvrhovou akci</value>
   </data>
   <data name="DEGREE" xml:space="preserve">
     <value>Známka</value>
   </data>
+  <data name="DELETE" xml:space="preserve">
+    <value>Smazat</value>
+  </data>
   <data name="DETAIL" xml:space="preserve">
     <value>Detail</value>
+  </data>
+  <data name="EDIT" xml:space="preserve">
+    <value>Upravit</value>
+  </data>
+  <data name="HEADER" xml:space="preserve">
+    <value>Nadpis</value>
   </data>
   <data name="HOME" xml:space="preserve">
     <value>Domů</value>
@@ -155,6 +173,9 @@
   </data>
   <data name="SYSTEM_PARAMS" xml:space="preserve">
     <value>Systémové parametry</value>
+  </data>
+  <data name="TIMETABLE_AFTER_LOGIN" xml:space="preserve">
+    <value>Rozvrh po přihlášení</value>
   </data>
   <data name="TUTOR_APPLICATION" xml:space="preserve">
     <value>Přihláška tutora</value>
