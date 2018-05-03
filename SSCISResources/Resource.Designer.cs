@@ -92,6 +92,28 @@ namespace SSCISResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Autor.
+        /// </summary>
+        public static string AUTHOR
+        {
+            get
+            {
+                return ResourceManager.GetString("AUTHOR", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Zpět.
+        /// </summary>
+        public static string BACK
+        {
+            get
+            {
+                return ResourceManager.GetString("BACK", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Obsah.
         /// </summary>
         public static string CONTENT
@@ -99,6 +121,17 @@ namespace SSCISResources
             get
             {
                 return ResourceManager.GetString("CONTENT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Opravdu chcete smazat tento obsah?.
+        /// </summary>
+        public static string CONTENT_DELETE_CONFIRM
+        {
+            get
+            {
+                return ResourceManager.GetString("CONTENT_DELETE_CONFIRM", resourceCulture);
             }
         }
 
@@ -132,6 +165,17 @@ namespace SSCISResources
             get
             {
                 return ResourceManager.GetString("CREATE_SCHEDULE_EVENT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Vytvořeno.
+        /// </summary>
+        public static string CREATED
+        {
+            get
+            {
+                return ResourceManager.GetString("CREATED", resourceCulture);
             }
         }
 
@@ -176,6 +220,39 @@ namespace SSCISResources
             get
             {
                 return ResourceManager.GetString("EDIT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Upravit novinku.
+        /// </summary>
+        public static string EDIT_NEWS
+        {
+            get
+            {
+                return ResourceManager.GetString("EDIT_NEWS", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Upraveno.
+        /// </summary>
+        public static string EDITED
+        {
+            get
+            {
+                return ResourceManager.GetString("EDITED", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Upraveno uživatelem.
+        /// </summary>
+        public static string EDITED_BY
+        {
+            get
+            {
+                return ResourceManager.GetString("EDITED_BY", resourceCulture);
             }
         }
 
@@ -231,6 +308,28 @@ namespace SSCISResources
             get
             {
                 return ResourceManager.GetString("NAME", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Novinky.
+        /// </summary>
+        public static string NEWS
+        {
+            get
+            {
+                return ResourceManager.GetString("NEWS", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Uložit.
+        /// </summary>
+        public static string SAVE
+        {
+            get
+            {
+                return ResourceManager.GetString("SAVE", resourceCulture);
             }
         }
 

@@ -1,17 +1,17 @@
 ﻿@model SSCIS.Models.SSCISContent
 
 @{
-    ViewBag.Title = "Smazat";
+    ViewBag.Title = SSCISResources.Resource.DELETE;
 }
 
-<h2>Delete</h2>
+<h2>SSCISResources.Resource.DELETE</h2>
 
-<h3>Opravdu chcete smazat tento obsah?</h3>
+<h3>@SSCISResources.Resource.CONTENT_DELETE_CONFIRM</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Created)
+            @SSCISResources.Resource.CREATED
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Edited)
+            @SSCISResources.Resource.EDITED
         </dt>
 
         <dd>
@@ -27,7 +27,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TextContent)
+            @SSCISResources.Resource.HEADER
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Header)
+        </dd>
+
+        <dt>
+            @SSCISResources.Resource.CONTENT
         </dt>
 
         <dd>
@@ -35,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Author.Login)
+            @SSCISResources.Resource.AUTHOR
         </dt>
 
         <dd>
@@ -43,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EditedBy.Login)
+            @SSCISResources.Resource.EDITED_BY
         </dt>
 
         <dd>
@@ -56,7 +64,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
+            <input type="submit" value="@SSCISResources.Resource.DELETE" class="btn btn-default" />
         </div>
     }
 </div>

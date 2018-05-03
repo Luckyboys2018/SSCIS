@@ -123,11 +123,23 @@
   <data name="APPLICATION_NAME" xml:space="preserve">
     <value>Student Support Centre</value>
   </data>
+  <data name="AUTHOR" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="BACK" xml:space="preserve">
+    <value>Zpět</value>
+  </data>
   <data name="CONTENT" xml:space="preserve">
     <value>Obsah</value>
   </data>
+  <data name="CONTENT_DELETE_CONFIRM" xml:space="preserve">
+    <value>Opravdu chcete smazat tento obsah?</value>
+  </data>
   <data name="CREATE" xml:space="preserve">
     <value>Vytvořit</value>
+  </data>
+  <data name="CREATED" xml:space="preserve">
+    <value>Vytvořeno</value>
   </data>
   <data name="CREATE_NEWS" xml:space="preserve">
     <value>Vytvořit novinku</value>
@@ -147,6 +159,15 @@
   <data name="EDIT" xml:space="preserve">
     <value>Upravit</value>
   </data>
+  <data name="EDITED" xml:space="preserve">
+    <value>Upraveno</value>
+  </data>
+  <data name="EDITED_BY" xml:space="preserve">
+    <value>Upraveno uživatelem</value>
+  </data>
+  <data name="EDIT_NEWS" xml:space="preserve">
+    <value>Upravit novinku</value>
+  </data>
   <data name="HEADER" xml:space="preserve">
     <value>Nadpis</value>
   </data>
@@ -161,6 +182,12 @@
   </data>
   <data name="NAME" xml:space="preserve">
     <value>Jméno</value>
+  </data>
+  <data name="NEWS" xml:space="preserve">
+    <value>Novinky</value>
+  </data>
+  <data name="SAVE" xml:space="preserve">
+    <value>Uložit</value>
   </data>
   <data name="SUBJECT" xml:space="preserve">
     <value>Předmět</value>

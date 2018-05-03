@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SSCIS.Models.SSCISContent>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = SSCISResources.Resource.NEWS;
 }
 
 <h2>Index</h2>
@@ -12,19 +12,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Created)
+            @SSCISResources.Resource.CREATED
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Edited)
+            @SSCISResources.Resource.EDITED
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TextContent)
+            @SSCISResources.Resource.CONTENT
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Author.Login)
+            @SSCISResources.Resource.AUTHOR
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EditedBy.Login)
+            @SSCISResources.Resource.EDITED_BY
         </th>
         <th></th>
     </tr>
@@ -47,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.EditedBy.Login)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink(SSCISResources.Resource.EDIT, "Edit", new { id=item.ID }) |
+            @Html.ActionLink(SSCISResources.Resource.DETAIL, "Details", new { id=item.ID }) |
+            @Html.ActionLink(SSCISResources.Resource.DELETE, "Delete", new { id=item.ID })
         </td>
     </tr>
 }

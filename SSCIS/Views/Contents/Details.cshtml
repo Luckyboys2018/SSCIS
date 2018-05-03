@@ -1,7 +1,7 @@
 ﻿@model SSCIS.Models.SSCISContent
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = @SSCISResources.Resource.DETAIL;
 }
 
 <h2>Details</h2>
@@ -11,7 +11,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Created)
+            @SSCISResources.Resource.CREATED
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Edited)
+            @SSCISResources.Resource.EDITED
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Header)
+            @SSCISResources.Resource.HEADER
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TextContent)
+            @SSCISResources.Resource.CONTENT
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Author.Login)
+            @SSCISResources.Resource.AUTHOR
         </dt>
 
         <dd>
@@ -51,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EditedBy.Login)
+            @SSCISResources.Resource.EDITED_BY
         </dt>
 
         <dd>
@@ -61,6 +61,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(@SSCISResources.Resource.EDIT, "Edit", new { id = Model.ID }) |
+    @Html.ActionLink(@SSCISResources.Resource.BACK, "Index")
 </p>
