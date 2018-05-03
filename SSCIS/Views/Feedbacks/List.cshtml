@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SSCIS.Models.Feedback>
+
+@{
+    ViewBag.Title = "Feedback";
+    ViewBag.ActiveMenuItem = "menu-statistics";
+}
+
+@{
+    ViewBag.Title = "Feedback";
+}
+
+<h2>Feedback</h2>
+<table class="table">
+    <tr>
+        <th>
+            Čas od
+        </th>
+        <th>
+            Čas do
+        </th>
+        <th>
+            Předmět
+        </th>
+        <th>
+            Text
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Participation.Event.TimeFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Participation.Event.TimeTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Participation.Event.Subject.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+        </tr>
+    }
+
+</table>

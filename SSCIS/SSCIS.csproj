@@ -251,6 +251,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Attributes\MultipleButton.cs" />
     <Compile Include="Attributes\SSCISAuthorize.cs" />
     <Compile Include="Class\ApplicationSubjectsResolver.cs" />
     <Compile Include="Class\AuthorizationRoles.cs" />
@@ -263,6 +264,7 @@
     <Compile Include="Controllers\ContentsController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\Feedbacks1Controller.cs" />
     <Compile Include="Controllers\FeedbacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SSCISParamsController.cs" />
@@ -468,6 +470,12 @@
     <Content Include="Views\Home\Statistics.cshtml" />
     <Content Include="Views\Feedbacks\Sent.cshtml" />
     <Content Include="Views\Events\TutorEvents.cshtml" />
+    <Content Include="Views\Feedbacks\List.cshtml" />
+    <Content Include="Views\Feedbacks1\Create.cshtml" />
+    <Content Include="Views\Feedbacks1\Delete.cshtml" />
+    <Content Include="Views\Feedbacks1\Details.cshtml" />
+    <Content Include="Views\Feedbacks1\Edit.cshtml" />
+    <Content Include="Views\Feedbacks1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

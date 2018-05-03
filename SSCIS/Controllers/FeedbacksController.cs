@@ -101,90 +101,6 @@ namespace SSCIS.Controllers
             return View(feedback);
         }
 
-        // GET: Feedbacks/Create
-        public ActionResult Create()
-        {
-            ViewBag.ParticipationID = new SelectList(db.Participation, "ID", "ID");
-            return View();
-        }
-
-        // POST: Feedbacks/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ParticipationID,Text")] Feedback feedback)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Feedback.Add(feedback);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.ParticipationID = new SelectList(db.Participation, "ID", "ID", feedback.ParticipationID);
-            return View(feedback);
-        }
-
-        // GET: Feedbacks/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Feedback feedback = db.Feedback.Find(id);
-            if (feedback == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ParticipationID = new SelectList(db.Participation, "ID", "ID", feedback.ParticipationID);
-            return View(feedback);
-        }
-
-        // POST: Feedbacks/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ParticipationID,Text")] Feedback feedback)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(feedback).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.ParticipationID = new SelectList(db.Participation, "ID", "ID", feedback.ParticipationID);
-            return View(feedback);
-        }
-
-        // GET: Feedbacks/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Feedback feedback = db.Feedback.Find(id);
-            if (feedback == null)
-            {
-                return HttpNotFound();
-            }
-            return View(feedback);
-        }
-
-        // POST: Feedbacks/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Feedback feedback = db.Feedback.Find(id);
-            db.Feedback.Remove(feedback);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         /// <summary>
         /// Generates QR code of URL for adding feedback to event
         /// </summary>
@@ -232,6 +148,7 @@ namespace SSCIS.Controllers
         /// <param name="model">Filter model</param>
         /// <returns>CSV file</returns>
         [HttpPost]
+        [MultipleButton(Name = "action", Argument = "Generate")]
         [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Generate(MetaInterval model)
         {
@@ -239,6 +156,20 @@ namespace SSCIS.Controllers
             string csv = csvConverter.Convert(feedbacks, db);
             string filename = string.Format("feedback.csv");
             return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", filename);
+        }
+
+        /// <summary>
+        /// Shows list of feedbacks
+        /// </summary>
+        /// <param name="model">Interval model</param>
+        /// <returns>View with list of feedback</returns>
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "List")]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
+        public ActionResult List(MetaInterval model)
+        {
+            List<Feedback> feedbacks = db.Feedback.Where(f => f.Participation.Event.TimeFrom >= model.From && f.Participation.Event.TimeTo <= model.To).ToList();
+            return View(model);
         }
 
         /// <summary>
