@@ -1,4 +1,5 @@
-﻿using SSCIS.Class;
+﻿using SSCIS.Attributes;
+using SSCIS.Class;
 using SSCIS.Models;
 using SSCIS.Models.Meta;
 using System;
@@ -151,6 +152,17 @@ namespace SSCIS.Controllers
         /// <returns>View</returns>
         [HttpGet]
         public ActionResult Unauthorized()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Signpost for statistics
+        /// </summary>
+        /// <returns>View</returns>
+        [HttpGet]
+        [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
+        public ActionResult Statistics()
         {
             return View();
         }

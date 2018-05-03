@@ -254,6 +254,7 @@
     <Compile Include="Attributes\SSCISAuthorize.cs" />
     <Compile Include="Class\ApplicationSubjectsResolver.cs" />
     <Compile Include="Class\AuthorizationRoles.cs" />
+    <Compile Include="Class\FeedbacksCSVConverter.cs" />
     <Compile Include="Class\FeedbackUrlGenerator.cs" />
     <Compile Include="Class\SessionHashGenerator.cs" />
     <Compile Include="Class\SSCISHtml.cs" />
@@ -285,6 +286,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Meta\MetaEvent.cs" />
+    <Compile Include="Models\Meta\MetaInterval.cs" />
     <Compile Include="Models\Meta\MetaLogin.cs" />
     <Compile Include="Models\Meta\MetaNews.cs" />
     <Compile Include="Models\Meta\MetaTutorApplication.cs" />
@@ -463,6 +465,9 @@
     <Content Include="Views\Feedbacks\Edit.cshtml" />
     <Content Include="Views\Feedbacks\Index.cshtml" />
     <Content Include="Views\Feedbacks\EventQR.cshtml" />
+    <Content Include="Views\Feedbacks\Generate.cshtml" />
+    <Content Include="Views\Home\Statistics.cshtml" />
+    <Content Include="Views\Feedbacks\Sent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
