@@ -1,7 +1,7 @@
 ﻿@model SSCIS.Models.Event
 
 @{
-    ViewBag.Title = "Detail události";
+    ViewBag.Title = SSCISResources.Resource.EVENT_DETAIL;
     ViewBag.ActiveMenuItem = "menu-eventlist";
 }
 
@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TimeFrom)
+            @SSCISResources.Resource.TIME_FROM
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TimeTo)
+            @SSCISResources.Resource.TIME_TO
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IsAccepted)
+            @SSCISResources.Resource.ACCEPTED
         </dt>
 
         <dd>
@@ -36,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IsCancelled)
+            @SSCISResources.Resource.CANCELLED
         </dt>
 
         <dd>
@@ -44,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CancellationComment)
+            @SSCISResources.Resource.CANCELLATION_COMMENT
         </dt>
 
         <dd>
@@ -52,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Subject.Code)
+            @SSCISResources.Resource.SUBJECT
         </dt>
 
         <dd>
@@ -60,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Tutor.Login)
+            @SSCISResources.Resource.TUTOR
         </dt>
 
         <dd>
@@ -70,7 +70,6 @@
     </dl>
 </div>
 <p>
-    <!--Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |-->
-    @Html.ActionLink("Generuj odkaz pro feedback", "EventQR", "Feedbacks", new { id = Model.ID }, new { }) | 
-    @Html.ActionLink("Zpět", "Index")
+    @Html.ActionLink(SSCISResources.Resource.GENERATE_FEEDBACK_LINK, "EventQR", "Feedbacks", new { id = Model.ID }, new { }) | 
+    @Html.ActionLink(SSCISResources.Resource.BACK, "Index")
 </p>

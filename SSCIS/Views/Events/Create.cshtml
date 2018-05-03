@@ -1,18 +1,18 @@
 ﻿@model SSCIS.Models.Meta.MetaEvent
 
 @{
-    ViewBag.Title = "Vypsat událost";
+    ViewBag.Title = SSCISResources.Resource.CREATE_EVENT;
     ViewBag.ActiveMenuItem = "menu-event";
 }
 
-<h2>Create</h2>
+<h2>@SSCISResources.Resource.CREATE_EVENT</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Vypsání lekce</h4>
+        <h4>@SSCISResources.Resource.EVENT_CREATION</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Event.TimeFrom, "Čas od", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Event.TimeFrom, SSCISResources.Resource.TIME_FROM, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TimeFrom, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Event.TimeFrom, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Event.TimeTo, "Čas do", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Event.TimeTo, SSCISResources.Resource.TIME_TO, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TimeTo, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Event.TimeTo, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Event.SubjectID, "Předmět", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Event.SubjectID, SSCISResources.Resource.SUBJECT, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("SubjectID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SubjectID, "", new { @class = "text-danger" })
@@ -48,7 +48,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Event.TutorID, "Tutor", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Event.TutorID, SSCISResources.Resource.TUTOR, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("TutorID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Event.TutorID, "", new { @class = "text-danger" })
@@ -57,12 +57,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Vypsat lekci" class="btn btn-default" />
+                <input type="submit" value="@SSCISResources.Resource.CREATE_EVENT" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(SSCISResources.Resource.BACK, "Index")
 </div>

@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACCEPT" xml:space="preserve">
+    <value>Schválit</value>
+  </data>
+  <data name="ACCEPTED" xml:space="preserve">
+    <value>Schváleno</value>
+  </data>
   <data name="ADD_SUBJECT" xml:space="preserve">
     <value>Přidat předmět</value>
   </data>
@@ -129,6 +135,15 @@
   <data name="BACK" xml:space="preserve">
     <value>Zpět</value>
   </data>
+  <data name="CANCEL" xml:space="preserve">
+    <value>Zrušit</value>
+  </data>
+  <data name="CANCELLATION_COMMENT" xml:space="preserve">
+    <value>Poznámka ke zrušení</value>
+  </data>
+  <data name="CANCELLED" xml:space="preserve">
+    <value>Zrušeno</value>
+  </data>
   <data name="CONTENT" xml:space="preserve">
     <value>Obsah</value>
   </data>
@@ -140,6 +155,9 @@
   </data>
   <data name="CREATED" xml:space="preserve">
     <value>Vytvořeno</value>
+  </data>
+  <data name="CREATE_EVENT" xml:space="preserve">
+    <value>Vytvořit událost</value>
   </data>
   <data name="CREATE_NEWS" xml:space="preserve">
     <value>Vytvořit novinku</value>
@@ -168,6 +186,27 @@
   <data name="EDIT_NEWS" xml:space="preserve">
     <value>Upravit novinku</value>
   </data>
+  <data name="EVENT" xml:space="preserve">
+    <value>Událost</value>
+  </data>
+  <data name="EVENTS" xml:space="preserve">
+    <value>Události</value>
+  </data>
+  <data name="EVENT_CANCELLATION" xml:space="preserve">
+    <value>Zrušení události</value>
+  </data>
+  <data name="EVENT_CREATION" xml:space="preserve">
+    <value>Vypsání události</value>
+  </data>
+  <data name="EVENT_DELETE_CONFIRMATION" xml:space="preserve">
+    <value>Opravdu chcete smazat událost?</value>
+  </data>
+  <data name="EVENT_DETAIL" xml:space="preserve">
+    <value>Detail události</value>
+  </data>
+  <data name="GENERATE_FEEDBACK_LINK" xml:space="preserve">
+    <value>Generuj odkaz pro feedback</value>
+  </data>
   <data name="HEADER" xml:space="preserve">
     <value>Nadpis</value>
   </data>
@@ -179,6 +218,9 @@
   </data>
   <data name="LOGIN" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="MY_EVENTS" xml:space="preserve">
+    <value>Moje události</value>
   </data>
   <data name="NAME" xml:space="preserve">
     <value>Jméno</value>
@@ -203,6 +245,15 @@
   </data>
   <data name="TIMETABLE_AFTER_LOGIN" xml:space="preserve">
     <value>Rozvrh po přihlášení</value>
+  </data>
+  <data name="TIME_FROM" xml:space="preserve">
+    <value>Čas od</value>
+  </data>
+  <data name="TIME_TO" xml:space="preserve">
+    <value>Čas do</value>
+  </data>
+  <data name="TUTOR" xml:space="preserve">
+    <value>Tutor</value>
   </data>
   <data name="TUTOR_APPLICATION" xml:space="preserve">
     <value>Přihláška tutora</value>

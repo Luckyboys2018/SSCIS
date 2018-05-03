@@ -70,6 +70,28 @@ namespace SSCISResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Schválit.
+        /// </summary>
+        public static string ACCEPT
+        {
+            get
+            {
+                return ResourceManager.GetString("ACCEPT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Schváleno.
+        /// </summary>
+        public static string ACCEPTED
+        {
+            get
+            {
+                return ResourceManager.GetString("ACCEPTED", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Přidat předmět.
         /// </summary>
         public static string ADD_SUBJECT
@@ -114,6 +136,39 @@ namespace SSCISResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Zrušit.
+        /// </summary>
+        public static string CANCEL
+        {
+            get
+            {
+                return ResourceManager.GetString("CANCEL", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Poznámka ke zrušení.
+        /// </summary>
+        public static string CANCELLATION_COMMENT
+        {
+            get
+            {
+                return ResourceManager.GetString("CANCELLATION_COMMENT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Zrušeno.
+        /// </summary>
+        public static string CANCELLED
+        {
+            get
+            {
+                return ResourceManager.GetString("CANCELLED", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Obsah.
         /// </summary>
         public static string CONTENT
@@ -143,6 +198,17 @@ namespace SSCISResources
             get
             {
                 return ResourceManager.GetString("CREATE", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Vytvořit událost.
+        /// </summary>
+        public static string CREATE_EVENT
+        {
+            get
+            {
+                return ResourceManager.GetString("CREATE_EVENT", resourceCulture);
             }
         }
 
@@ -257,6 +323,83 @@ namespace SSCISResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Událost.
+        /// </summary>
+        public static string EVENT
+        {
+            get
+            {
+                return ResourceManager.GetString("EVENT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Zrušení události.
+        /// </summary>
+        public static string EVENT_CANCELLATION
+        {
+            get
+            {
+                return ResourceManager.GetString("EVENT_CANCELLATION", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Vypsání události.
+        /// </summary>
+        public static string EVENT_CREATION
+        {
+            get
+            {
+                return ResourceManager.GetString("EVENT_CREATION", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Opravdu chcete smazat událost?.
+        /// </summary>
+        public static string EVENT_DELETE_CONFIRMATION
+        {
+            get
+            {
+                return ResourceManager.GetString("EVENT_DELETE_CONFIRMATION", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Detail události.
+        /// </summary>
+        public static string EVENT_DETAIL
+        {
+            get
+            {
+                return ResourceManager.GetString("EVENT_DETAIL", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Události.
+        /// </summary>
+        public static string EVENTS
+        {
+            get
+            {
+                return ResourceManager.GetString("EVENTS", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Generuj odkaz pro feedback.
+        /// </summary>
+        public static string GENERATE_FEEDBACK_LINK
+        {
+            get
+            {
+                return ResourceManager.GetString("GENERATE_FEEDBACK_LINK", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Nadpis.
         /// </summary>
         public static string HEADER
@@ -297,6 +440,17 @@ namespace SSCISResources
             get
             {
                 return ResourceManager.GetString("LOGIN", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Moje události.
+        /// </summary>
+        public static string MY_EVENTS
+        {
+            get
+            {
+                return ResourceManager.GetString("MY_EVENTS", resourceCulture);
             }
         }
 
@@ -378,6 +532,28 @@ namespace SSCISResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Čas od.
+        /// </summary>
+        public static string TIME_FROM
+        {
+            get
+            {
+                return ResourceManager.GetString("TIME_FROM", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Čas do.
+        /// </summary>
+        public static string TIME_TO
+        {
+            get
+            {
+                return ResourceManager.GetString("TIME_TO", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Rozvrh po přihlášení.
         /// </summary>
         public static string TIMETABLE_AFTER_LOGIN
@@ -385,6 +561,17 @@ namespace SSCISResources
             get
             {
                 return ResourceManager.GetString("TIMETABLE_AFTER_LOGIN", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tutor.
+        /// </summary>
+        public static string TUTOR
+        {
+            get
+            {
+                return ResourceManager.GetString("TUTOR", resourceCulture);
             }
         }
 
