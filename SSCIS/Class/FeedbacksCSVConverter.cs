@@ -48,7 +48,7 @@ namespace SSCIS.Class
         /// <returns>String representation of feedback</returns>
         public string FeedbackToString(Feedback feedback, Event @event)
         {
-            return string.Format("{0}|{1}|{2}|{3}|{4}", @event.TimeFrom.Date.ToString(), @event.TimeFrom.Hour.ToString() + @event.TimeFrom.Minute.ToString(), @event.TimeTo.Hour.ToString() + @event.TimeTo.Minute.ToString(), @event.Subject.Code, feedback.Text);
+            return string.Format("{0}|{1}|{2}|{3}|{4}", @event.TimeFrom.Day + "." + @event.TimeFrom.Month + "." + @event.TimeFrom.Year, @event.TimeFrom.Hour.ToString("00") + ":" + @event.TimeFrom.Minute.ToString("00"), @event.TimeTo.Hour.ToString("00") + ":" + @event.TimeTo.Minute.ToString("00"), @event.Subject.Code, feedback.Text);
         }
     }
 }
