@@ -264,13 +264,13 @@
     <Compile Include="Controllers\ContentsController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
-    <Compile Include="Controllers\Feedbacks1Controller.cs" />
     <Compile Include="Controllers\FeedbacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SSCISParamsController.cs" />
     <Compile Include="Controllers\SubjectsController.cs" />
     <Compile Include="Controllers\TutorApplicationsController.cs" />
     <Compile Include="Controllers\TutorApplicationSubjectsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -460,10 +460,6 @@
     <Content Include="Views\Home\Username.cshtml" />
     <Content Include="Views\Events\Cancel.cshtml" />
     <Content Include="Views\Home\Unauthorized.cshtml" />
-    <Content Include="Views\Feedbacks\Create.cshtml" />
-    <Content Include="Views\Feedbacks\Delete.cshtml" />
-    <Content Include="Views\Feedbacks\Details.cshtml" />
-    <Content Include="Views\Feedbacks\Edit.cshtml" />
     <Content Include="Views\Feedbacks\Index.cshtml" />
     <Content Include="Views\Feedbacks\EventQR.cshtml" />
     <Content Include="Views\Feedbacks\Generate.cshtml" />
@@ -471,11 +467,10 @@
     <Content Include="Views\Feedbacks\Sent.cshtml" />
     <Content Include="Views\Events\TutorEvents.cshtml" />
     <Content Include="Views\Feedbacks\List.cshtml" />
-    <Content Include="Views\Feedbacks1\Create.cshtml" />
-    <Content Include="Views\Feedbacks1\Delete.cshtml" />
-    <Content Include="Views\Feedbacks1\Details.cshtml" />
-    <Content Include="Views\Feedbacks1\Edit.cshtml" />
-    <Content Include="Views\Feedbacks1\Index.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

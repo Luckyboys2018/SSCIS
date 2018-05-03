@@ -1,0 +1,61 @@
+﻿@model IEnumerable<SSCIS.Models.SSCISUser>
+
+@{
+    ViewBag.Title = "Uživatelé";
+    ViewBag.ActiveMenuItem = "menu-users";
+}
+
+<h2>Uživatelé</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role.RoleCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lastname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role.RoleCode)
+        </td>
+        <td>
+            @Html.ActionLink("Upravit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detail", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Smazat", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

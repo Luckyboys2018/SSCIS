@@ -1,0 +1,73 @@
+﻿@model SSCIS.Models.SSCISUser
+
+@{
+    ViewBag.Title = "Delete";
+    ViewBag.ActiveMenuItem = "menu-users";
+}
+
+<h2>Smazat uživatele</h2>
+
+<h3>Opravdu chcete smazat následujícího uživatele?</h3>
+<div>
+    <h4>Uživatel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.RoleCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.RoleCode)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Smazat" class="btn btn-default" /> |
+            @Html.ActionLink("Zpět", "Index")
+        </div>
+    }
+</div>

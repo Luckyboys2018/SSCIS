@@ -41,6 +41,7 @@
                             <li class="menu-subjects">@Html.ActionLink(SSCISResources.Resource.SUBJECTS_MANAGEMENT, "Index", "Subjects", new { area = "" }, null)</li>
                             <li class="menu-tutors">@Html.ActionLink("Žádosti tutorů", "Index", "TutorApplications", new { area = "" }, null)</li>
                             <li class="menu-statistics">@Html.ActionLink("Statistiky", "Statistics", "Home", new { area = "" }, null)</li>
+                            <li class="menu-users">@Html.ActionLink("Uživatelé", "Index", "Users", new { area = "" }, null)</li>
                         }
                     }
 
@@ -52,17 +53,15 @@
                     }
 
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                   
-                        
-                   
+
+                <ul class="nav navbar-nav navbar-right">                   
                     @if (Session["role"] == null)
                     {
                         <li><a href="@Url.Action("Login", "Home")"><span class="glyphicon glyphicon-log-in"></span> Přihlásit se</a></li>
                     }
                     else
                     {
-                        <li><a href="@Url.Action("Index", "Home")">@Request.RequestContext.HttpContext.Session["login"]</a></li>
+                        <li><a href="@Url.Action("Profil", "Users")">@Request.RequestContext.HttpContext.Session["login"]</a></li>
                         <li><a href="@Url.Action("Logout", "Home")"><span class="glyphicon glyphicon-log-in"></span> Odhlásit se</a></li>
                     }
                 </ul>
