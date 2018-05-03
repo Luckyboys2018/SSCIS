@@ -71,6 +71,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Class\ApplicationSubjectsResolverTest.cs" />
+    <Compile Include="Class\FeedbackUrlGeneratorTest.cs" />
     <Compile Include="Class\SessionHashGeneratorTest.cs" />
     <Compile Include="Class\SSCISHtmlTest.cs" />
     <Compile Include="Class\SSCISSessionManagerTest.cs" />
