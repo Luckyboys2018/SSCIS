@@ -171,6 +171,9 @@
   <data name="DELETE" xml:space="preserve">
     <value>Smazat</value>
   </data>
+  <data name="DELETE_USER" xml:space="preserve">
+    <value>Smazat uživatele</value>
+  </data>
   <data name="DETAIL" xml:space="preserve">
     <value>Detail</value>
   </data>
@@ -228,8 +231,14 @@
   <data name="NEWS" xml:space="preserve">
     <value>Novinky</value>
   </data>
+  <data name="ROLE" xml:space="preserve">
+    <value>Role</value>
+  </data>
   <data name="SAVE" xml:space="preserve">
     <value>Uložit</value>
+  </data>
+  <data name="STUDENT_NUMBER" xml:space="preserve">
+    <value>Studentské číslo</value>
   </data>
   <data name="SUBJECT" xml:space="preserve">
     <value>Předmět</value>
@@ -260,5 +269,14 @@
   </data>
   <data name="TUTOR_APPLICATIONS" xml:space="preserve">
     <value>Příhlášky tutorů</value>
+  </data>
+  <data name="USERS" xml:space="preserve">
+    <value>Uživatelé</value>
+  </data>
+  <data name="USER_DELETE_CONFIRM" xml:space="preserve">
+    <value>Opravdu chcete smazat následujícího uživatele?</value>
+  </data>
+  <data name="USER_DETAIL" xml:space="preserve">
+    <value>Detail uživatele</value>
   </data>
 </root>

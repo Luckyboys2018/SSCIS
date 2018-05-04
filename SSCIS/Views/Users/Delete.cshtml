@@ -1,19 +1,19 @@
 ﻿@model SSCIS.Models.SSCISUser
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = @SSCISResources.Resource.DELETE;
     ViewBag.ActiveMenuItem = "menu-users";
 }
 
-<h2>Smazat uživatele</h2>
+<h2>@SSCISResources.Resource.DELETE_USER</h2>
 
-<h3>Opravdu chcete smazat následujícího uživatele?</h3>
+<h3>@SSCISResources.Resource.USER_DELETE_CONFIRM</h3>
 <div>
     <h4>Uživatel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Login)
+            @SSCISResources.Resource.LOGIN
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Firstname)
+            @SSCISResources.Resource.NAME
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Lastname)
+            @SSCISResources.Resource.LASTNAME
         </dt>
 
         <dd>
@@ -37,7 +37,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Created)
+            @SSCISResources.Resource.CREATED
         </dt>
 
         <dd>
@@ -45,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StudentNumber)
+            @SSCISResources.Resource.STUDENT_NUMBER
         </dt>
 
         <dd>
@@ -53,7 +53,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Role.RoleCode)
+            @SSCISResources.Resource.ROLE
         </dt>
 
         <dd>
@@ -66,8 +66,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Smazat" class="btn btn-default" /> |
-            @Html.ActionLink("Zpět", "Index")
+            <input type="submit" value="@SSCISResources.Resource.DELETE" class="btn btn-default" /> |
+            @Html.ActionLink(SSCISResources.Resource.BACK, "Index")
         </div>
     }
 </div>

@@ -1,7 +1,7 @@
 ﻿@model SSCIS.Models.SSCISUser
 
 @{
-    ViewBag.Title = "Detail uživatele";
+    ViewBag.Title = SSCISResources.Resource.USER_DETAIL;
     ViewBag.ActiveMenuItem = "menu-users";
 }
 
@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Login)
+            @SSCISResources.Resource.LOGIN
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Firstname)
+            @SSCISResources.Resource.NAME
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Lastname)
+            @SSCISResources.Resource.LASTNAME
         </dt>
 
         <dd>
@@ -36,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Created)
+            @SSCISResources.Resource.CREATED
         </dt>
 
         <dd>
@@ -44,7 +44,7 @@
         </dd>
     
         <dt>
-            @Html.DisplayNameFor(model => model.StudentNumber)
+            @SSCISResources.Resource.STUDENT_NUMBER
         </dt>
 
         <dd>
@@ -52,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Role.RoleCode)
+            @SSCISResources.Resource.ROLE
         </dt>
 
         <dd>
@@ -62,13 +62,13 @@
     </dl>
 </div>
 <p>
-    @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals("ADMIN"))
+    @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals(SSCIS.Class.AuthorizationRoles.Administrator))
         {
-            <p>@Html.ActionLink("Upravit", "Edit", new { id = Model.ID }) | @Html.ActionLink("Zpět", "Index")</p>
+            <p>@Html.ActionLink(@SSCISResources.Resource.EDIT, "Edit", new { id = Model.ID }) | @Html.ActionLink(@SSCISResources.Resource.BACK, "Index")</p>
         }
         else
         { 
-            <p>@Html.ActionLink("Zpět", "Index")</p> 
+            <p>@Html.ActionLink(@SSCISResources.Resource.BACK, "Index")</p> 
         }
     }
 </p>

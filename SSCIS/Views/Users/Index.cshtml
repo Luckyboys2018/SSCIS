@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SSCIS.Models.SSCISUser>
 
 @{
-    ViewBag.Title = "Uživatelé";
+    ViewBag.Title = SSCISResources.Resource.USERS;
     ViewBag.ActiveMenuItem = "menu-users";
 }
 
@@ -10,22 +10,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Login)
+            @SSCISResources.Resource.LOGIN
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Firstname)
+            @SSCISResources.Resource.NAME
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Lastname)
+            @SSCISResources.Resource.LASTNAME
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Created)
+            @SSCISResources.Resource.CREATED
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StudentNumber)
+            @SSCISResources.Resource.STUDENT_NUMBER
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Role.RoleCode)
+            @SSCISResources.Resource.ROLE
         </th>
         <th></th>
     </tr>
@@ -51,9 +51,9 @@
             @Html.DisplayFor(modelItem => item.Role.RoleCode)
         </td>
         <td>
-            @Html.ActionLink("Upravit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Detail", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Smazat", "Delete", new { id=item.ID })
+            @Html.ActionLink(SSCISResources.Resource.EDIT, "Edit", new { id=item.ID }) |
+            @Html.ActionLink(SSCISResources.Resource.DETAIL, "Details", new { id=item.ID }) |
+            @Html.ActionLink(SSCISResources.Resource.DELETE, "Delete", new { id=item.ID })
         </td>
     </tr>
 }

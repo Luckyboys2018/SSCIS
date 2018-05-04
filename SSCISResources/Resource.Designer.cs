@@ -268,6 +268,17 @@ namespace SSCISResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Smazat uživatele.
+        /// </summary>
+        public static string DELETE_USER
+        {
+            get
+            {
+                return ResourceManager.GetString("DELETE_USER", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Detail.
         /// </summary>
         public static string DETAIL
@@ -477,6 +488,17 @@ namespace SSCISResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        public static string ROLE
+        {
+            get
+            {
+                return ResourceManager.GetString("ROLE", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Uložit.
         /// </summary>
         public static string SAVE
@@ -484,6 +506,17 @@ namespace SSCISResources
             get
             {
                 return ResourceManager.GetString("SAVE", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Studentské číslo.
+        /// </summary>
+        public static string STUDENT_NUMBER
+        {
+            get
+            {
+                return ResourceManager.GetString("STUDENT_NUMBER", resourceCulture);
             }
         }
 
@@ -594,6 +627,39 @@ namespace SSCISResources
             get
             {
                 return ResourceManager.GetString("TUTOR_APPLICATIONS", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Opravdu chcete smazat následujícího uživatele?.
+        /// </summary>
+        public static string USER_DELETE_CONFIRM
+        {
+            get
+            {
+                return ResourceManager.GetString("USER_DELETE_CONFIRM", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Detail uživatele.
+        /// </summary>
+        public static string USER_DETAIL
+        {
+            get
+            {
+                return ResourceManager.GetString("USER_DETAIL", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Uživatelé.
+        /// </summary>
+        public static string USERS
+        {
+            get
+            {
+                return ResourceManager.GetString("USERS", resourceCulture);
             }
         }
     }
