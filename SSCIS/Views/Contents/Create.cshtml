@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-sm-8 text-left">
-            <h2>Create</h2>
+            <h2>Vytvořit</h2>
 
             @using (Html.BeginForm())
             {
@@ -35,21 +35,8 @@
                 </div>
             }
             </div>
-        @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
-        {
+        
             <div class="col-sm-2 sidenav">
             </div>
-        }
-        else
-        {
-            <div class="col-sm-2 sidenav">
-                <div class="well">
-                    <p>
-                        ROZVRH
-                        PO PRIHLASENI
-                    </p>
-                </div>
-            </div>
-        }
         </div>
     </div>

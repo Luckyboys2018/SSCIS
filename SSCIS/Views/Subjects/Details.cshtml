@@ -4,40 +4,51 @@
     ViewBag.Title = "Details";
     ViewBag.ActiveMenuItem = "menu-subjects";
 }
+<div class="body-content container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+        </div>
 
-<h2>Details</h2>
+        <div class="col-sm-8 text-left">
+            <h2>Detaily</h2>
 
-<div>
-    <h4>Subject</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Code)
-        </dt>
+            <div>
+                <h4>Předmět</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Code)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Code)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Code)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Lesson)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Lesson)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Lesson)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Lesson)
+                    </dd>
 
-    </dl>
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Upravit", "Edit", new { id = Model.ID }) |
+                @Html.ActionLink("Zpátky na seznam", "Index")
+            </p>
+        </div>
+
+        <div class="col-sm-2 sidenav">
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

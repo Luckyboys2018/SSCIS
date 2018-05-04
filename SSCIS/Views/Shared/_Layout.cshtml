@@ -45,6 +45,7 @@
 
                     @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals("TUTOR"))
                         {
+                            <li class="menu-helpme">@Html.ActionLink("Potřebuji pomoc", "HelpMe", "Home", new { area = "" }, null)</li>
                             <li class="menu-event">@Html.ActionLink("Vypsat lekci", "Create", "Events", new { area = "" }, null)</li>
                             <li class="menu-eventlist">@Html.ActionLink("Seznam lekcí", "Index", "Events", new { area = "" }, null)</li>
                         }
