@@ -24,17 +24,22 @@
                         <div style="display: none;">
                             @Html.EditorFor(m => m.SubjectData);
                         </div>
-                        for (int i = 0; i <  Model.CountOfSubjects; i++)
-                        {
-                            <div class="row">
+                        <div id="display-subject">
+
+
+                        </div>
+                        <div id="hide-subject" class="hide">
+                            @for (int i = 0; i < Model.ApplicationSubjects.Count; i++)
+                            {
+                            <div class="row @string.Format("subject-row{0}",i)">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Application.ApplicationSubjects.ElementAt(i).SubjectID, SSCISResources.Resource.SUBJECT, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.ApplicationSubjects.ElementAt(i).SubjectID, SSCISResources.Resource.SUBJECT, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         @Html.DropDownList("SubjectID", null, htmlAttributes: new { @class = "form-control subject" })
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Application.ApplicationSubjects.ElementAt(i).Degree, SSCISResources.Resource.DEGREE, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.ApplicationSubjects.ElementAt(i).Degree, SSCISResources.Resource.DEGREE, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         <div class="checkbox">
                                             @Html.DropDownList("Degree", null, htmlAttributes: new { @class = "form-control degree" })
@@ -42,8 +47,11 @@
                                     </div>
                                 </div>
                             </div>
-                        }
-                        @Html.ActionLink(SSCISResources.Resource.ADD_SUBJECT, "Create", new { count = ViewBag.NextCount })
+                            }
+                            <input type="number" id="subjects_count" name="subjects_count" value="0">
+                        </div>
+                        
+                        <a href="#" onclick="addSubject()">@SSCISResources.Resource.ADD_SUBJECT</a>
                         <br />
                         <br />
                         <div class="form-group submit" style="vertical-align: bottom">
@@ -74,30 +82,17 @@
 </div>
 
 <script>
-    function setData() {
-        $('#SubjectData')[0].value = '';
+    var i = 0;
+    var scount = @Model.ApplicationSubjects.Count;
 
-        $('.subject').each(function (index) {
-            $('#SubjectData')[0].value += $('.subject')[index].value;
-            $('#SubjectData')[0].value += ' '
-        });
-
-        $('#SubjectData')[0].value += ';'
-
-        $('.degree').each(function (index) {
-            $('#SubjectData')[0].value += $('.degree')[index].value;
-            $('#SubjectData')[0].value += ' '
-        });
+    function addSubject() {
+        if (i < scount) {
+            $(".subject-row"+i).appendTo("#display-subject");
+            $('#subjects_count')[0].value++;
+            i++;
+        }
     }
 
-    $(document).ready(function () {
-        $('.subject').each(function () {
-            $(this).change(setData);
-        });
-        $('.degree').each(function () {
-            $(this).change(setData);
-        });
-    });
+    addSubject();
 
-    setData();
 </script>

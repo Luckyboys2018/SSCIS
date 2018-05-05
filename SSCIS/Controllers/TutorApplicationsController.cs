@@ -63,11 +63,9 @@ namespace SSCIS.Controllers
         /// <summary>
         /// Creation of Tutor Application
         /// </summary>
-        /// <param name="count">Count of subjects</param>
         /// <returns>View with form</returns>
         [HttpGet]
-        [SSCISAuthorize(AccessLevel = AuthorizationRoles.User)]
-        public ActionResult Create(int count = 1)
+        public ActionResult Create()
         {
             if (Session["role"] == null) return View("Create_public");
 
@@ -77,19 +75,9 @@ namespace SSCIS.Controllers
                 return RedirectToAction("ApplicationPending");
             }
 
-            MetaTutorApplication model = new MetaTutorApplication();
-            for (int i = 0; i < count; i++)
-            {
-                model.ApplicationSubjects.Add(new TutorApplicationSubject());
-            }
+            int countOfSubjects = int.Parse(db.SSCISParam.Where(p => p.ParamKey.Equals(SSCISParameters.MAX_SUBJECTS_COUNT)).Single().ParamValue);
 
-            List<TutorApplicationSubject> subjectsList = new List<TutorApplicationSubject>();
-            for (int i = 0; i < count; i++)
-            {
-                subjectsList.Add(new TutorApplicationSubject());
-            }
-            model.Application.ApplicationSubjects = subjectsList;
-            model.CountOfSubjects = count;
+            MetaTutorApplication model = new MetaTutorApplication(countOfSubjects);
 
             SSCISUser user = db.SSCISUser.Find(userID);
             model.Application.Applicant = user;
@@ -98,7 +86,6 @@ namespace SSCIS.Controllers
             ViewBag.UserID = new SelectList(db.SSCISUser, "ID", "Login");
             int?[] degrees = new int?[] { 0, 1, 2, 3, 4 };
             ViewBag.Degree = new SelectList(degrees);
-            ViewBag.NextCount = count + 1;
             return View(model);
         }
 
@@ -121,13 +108,20 @@ namespace SSCIS.Controllers
                 db.TutorApplication.Add(model.Application);
                 db.SaveChanges();
 
-                foreach (TutorApplicationSubject subject in new ApplicationSubjectsResolver().ResolveSubjects(model.SubjectData, db))
+                int countOfSubjects = int.Parse(Request.Form["subjects_count"]);
+                if (countOfSubjects < 1)
                 {
-                    subject.Application = model.Application;
-                    db.TutorApplicationSubject.Add(subject);
+                    return View(model.Application);
+                }
+                for (int i = 0; i < countOfSubjects; i++)
+                {
+                    TutorApplicationSubject s = new TutorApplicationSubject();
+                    s.Application = model.Application;
+                    s.Subject = db.Subject.Find(int.Parse(Request.Form["SubjectID"].Split(',')[i]));
+                    s.Degree = byte.Parse(Request.Form["Degree"].Split(',')[i]);
+                    db.TutorApplicationSubject.Add(s);
                     db.SaveChanges();
                 }
-
                 return RedirectToAction("Applied");
             }
 

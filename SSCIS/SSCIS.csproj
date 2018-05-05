@@ -259,6 +259,7 @@
     <Compile Include="Class\FeedbackUrlGenerator.cs" />
     <Compile Include="Class\SessionHashGenerator.cs" />
     <Compile Include="Class\SSCISHtml.cs" />
+    <Compile Include="Class\SSCISParameters.cs" />
     <Compile Include="Class\SSCISSessionManager.cs" />
     <Compile Include="Class\TimetableRenderer.cs" />
     <Compile Include="Controllers\ContentsController.cs" />

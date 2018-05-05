@@ -246,6 +246,17 @@ namespace SSCISResources
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Zamítnout.
+        /// </summary>
+        public static string DECLINE
+        {
+            get
+            {
+                return ResourceManager.GetString("DECLINE", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Známka.
         /// </summary>
         public static string DEGREE

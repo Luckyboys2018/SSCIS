@@ -14,6 +14,9 @@ namespace SSCIS.Attributes
     {
         public string AccessLevel { get; set; }
 
+        /// <summary>
+        /// Session manager
+        /// </summary>
         private SSCISSessionManager _sessionManager = new SSCISSessionManager();
 
         /// <summary>
@@ -43,11 +46,11 @@ namespace SSCIS.Attributes
             {
                 if (!_sessionManager.VerifySession(filterContext.HttpContext.Session))
                 {
-                    filterContext.Result = new RedirectResult(string.Format("{0}Home/Login", _getBaseUrl()));
+                    filterContext.Result = new RedirectResult(string.Format("{0}Home/Login", _addSlash(_getBaseUrl())));
                 }
                 var role = filterContext.HttpContext.Session["role"];
                 if (role == null || !role.Equals(AccessLevel) && !role.Equals(AuthorizationRoles.Administrator))
-                    filterContext.Result = new RedirectResult(string.Format("{0}Home/Unauthorized", _getBaseUrl()));
+                    filterContext.Result = new RedirectResult(string.Format("{0}Home/Unauthorized", _addSlash(_getBaseUrl())));
             }
         }
 
@@ -66,6 +69,16 @@ namespace SSCIS.Attributes
             var baseUrl = string.Format("{0}://{1}{2}", request.Url.Scheme, request.Url.Authority, appUrl);
 
             return baseUrl;
+        }
+
+        /// <summary>
+        /// Adds slash at the end of URL if needed
+        /// </summary>
+        /// <param name="url">URL string</param>
+        /// <returns>Url with slash at the end</returns>
+        private string _addSlash(string url)
+        {
+            return url.EndsWith("/") ? url : url + "/";
         }
     }
 }

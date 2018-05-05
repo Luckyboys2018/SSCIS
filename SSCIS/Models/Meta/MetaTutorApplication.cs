@@ -20,5 +20,15 @@ namespace SSCIS.Models.Meta
             this.ApplicationSubjects = new List<TutorApplicationSubject>();
             this.Application = new TutorApplication();
         }
+
+        public MetaTutorApplication(int countOfSubjects)
+        {
+            this.ApplicationSubjects = new List<TutorApplicationSubject>();
+            this.Application = new TutorApplication();
+            for (int i = 0; i < countOfSubjects; i++)
+            {
+                this.ApplicationSubjects.Add(new TutorApplicationSubject());
+            }
+        }
     }
 }

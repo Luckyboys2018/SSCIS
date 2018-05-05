@@ -165,6 +165,9 @@
   <data name="CREATE_SCHEDULE_EVENT" xml:space="preserve">
     <value>Vytvořit rozvrhovou akci</value>
   </data>
+  <data name="DECLINE" xml:space="preserve">
+    <value>Zamítnout</value>
+  </data>
   <data name="DEGREE" xml:space="preserve">
     <value>Známka</value>
   </data>

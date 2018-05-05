@@ -26,11 +26,12 @@
                     <li class="menu-index">@Html.ActionLink(SSCISResources.Resource.HOME, "Index", "Home", new { area = "" }, null)</li>
                     <li class="menu-news">@Html.ActionLink("Novinky", "News", "Home", new { area = "" }, null)</li>
                     <li class="menu-contact">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, null)</li>
+                    <li class="menu-tutor">@Html.ActionLink("Chci pomáhat", "Create", "TutorApplications", new { area = "" }, null)</li>
+                    <li class="menu-helpme">@Html.ActionLink("Potřebuji pomoc", "HelpMe", "Home", new { area = "" }, null)</li>
                     
                     @{if (Request.RequestContext.HttpContext.Session["role"] == null || Request.RequestContext.HttpContext.Session["role"].Equals("USER"))
                         {
-                            <li class="menu-tutor">@Html.ActionLink("Chci pomáhat", "Create", "TutorApplications", new { area = "" }, null)</li>
-                            <li class="menu-helpme">@Html.ActionLink("Potřebuji pomoc", "HelpMe", "Home", new { area = "" }, null)</li>
+                            
                         }
                     }
 

@@ -52,14 +52,14 @@
                                 </dd>
 
                             </dl>
-                            <p>
-                                @Html.ActionLink("Accept", "Accept", new { id = Model.Application.ID }) |
-                                @Html.ActionLink("Decline", "Decline", new { id = Model.Application.ID }) |
-                                @Html.ActionLink("Back to List", "Index")
-                            </p>
                         <br />
                         <br />
                     }
+                    <p>
+                        @Html.ActionLink(SSCISResources.Resource.ACCEPT, "Accept", new { id = Model.Application.ID }) |
+                        @Html.ActionLink(SSCISResources.Resource.DECLINE, "Decline", new { id = Model.Application.ID }) |
+                        @Html.ActionLink(SSCISResources.Resource.BACK, "Index")
+                    </p>
                 </div>
             </div>
         </div>
