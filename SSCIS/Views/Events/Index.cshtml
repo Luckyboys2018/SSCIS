@@ -6,76 +6,92 @@
     ViewBag.ActiveMenuItem = "menu-eventlist";
 }
 
-<h2>Index</h2>
+<div class="body-content container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+        </div>
 
-<p>
-    @Html.ActionLink(SSCISResources.Resource.CREATE, "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @SSCISResources.Resource.TIME_FROM
-        </th>
-        <th>
-            @SSCISResources.Resource.TIME_TO
-        </th>
-        <th>
-            @SSCISResources.Resource.ACCEPTED
-        </th>
-        <th>
-            @SSCISResources.Resource.CANCELLED
-        </th>
-        <th>
-            @SSCISResources.Resource.CANCELLATION_COMMENT
-        </th>
-        <th>
-            @SSCISResources.Resource.SUBJECT
-        </th>
-        <th>
-            @SSCISResources.Resource.TUTOR
-        </th>
-        <th></th>
-    </tr>
+        <div class="col-sm-8 text-left">
+            <h2>@SSCISResources.Resource.EVENTS</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeFrom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeTo)
-        </td>
-        <td>
-            @SSCISHtml.DisplayForBool(item.IsAccepted)
-        </td>
-        <td>
-            @SSCISHtml.DisplayForBool(item.IsCancelled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CancellationComment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject.Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tutor.Login)
-        </td>
-        <td>
-            @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals(SSCIS.Class.AuthorizationRoles.Administrator)) {
+            <p>
+                @Html.ActionLink(SSCISResources.Resource.CREATE_EVENT, "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @SSCISResources.Resource.TIME_FROM
+                    </th>
+                    <th>
+                        @SSCISResources.Resource.TIME_TO
+                    </th>
+                    <th>
+                        @SSCISResources.Resource.ACCEPTED
+                    </th>
+                    <th>
+                        @SSCISResources.Resource.CANCELLED
+                    </th>
+                    <th>
+                        @SSCISResources.Resource.CANCELLATION_COMMENT
+                    </th>
+                    <th>
+                        @SSCISResources.Resource.SUBJECT
+                    </th>
+                    <th>
+                        @SSCISResources.Resource.TUTOR
+                    </th>
+                    <th></th>
+                </tr>
 
-                <p>
-                    @Html.ActionLink(SSCISResources.Resource.DETAIL, "Details", new { id = item.ID })
-                    | @if (item.IsAccepted == null || !item.IsAccepted.Value) {
-                    @Html.ActionLink(SSCISResources.Resource.ACCEPT, "Accept", new { id = item.ID })
-                    }|
-                    @if (item.IsCancelled == null || !item.IsCancelled.Value ) { 
-                    @Html.ActionLink(SSCISResources.Resource.CANCEL, "Cancel", new { id = item.ID })
-                    }
-                </p>
-            }
-            } 
-        </td>
-    </tr>
-}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeFrom)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeTo)
+                        </td>
+                        <td>
+                            @SSCISHtml.DisplayForBool(item.IsAccepted)
+                        </td>
+                        <td>
+                            @SSCISHtml.DisplayForBool(item.IsCancelled)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CancellationComment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject.Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tutor.Login)
+                        </td>
+                        <td>
+                            @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals(SSCIS.Class.AuthorizationRoles.Administrator))
+                                {
 
-</table>
+                                    <p>
+                                        @if (item.IsAccepted == null || !item.IsAccepted.Value)
+                                        {
+                                            @Html.ActionLink(SSCISResources.Resource.ACCEPT, "Accept", new { id = item.ID })
+                                        }|
+                                        @if (item.IsCancelled == null || !item.IsCancelled.Value)
+                                        {
+                                            @Html.ActionLink(SSCISResources.Resource.CANCEL, "Cancel", new { id = item.ID })
+                                        }
+                                    </p>
+                                }
+                            }
+                        </td>
+                    </tr>
+                                }
+
+            </table>
+
+        </div>
+            <div class="col-sm-2 sidenav">
+            </div>
+       
+    </div>
+</div>
