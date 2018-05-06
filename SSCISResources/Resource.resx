@@ -193,7 +193,7 @@
     <value>Událost</value>
   </data>
   <data name="EVENTS" xml:space="preserve">
-    <value>Události</value>
+    <value>Lekce</value>
   </data>
   <data name="EVENT_CANCELLATION" xml:space="preserve">
     <value>Zrušení události</value>
@@ -268,7 +268,7 @@
     <value>Přihláška tutora</value>
   </data>
   <data name="TUTOR_APPLICATIONS" xml:space="preserve">
-    <value>Příhlášky tutorů</value>
+    <value>Přihlášky tutorů</value>
   </data>
   <data name="USERS" xml:space="preserve">
     <value>Uživatelé</value>

@@ -5,63 +5,70 @@
     ViewBag.ActiveMenuItem = "menu-tutors";
 }
 
-<div class="body-content container text-center" style="padding-top: 70px">
+<div class="body-content container-fluid text-center">
     <div class="row content">
-        <div class="col-sm-12 text-left">
-            <div class="well">
-                <div class="container">
-                    <h2>Žádost o tutorství</h2>
-                    <div>
-                        <hr />
-                        <dl class="dl-horizontal">
-                            <dt>
-                                Datum žádosti
-                            </dt>
+        <div class="col-sm-2 sidenav">
+        </div>
 
-                            <dd>
-                                @Html.DisplayFor(model => model.Application.ApplicationDate)
-                            </dd>
+        <div class="col-sm-8 text-left">
 
-                            <dt>
-                                Login uživatele
-                            </dt>
+            <h2>Žádost o tutorství</h2>
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        Datum žádosti
+                    </dt>
 
-                            <dd>
-                                @Html.DisplayFor(model => model.Application.Applicant.Login)
-                            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Application.ApplicationDate)
+                    </dd>
 
-                        </dl>
-                    </div>
-                        @foreach (var subject in Model.ApplicationSubjects)
-                        {
-                            <dl class="dl-horizontal">
-                                <dt>
-                                    Předmět
-                                </dt>
+                    <dt>
+                        Login uživatele
+                    </dt>
 
-                                <dd>
-                                    @Html.DisplayFor(m => subject.Subject.Code)
-                                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Application.Applicant.Login)
+                    </dd>
 
-                                <dt>
-                                    Známka
-                                </dt>
+                </dl>
+            </div>
+            @foreach (var subject in Model.ApplicationSubjects)
+            {
+                <dl class="dl-horizontal">
+                    <dt>
+                        Předmět
+                    </dt>
 
-                                <dd>
-                                    @Html.DisplayFor(m => subject.Degree)
-                                </dd>
+                    <dd>
+                        @Html.DisplayFor(m => subject.Subject.Code)
+                    </dd>
 
-                            </dl>
-                            <p>
-                                @Html.ActionLink("Accept", "Accept", new { id = Model.Application.ID }) |
-                                @Html.ActionLink("Decline", "Decline", new { id = Model.Application.ID }) |
-                                @Html.ActionLink("Back to List", "Index")
-                            </p>
+                    <dt>
+                        Známka
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(m => subject.Degree)
+                    </dd>
+
+                </dl>
+                      
                         <br />
-                        <br />
-                    }
-                </div>
+                            <br />
+            }
+            <div>
+                <p>
+                    @Html.ActionLink("Přijmout", "Accept", new { id = Model.Application.ID }) |
+                    @Html.ActionLink("Odmítnout", "Decline", new { id = Model.Application.ID }) |
+                    @Html.ActionLink("Zpátky na seznam", "Index")
+                </p>
             </div>
         </div>
+   
+
+    <div class="col-sm-2 sidenav">
     </div>
 </div>
+    </div>

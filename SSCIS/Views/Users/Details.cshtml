@@ -4,71 +4,81 @@
     ViewBag.Title = SSCISResources.Resource.USER_DETAIL;
     ViewBag.ActiveMenuItem = "menu-users";
 }
+<div class="body-content container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+        </div>
+        <div class="col-sm-8 text-left">
+            <h2>Detaily</h2>
 
-<h2>Detail</h2>
+            <div>
+                <h4>Uživatel</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @SSCISResources.Resource.LOGIN
+                    </dt>
 
-<div>
-    <h4>Uživatel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @SSCISResources.Resource.LOGIN
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Login)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Login)
-        </dd>
+                    <dt>
+                        @SSCISResources.Resource.NAME
+                    </dt>
 
-        <dt>
-            @SSCISResources.Resource.NAME
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Firstname)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Firstname)
-        </dd>
+                    <dt>
+                        @SSCISResources.Resource.LASTNAME
+                    </dt>
 
-        <dt>
-            @SSCISResources.Resource.LASTNAME
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Lastname)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Lastname)
-        </dd>
+                    <dt>
+                        @SSCISResources.Resource.CREATED
+                    </dt>
 
-        <dt>
-            @SSCISResources.Resource.CREATED
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Created)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-    
-        <dt>
-            @SSCISResources.Resource.STUDENT_NUMBER
-        </dt>
+                    <dt>
+                        @SSCISResources.Resource.STUDENT_NUMBER
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StudentNumber)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.StudentNumber)
+                    </dd>
 
-        <dt>
-            @SSCISResources.Resource.ROLE
-        </dt>
+                    <dt>
+                        @SSCISResources.Resource.ROLE
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Role.RoleCode)
-        </dd>
-       
-    </dl>
-</div>
-<p>
-    @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals(SSCIS.Class.AuthorizationRoles.Administrator))
-        {
-            <p>@Html.ActionLink(@SSCISResources.Resource.EDIT, "Edit", new { id = Model.ID }) | @Html.ActionLink(@SSCISResources.Resource.BACK, "Index")</p>
-        }
-        else
-        { 
-            <p>@Html.ActionLink(@SSCISResources.Resource.BACK, "Index")</p> 
-        }
-    }
-</p>
+                    <dd>
+                        @Html.DisplayFor(model => model.Role.RoleCode)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals(SSCIS.Class.AuthorizationRoles.Administrator))
+                    {
+                    <p>@Html.ActionLink(@SSCISResources.Resource.EDIT, "Edit", new { id = Model.ID }) | @Html.ActionLink(@SSCISResources.Resource.BACK, "Index")</p>
+                    }
+                    else
+                    {
+                        <p>@Html.ActionLink(@SSCISResources.Resource.BACK, "Index")</p>
+                    }
+                }
+                </p>
+            </div>
+            <div class="col-sm-2 sidenav">
+
+            </div>
+        </div>
+    </div>

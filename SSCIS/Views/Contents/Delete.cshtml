@@ -3,68 +3,81 @@
 @{
     ViewBag.Title = SSCISResources.Resource.DELETE;
 }
-
-<h2>SSCISResources.Resource.DELETE</h2>
-
-<h3>@SSCISResources.Resource.CONTENT_DELETE_CONFIRM</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @SSCISResources.Resource.CREATED
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-
-        <dt>
-            @SSCISResources.Resource.EDITED
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Edited)
-        </dd>
-
-        <dt>
-            @SSCISResources.Resource.HEADER
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Header)
-        </dd>
-
-        <dt>
-            @SSCISResources.Resource.CONTENT
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TextContent)
-        </dd>
-
-        <dt>
-            @SSCISResources.Resource.AUTHOR
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Author.Login)
-        </dd>
-
-        <dt>
-            @SSCISResources.Resource.EDITED_BY
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EditedBy.Login)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="@SSCISResources.Resource.DELETE" class="btn btn-default" />
+<div class="body-content container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
         </div>
-    }
+
+        <div class="col-sm-8 text-left">
+            <h2>Vymazat</h2>
+
+            <h3>@SSCISResources.Resource.CONTENT_DELETE_CONFIRM</h3>
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @SSCISResources.Resource.CREATED
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Created)
+                    </dd>
+
+                    <dt>
+                        @SSCISResources.Resource.EDITED
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Edited)
+                    </dd>
+
+                    <dt>
+                        @SSCISResources.Resource.HEADER
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Header)
+                    </dd>
+
+                    <dt>
+                        @SSCISResources.Resource.CONTENT
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TextContent)
+                    </dd>
+
+                    <dt>
+                        @SSCISResources.Resource.AUTHOR
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Author.Login)
+                    </dd>
+
+                    <dt>
+                        @SSCISResources.Resource.EDITED_BY
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.EditedBy.Login)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="@SSCISResources.Resource.DELETE" class="btn btn-default" />
+                    </div>
+                }
+            </div>
+        </div>
+
+
+        <div class="col-sm-2 sidenav">
+        </div>
+    </div>
 </div>

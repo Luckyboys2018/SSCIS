@@ -4,72 +4,82 @@
     ViewBag.Title = SSCISResources.Resource.EVENT_DETAIL;
     ViewBag.ActiveMenuItem = "menu-eventlist";
 }
+<div class="body-content container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+        </div>
+        <div class="col-sm-8 text-left">
+            <h2>Detaily</h2>
 
-<h2>Details</h2>
+            <div>
+                <h4>Event</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @SSCISResources.Resource.TIME_FROM
+                    </dt>
 
-<div>
-    <h4>Event</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @SSCISResources.Resource.TIME_FROM
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TimeFrom)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TimeFrom)
-        </dd>
+                    <dt>
+                        @SSCISResources.Resource.TIME_TO
+                    </dt>
 
-        <dt>
-            @SSCISResources.Resource.TIME_TO
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TimeTo)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TimeTo)
-        </dd>
+                    <dt>
+                        @SSCISResources.Resource.ACCEPTED
+                    </dt>
 
-        <dt>
-            @SSCISResources.Resource.ACCEPTED
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.IsAccepted)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsAccepted)
-        </dd>
+                    <dt>
+                        @SSCISResources.Resource.CANCELLED
+                    </dt>
 
-        <dt>
-            @SSCISResources.Resource.CANCELLED
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.IsCancelled)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsCancelled)
-        </dd>
+                    <dt>
+                        @SSCISResources.Resource.CANCELLATION_COMMENT
+                    </dt>
 
-        <dt>
-            @SSCISResources.Resource.CANCELLATION_COMMENT
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CancellationComment)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CancellationComment)
-        </dd>
+                    <dt>
+                        @SSCISResources.Resource.SUBJECT
+                    </dt>
 
-        <dt>
-            @SSCISResources.Resource.SUBJECT
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Subject.Code)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Subject.Code)
-        </dd>
+                    <dt>
+                        @SSCISResources.Resource.TUTOR
+                    </dt>
 
-        <dt>
-            @SSCISResources.Resource.TUTOR
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Tutor.Login)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Tutor.Login)
-        </dd>
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink(SSCISResources.Resource.GENERATE_FEEDBACK_LINK, "EventQR", "Feedbacks", new { id = Model.ID }, new { }) |
+                @Html.ActionLink(SSCISResources.Resource.BACK, "Index")
+            </p>
+        </div>
+        <div class="col-sm-2 sidenav">
 
-    </dl>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink(SSCISResources.Resource.GENERATE_FEEDBACK_LINK, "EventQR", "Feedbacks", new { id = Model.ID }, new { }) | 
-    @Html.ActionLink(SSCISResources.Resource.BACK, "Index")
-</p>
