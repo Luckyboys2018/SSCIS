@@ -14,6 +14,9 @@
 
             <h3>Chcete opravdu vymazat tento předmět?</h3>
             <div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
                 <h4>Subject</h4>
                 <hr />
                 <dl class="dl-horizontal">
@@ -40,15 +43,16 @@
                     <dd>
                         @Html.DisplayFor(model => model.Lesson)
                     </dd>
-
+                    <dd>
+                        <br />
+                        <div>
+                            <input type="submit" value="Smazat" class="btn btn-default" />
+                    
+                        </div>
+                    </dd>
                 </dl>
 
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-
                     <div class="form-actions no-color">
-                        <input type="submit" value="Delete" class="btn btn-default" /> |
                         @Html.ActionLink("Zpátky na seznam", "Index")
                     </div>
                 }
