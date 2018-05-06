@@ -4,58 +4,83 @@
     ViewBag.Title = SSCISResources.Resource.USERS;
     ViewBag.ActiveMenuItem = "menu-users";
 }
+<div class="row content">
+    <div class="col-sm-2 sidenav">
+    </div>
 
-<h2>Uživatelé</h2>
+    <div class="col-sm-8 text-left">
+        <h2>Uživatelé</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @SSCISResources.Resource.LOGIN
-        </th>
-        <th>
-            @SSCISResources.Resource.NAME
-        </th>
-        <th>
-            @SSCISResources.Resource.LASTNAME
-        </th>
-        <th>
-            @SSCISResources.Resource.CREATED
-        </th>
-        <th>
-            @SSCISResources.Resource.STUDENT_NUMBER
-        </th>
-        <th>
-            @SSCISResources.Resource.ROLE
-        </th>
-        <th></th>
-    </tr>
+        <table class="table">
+            <tr>
+                <th>
+                    @SSCISResources.Resource.LOGIN
+                </th>
+                <th>
+                    @SSCISResources.Resource.NAME
+                </th>
+                <th>
+                    @SSCISResources.Resource.LASTNAME
+                </th>
+                <th>
+                    @SSCISResources.Resource.CREATED
+                </th>
+                <th>
+                    @SSCISResources.Resource.STUDENT_NUMBER
+                </th>
+                <th>
+                    @SSCISResources.Resource.ROLE
+                </th>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Login)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Firstname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lastname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role.RoleCode)
-        </td>
-        <td>
-            @Html.ActionLink(SSCISResources.Resource.EDIT, "Edit", new { id=item.ID }) |
-            @Html.ActionLink(SSCISResources.Resource.DETAIL, "Details", new { id=item.ID }) |
-            @Html.ActionLink(SSCISResources.Resource.DELETE, "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Login)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Firstname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lastname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Created)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudentNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role.RoleCode)
+                    </td>
+                    <td>
+                        @Html.ActionLink(SSCISResources.Resource.EDIT, "Edit", new { id = item.ID }) |
+                        @Html.ActionLink(SSCISResources.Resource.DETAIL, "Details", new { id = item.ID }) |
+                        @Html.ActionLink(SSCISResources.Resource.DELETE, "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+
+    @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
+    {
+        <div class="col-sm-2 sidenav">
+        </div>
+    }
+    else
+    {
+        <div class="col-sm-2 sidenav">
+            <div class="well">
+                <p>
+                    ROZVRH
+                    PO PRIHLASENI
+                </p>
+            </div>
+        </div>
+    }
+
+</div>

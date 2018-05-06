@@ -4,70 +4,81 @@
     ViewBag.Title = @SSCISResources.Resource.DELETE;
     ViewBag.ActiveMenuItem = "menu-users";
 }
-
-<h2>@SSCISResources.Resource.DELETE_USER</h2>
-
-<h3>@SSCISResources.Resource.USER_DELETE_CONFIRM</h3>
-<div>
-    <h4>Uživatel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @SSCISResources.Resource.LOGIN
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Login)
-        </dd>
-
-        <dt>
-            @SSCISResources.Resource.NAME
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Firstname)
-        </dd>
-
-        <dt>
-            @SSCISResources.Resource.LASTNAME
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Lastname)
-        </dd>
-
-        <dt>
-            @SSCISResources.Resource.CREATED
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-
-        <dt>
-            @SSCISResources.Resource.STUDENT_NUMBER
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StudentNumber)
-        </dd>
-
-        <dt>
-            @SSCISResources.Resource.ROLE
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Role.RoleCode)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="@SSCISResources.Resource.DELETE" class="btn btn-default" /> |
-            @Html.ActionLink(SSCISResources.Resource.BACK, "Index")
+<div class="body-content container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
         </div>
-    }
+        <div class="col-sm-8 text-left">
+            <h2>@SSCISResources.Resource.DELETE_USER</h2>
+
+            <h3>@SSCISResources.Resource.USER_DELETE_CONFIRM</h3>
+            <div>
+                <h4>Uživatel</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @SSCISResources.Resource.LOGIN
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Login)
+                    </dd>
+
+                    <dt>
+                        @SSCISResources.Resource.NAME
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Firstname)
+                    </dd>
+
+                    <dt>
+                        @SSCISResources.Resource.LASTNAME
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Lastname)
+                    </dd>
+
+                    <dt>
+                        @SSCISResources.Resource.CREATED
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Created)
+                    </dd>
+
+                    <dt>
+                        @SSCISResources.Resource.STUDENT_NUMBER
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.StudentNumber)
+                    </dd>
+
+                    <dt>
+                        @SSCISResources.Resource.ROLE
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Role.RoleCode)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="@SSCISResources.Resource.DELETE" class="btn btn-default" /> |
+                        @Html.ActionLink(SSCISResources.Resource.BACK, "Index")
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-sm-2 sidenav">
+
+        </div>
+    </div>
 </div>

@@ -50,7 +50,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.ParentID, "Nadřízený předmět", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            <div class="checkbox">
+                            <div class="checkbox" style="padding-left:0px">
                                 @Html.DropDownList("ParentID", null, htmlAttributes: new { @class = "form-control degree" })
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                 </div>
             }
 
-            <div class="col-md-offset-6">
+            <div>
                 @Html.ActionLink("Zpátky na seznam", "Index")
             </div>
             
