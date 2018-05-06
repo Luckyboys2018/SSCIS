@@ -79,12 +79,13 @@
         <a href="http://fav.zcu.cz/" target="_blank">Fakulta aplikovaných věd</a>  -  @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, null)
     </footer>
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
     <script>
         $(".@ViewBag.ActiveMenuItem").addClass("active");
     </script>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
