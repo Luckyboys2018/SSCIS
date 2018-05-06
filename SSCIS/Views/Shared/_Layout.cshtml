@@ -6,7 +6,6 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
 </head>
 <body style="padding-bottom: 70px;">
@@ -78,12 +77,28 @@
         <a href="http://fav.zcu.cz/" target="_blank">Fakulta aplikovaných věd</a>  -  @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, null)
     </footer>
 
-    <script>
-        $(".@ViewBag.ActiveMenuItem").addClass("active");
-    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+
+    <!--   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('ul li').click(function () {
+                    $('li').removeClass("active");
+                    $(this).addClass("active");
+                });
+            });
+        </script>-->
+
+
+    <script>
+        $(".@ViewBag.ActiveMenuItem").addClass("active");
+    </script>
+
+
 </body>
 </html>

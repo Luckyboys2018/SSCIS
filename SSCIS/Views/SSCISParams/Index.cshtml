@@ -14,42 +14,42 @@
             <p>
                 @Html.ActionLink("Přidat parametr", "Create")
             </p>
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ParamKey)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ParamValue)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-            {
+                <table class="table">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ParamKey)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ParamValue)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Upravit", "Edit", new { id = item.ID }) |
-                            @Html.ActionLink("Detaily", "Details", new { id = item.ID }) |
-                            @Html.ActionLink("Smazat", "Delete", new { id = item.ID })
-                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ParamKey)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ParamValue)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th></th>
                     </tr>
-                }
 
-            </table>
-            </div>
+                    @foreach (var item in Model)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ParamKey)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ParamValue)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Upravit", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Detaily", "Details", new { id = item.ID }) |
+                                @Html.ActionLink("Smazat", "Delete", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+</div>
         <div class="col-sm-2 sidenav">
         </div>
         </div>

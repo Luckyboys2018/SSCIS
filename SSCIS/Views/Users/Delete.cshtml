@@ -13,6 +13,9 @@
 
             <h3>@SSCISResources.Resource.USER_DELETE_CONFIRM</h3>
             <div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
                 <h4>Uživatel</h4>
                 <hr />
                 <dl class="dl-horizontal">
@@ -63,15 +66,17 @@
                     <dd>
                         @Html.DisplayFor(model => model.Role.RoleCode)
                     </dd>
-
+                    <dd>
+                        <br />
+                        <div>
+                            <input type="submit" value="@SSCISResources.Resource.DELETE" class="btn btn-default" />
+                        </div>
+                    </dd>
                 </dl>
 
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
+        
 
                     <div class="form-actions no-color">
-                        <input type="submit" value="@SSCISResources.Resource.DELETE" class="btn btn-default" /> |
                         @Html.ActionLink(SSCISResources.Resource.BACK, "Index")
                     </div>
                 }
