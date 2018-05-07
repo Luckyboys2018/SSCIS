@@ -66,21 +66,26 @@
         </table>
     </div>
 
-    @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
-    {
+    @{if (Session["role"] != null && Session["role"].Equals("ADMIN"))
+        {
         <div class="col-sm-2 sidenav">
         </div>
-    }
-    else
-    {
-        <div class="col-sm-2 sidenav">
+        }
+        else if (Session["role"] != null && Session["role"].Equals("USER") || Session["role"].Equals("USER"))
+        {
+        <div class="col-sm-2 sidenav rozvrh">
             <div class="well">
                 <p>
                     ROZVRH
-                    PO PRIHLASENI
+                    EXTRA LEKCI
                 </p>
             </div>
         </div>
-    }
-
+        }
+        else
+        {
+        <div class="col-sm-2 sidenav">
+        </div>
+            }
+        }
 </div>
