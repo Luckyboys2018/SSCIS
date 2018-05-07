@@ -87,6 +87,7 @@ namespace SSCIS.Controllers
         public ActionResult HelpMe()
         {
             ViewBag.Title = "Potřebuji pomoc";
+            ViewBag.PublicTimeTable = timeTableRenderer.RenderPublic(db);
             return View();
         }
 

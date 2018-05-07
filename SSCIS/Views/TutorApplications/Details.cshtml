@@ -5,63 +5,68 @@
     ViewBag.ActiveMenuItem = "menu-tutors";
 }
 
-<div class="body-content container text-center" style="padding-top: 70px">
+<div class="body-content container-fluid text-center">
     <div class="row content">
-        <div class="col-sm-12 text-left">
+        <div class="col-sm-2 sidenav">
+        </div>
+
+        <div class="col-sm-8 text-left">
+
+            <h2>Žádost o tutorství</h2>
             <div class="well">
-                <div class="container">
-                    <h2>Žádost o tutorství</h2>
-                    <div>
-                        <hr />
-                        <dl class="dl-horizontal">
-                            <dt>
-                                Datum žádosti
-                            </dt>
 
-                            <dd>
-                                @Html.DisplayFor(model => model.Application.ApplicationDate)
-                            </dd>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        Datum žádosti
+                    </dt>
 
-                            <dt>
-                                Login uživatele
-                            </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Application.ApplicationDate)
+                    </dd>
 
-                            <dd>
-                                @Html.DisplayFor(model => model.Application.Applicant.Login)
-                            </dd>
+                    <dt>
+                        Login uživatele
+                    </dt>
 
-                        </dl>
-                    </div>
-                        @foreach (var subject in Model.ApplicationSubjects)
-                        {
-                            <dl class="dl-horizontal">
-                                <dt>
-                                    Předmět
-                                </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Application.Applicant.Login)
+                    </dd>
 
-                                <dd>
-                                    @Html.DisplayFor(m => subject.Subject.Code)
-                                </dd>
+                </dl>
 
-                                <dt>
-                                    Známka
-                                </dt>
+                @foreach (var subject in Model.ApplicationSubjects)
+                {
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Předmět
+                        </dt>
 
-                                <dd>
-                                    @Html.DisplayFor(m => subject.Degree)
-                                </dd>
+                        <dd>
+                            @Html.DisplayFor(m => subject.Subject.Code)
+                        </dd>
 
-                            </dl>
-                        <br />
-                        <br />
-                    }
-                    <p>
-                        @Html.ActionLink(SSCISResources.Resource.ACCEPT, "Accept", new { id = Model.Application.ID }) |
-                        @Html.ActionLink(SSCISResources.Resource.DECLINE, "Decline", new { id = Model.Application.ID }) |
-                        @Html.ActionLink(SSCISResources.Resource.BACK, "Index")
-                    </p>
-                </div>
+                        <dt>
+                            Známka
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(m => subject.Degree)
+                        </dd>
+
+                    </dl>
+                            <br />
+                            <br />
+                }
+                <p>
+                    @Html.ActionLink(SSCISResources.Resource.ACCEPT, "Accept", new { id = Model.Application.ID }) |
+                    @Html.ActionLink(SSCISResources.Resource.DECLINE, "Decline", new { id = Model.Application.ID }) |
+                    @Html.ActionLink(SSCISResources.Resource.BACK, "Index")
+                </p>
             </div>
+
+        </div>
+        <div class="col-sm-2 sidenav">
         </div>
     </div>
 </div>

@@ -31,26 +31,26 @@
                         <div id="hide-subject" class="hide">
                             @for (int i = 0; i < Model.ApplicationSubjects.Count; i++)
                             {
-                            <div class="row @string.Format("subject-row{0}",i)">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ApplicationSubjects.ElementAt(i).SubjectID, SSCISResources.Resource.SUBJECT, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.DropDownList("SubjectID", null, htmlAttributes: new { @class = "form-control subject" })
+                                <div class="row @string.Format("subject-row{0}",i)">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ApplicationSubjects.ElementAt(i).SubjectID, SSCISResources.Resource.SUBJECT, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("SubjectID", null, htmlAttributes: new { @class = "form-control subject" })
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ApplicationSubjects.ElementAt(i).Degree, SSCISResources.Resource.DEGREE, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        <div class="checkbox">
-                                            @Html.DropDownList("Degree", null, htmlAttributes: new { @class = "form-control degree" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ApplicationSubjects.ElementAt(i).Degree, SSCISResources.Resource.DEGREE, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            <div class="checkbox">
+                                                @Html.DropDownList("Degree", null, htmlAttributes: new { @class = "form-control degree" })
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             }
                             <input type="number" id="subjects_count" name="subjects_count" value="0">
                         </div>
-                        
+
                         <a href="#" onclick="addSubject()">@SSCISResources.Resource.ADD_SUBJECT</a>
                         <br />
                         <br />
@@ -62,24 +62,30 @@
             </div>
             <p>Máte-li další dotazy, ozvěte se prosím Světlaně Tomiczkové na e-mail <a href="mailto:svetlana@kma.zcu.cz">svetlana@kma.zcu.cz</a>, případně přijďte osobně do UC 258.</p>
         </div>
-        @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
-        {
-            <div class="col-sm-2 sidenav">
-            </div>
-        }
-        else
-        {
-            <div class="col-sm-2 sidenav rozvrh">
-                <div class="well">
-                    <p>
-                        ROZVRH
-                        PO PRIHLASENI
-                    </p>
+        
+        @{if (Session["role"] != null && (Session["role"].Equals("USER") || Session["role"].Equals("TUTOR")))
+            {
+                <div class="col-sm-2 sidenav rozvrh">
+                    <div class="well">
+                        <p>
+                            USER - rozvrh extra lekcí na které se přihlásil
+                            <br />
+                            TUTOR - rozvrh lekcí co bude vyučovat (pravidelné a nepravidelné)
+                        </p>
+                    </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <div class="col-sm-2 sidenav">
+                </div>
+            }
         }
+
+
     </div>
-</div>
+
+
 
 <script>
     var i = 0;

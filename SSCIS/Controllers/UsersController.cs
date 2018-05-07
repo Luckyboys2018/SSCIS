@@ -72,7 +72,7 @@ namespace SSCIS.Controllers
             {
                 return HttpNotFound();
             }
-            return View("Detail", sSCISUser);
+            return View("Details", sSCISUser);
         }
 
         /// <summary>
