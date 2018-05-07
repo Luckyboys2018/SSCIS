@@ -103,6 +103,7 @@ namespace SSCIS.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ParentID = new SelectList(db.Subject.Where(s => s.Lesson != null && s.Lesson.Value).ToList(), "ID", "Code");
             return View(subject);
         }
 
