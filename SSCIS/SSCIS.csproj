@@ -253,6 +253,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Attributes\MultipleButton.cs" />
     <Compile Include="Attributes\SSCISAuthorize.cs" />
+    <Compile Include="Class\ApplicationDegrees.cs" />
     <Compile Include="Class\ApplicationSubjectsResolver.cs" />
     <Compile Include="Class\AuthorizationRoles.cs" />
     <Compile Include="Class\FeedbacksCSVConverter.cs" />

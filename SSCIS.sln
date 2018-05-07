@@ -23,6 +23,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailService", "MailService\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSCISTest", "SSCISTest\SSCISTest.csproj", "{E96ED659-8618-40FF-8B40-583967539EC3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DATA", "DATA", "{F628FD27-C6B7-4596-8930-E372579B2EE9}"
+	ProjectSection(SolutionItems) = preProject
+		01_ENUM_SUBJECT.sql = 01_ENUM_SUBJECT.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +53,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F628FD27-C6B7-4596-8930-E372579B2EE9} = {3B6834E3-CBC4-49A2-875C-956B5EC95E17}
 	EndGlobalSection
 EndGlobal

@@ -84,8 +84,7 @@ namespace SSCIS.Controllers
             ViewBag.SubjectID = new SelectList(db.Subject.Where(s => s.Lesson != null && !s.Lesson.Value).ToList(), "ID", "Code");
             ViewBag.AcceptedByID = new SelectList(db.SSCISUser, "ID", "Login");
             ViewBag.UserID = new SelectList(db.SSCISUser, "ID", "Login");
-            int?[] degrees = new int?[] { 0, 1, 2, 3, 4 };
-            ViewBag.Degree = new SelectList(degrees);
+            ViewBag.Degree = new SelectList(ApplicationDegrees.Degrees);
             return View(model);
         }
 
@@ -118,7 +117,16 @@ namespace SSCIS.Controllers
                     TutorApplicationSubject s = new TutorApplicationSubject();
                     s.Application = model.Application;
                     s.Subject = db.Subject.Find(int.Parse(Request.Form["SubjectID"].Split(',')[i]));
-                    s.Degree = byte.Parse(Request.Form["Degree"].Split(',')[i]);
+                    byte deg = 0;
+                    byte.TryParse(Request.Form["Degree"].Split(',')[i], out deg);
+                    if (deg == 0)
+                    {
+                        s.Degree = null;
+                    }
+                    else
+                    {
+                        s.Degree = deg;
+                    }
                     db.TutorApplicationSubject.Add(s);
                     db.SaveChanges();
                 }
