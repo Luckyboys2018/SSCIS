@@ -32,22 +32,38 @@
             <hr>
         </div>
 
-@if (Session["role"] != null && Session["role"].Equals("ADMIN"))
-{
-    <div class="col-sm-2 sidenav">
-    </div>
-}
-else
-{
-    <div class="col-sm-2 sidenav">
-        <div class="well">
-            <p>
-                ROZVRH
-                PO PRIHLASENI
-            </p>
-        </div>
-    </div>
-}
+        @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
+        {
+            <div class="col-sm-2 sidenav">
+            </div>
+        }
+        @if (Session["role"] != null && Session["role"].Equals("USER"))
+        {
+            <div class="col-sm-2 sidenav rozvrh">
+                <div class="well">
+                    <p>
+                        ROZVRH
+                        EXTRA LEKCI
+                    </p>
+                </div>
+            </div>
+        }
+        @if (Session["role"] != null && Session["role"].Equals("TUTOR"))
+        {
+            <div class="col-sm-2 sidenav rozvrh">
+                <div class="well">
+                    <p>
+                        ROZVRH
+                        EXTRA LEKCI
+                    </p>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-sm-2 sidenav">
+            </div>
+        }
     </div>
 
 
