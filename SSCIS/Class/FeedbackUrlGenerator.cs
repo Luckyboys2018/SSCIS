@@ -21,7 +21,7 @@ namespace SSCIS.Class
         {
             Event e = db.Event.Find(eventId);
             string code = string.Format("{0}{1}{2}{3}", e.TimeFrom.Year.ToString("0000").Substring(2), e.TimeFrom.Month.ToString("00"), e.TimeFrom.Day.ToString("00"), eventId);
-            return string.Format("{0}Feedbacks/{1}", _getBaseUrl(), code);
+            return string.Format("{0}Feedbacks?code={1}", _addSlash(_getBaseUrl()), code);
         }
 
         /// <summary>
@@ -61,6 +61,16 @@ namespace SSCIS.Class
             {
                 return "/";
             }
+        }
+
+            /// <summary>
+            /// Adds slash at the end of URL if needed
+            /// </summary>
+            /// <param name="url">URL string</param>
+            /// <returns>Url with slash at the end</returns>
+        private string _addSlash(string url)
+        {
+            return url.EndsWith("/") ? url : url + "/";
         }
     }
 }

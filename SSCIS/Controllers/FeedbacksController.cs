@@ -43,15 +43,15 @@ namespace SSCIS.Controllers
         /// <param name="code">Code from url</param>
         /// <returns>Feedback form view</returns>
         [HttpGet]
-        public ActionResult Index(string code)
+        public ActionResult Index(int? code)
         {
-            int? eventId = urlGenerator.ResolveEventID(code);
+            int? eventId = urlGenerator.ResolveEventID(code.ToString());
             if (eventId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Feedback model = new Feedback() { ID = eventId.Value }; //sending eventID in feedbackID for POST
-            return View(model);
+            return View("Create", model);
         }
 
         /// <summary>

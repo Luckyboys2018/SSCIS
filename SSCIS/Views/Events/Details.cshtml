@@ -12,7 +12,7 @@
             <h2>Detaily</h2>
 
             <div>
-                <h4>Event</h4>
+                <h4>@SSCISResources.Resource.EVENT</h4>
                 <hr />
                 <dl class="dl-horizontal">
                     <dt>
@@ -36,7 +36,7 @@
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.IsAccepted)
+                        @SSCIS.Class.SSCISHtml.DisplayForBool(Model.IsAccepted)
                     </dd>
 
                     <dt>
@@ -44,7 +44,7 @@
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.IsCancelled)
+                        @SSCIS.Class.SSCISHtml.DisplayForBool(Model.IsCancelled)
                     </dd>
 
                     <dt>
