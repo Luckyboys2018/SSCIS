@@ -172,5 +172,16 @@ namespace SSCIS.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Checks version of application
+        /// </summary>
+        /// <returns>Version of application</returns>
+        [HttpGet]
+        public ActionResult Version()
+        {
+            string version = db.SSCISParam.Where(p => p.ParamKey.Equals(SSCISParameters.VERSION)).Single().ParamValue;
+            return Content(version);
+        }
+
     }
 }

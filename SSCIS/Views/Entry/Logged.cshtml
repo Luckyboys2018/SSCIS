@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Přihlášení";
+}
+
+<div class="body-content container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+        </div>
+
+        <div class="col-sm-8 text-left">
+            <h2>Přihlášení</h2>
+            <p>Příhlášení proběhlo úspěšně.</p>
+            <p>Nedojde-li k automatickému přesměrování, klikněte zde: </p> <a href="http://ourea98.zcu.cz/">Přesměrovat</a>
+            @Html.ActionLink("Přesměrovat", "StoreData", "Entry", new { sessionId = ViewBag.SessionId, userId = ViewBag.UserId, hash = ViewBag.Hash, role = ViewBag.Role, login = ViewBag.Login }, new { id = "red-link"})
+        </div>
+        
+        <div class="col-sm-2 sidenav">
+        </div>
+    </div>
+</div>
+
+<script>
+    window.location.href = 'http://ourea98.zcu.cz/Entry/StoreData?sessionId=@ViewBag.SessionId&userId=@ViewBag.UserId&hash=@ViewBag.Hash&role=@ViewBag.Role&login=@ViewBag.Login';
+</script>
+
+

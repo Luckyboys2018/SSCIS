@@ -34,6 +34,11 @@ namespace SSCIS.Controllers
         /// </summary>
         private const string EMAIL_KEY = "SHIB_EMAIL";
 
+        /// <summary>
+        /// WebAuth user verification key
+        /// </summary>
+        private const string WEB_AUTH_USER = "X-webauth_proxy_user";
+
 
         /// <summary>
         /// SSO Authentification
@@ -41,22 +46,34 @@ namespace SSCIS.Controllers
         /// <returns>HomePage</returns>
         public ActionResult Index()
         {
+            if (Request.Headers[WEB_AUTH_USER] == null) return RedirectToAction("Index", "Home");
             string username = Request.Headers[USERNAME_KEY];
             var count = db.SSCISUser.Count(usr => usr.Login.Equals(username));
             if (count < 1)
             {
-                string email = Request.Headers[EMAIL_KEY];
+                //string email = Request.Headers[EMAIL_KEY];
                 SSCISUser user = new SSCISUser();
                 user.Created = DateTime.Now;
                 user.Activated = DateTime.Now;
                 user.Login = username;
+                user.IsActive = true;
                 //user.Email = email; //TODO dodat do db
                 user.Role = db.Role.Where(r => r.RoleCode.Equals(AuthorizationRoles.User)).Single();
                 db.SSCISUser.Add(user);
                 db.SaveChanges();
             }
-            new SSCISSessionManager().SessionStart(username, Session);
-            return RedirectToAction("Index", "Home");
+
+            int sessionId = new SSCISSessionManager().SessionStart(username, Session);
+
+            ViewBag.SessionId = sessionId;
+            SSCISSession session = db.SSCISSession.Find(sessionId);
+
+            ViewBag.UserId = session.UserID;
+            ViewBag.Hash = session.Hash;
+            ViewBag.Role = session.User.Role.RoleCode;
+            ViewBag.Login = session.User.Login;
+
+            return View("Logged");
 
             //StringBuilder sb = new StringBuilder();
             //foreach (var key in Request.Headers.AllKeys)
@@ -76,21 +93,36 @@ namespace SSCIS.Controllers
         /// <returns>HomePage</returns>
         public ActionResult Info()
         {
+            if (Request.Headers[WEB_AUTH_USER] == null) return RedirectToAction("Index", "Home");
             string username = Request.Headers[USERNAME_KEY];
             var count = db.SSCISUser.Count(usr => usr.Login.Equals(username));
             if (count < 1)
             {
-                string email = Request.Headers[EMAIL_KEY];
+                //string email = Request.Headers[EMAIL_KEY];
                 SSCISUser user = new SSCISUser();
                 user.Created = DateTime.Now;
+                user.Activated = DateTime.Now;
                 user.Login = username;
+                user.IsActive = true;
                 //user.Email = email; //TODO dodat do db
                 user.Role = db.Role.Where(r => r.RoleCode.Equals(AuthorizationRoles.User)).Single();
                 db.SSCISUser.Add(user);
                 db.SaveChanges();
             }
-            new SSCISSessionManager().SessionStart(username, Session);
-            return RedirectToAction("Index", "Home");
+
+            int sessionId = new SSCISSessionManager().SessionStart(username, Session);
+
+            ViewBag.SessionId = sessionId;
+            SSCISSession session = db.SSCISSession.Find(sessionId);
+
+            ViewBag.UserId = session.UserID;
+            ViewBag.Hash = session.Hash;
+            ViewBag.Role = session.User.Role.RoleCode;
+            ViewBag.Login = session.User.Login;
+
+            return View("Logged");
+            
+            //return RedirectToAction("Index", "Home");
 
             //StringBuilder sb = new StringBuilder();
             //foreach (var key in Request.Headers.AllKeys)
@@ -101,8 +133,26 @@ namespace SSCIS.Controllers
             //    sb.Append(val);
             //    sb.Append("\n");
             //}
-            //ViewData["infoContent"] = sb.ToString();
-            //return View();
+            //return Content(sb.ToString());
+        }
+
+        /// <summary>
+        /// Stores parameters into users local session
+        /// </summary>
+        /// <param name="sessionId">Session ID</param>
+        /// <param name="userId">User ID</param>
+        /// <param name="hash">Hash</param>
+        /// <param name="role">User role code</param>
+        /// <param name="login">User login</param>
+        /// <returns>Redirection to Homepage</returns>
+        public ActionResult StoreData(int sessionId, int userId, string hash, string role, string login)
+        {
+            Session["sessionId"] = sessionId;
+            Session["role"] = role;
+            Session["hash"] = hash;
+            Session["login"] = login;
+            Session["userId"] = userId;
+            return RedirectToAction("Index", "Home");
         }
 
     }

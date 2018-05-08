@@ -31,7 +31,7 @@ namespace SSCIS.Controllers
         [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult Index()
         {
-            var tutorApplication = db.TutorApplication.Include(t => t.AcceptedBy).Include(t => t.Applicant).Where(t => t.IsAccepted == null || !t.IsAccepted.Value);
+            var tutorApplication = db.TutorApplication.Include(t => t.AcceptedBy).Include(t => t.Applicant).Where(t => t.IsAccepted == null);
             return View(tutorApplication.ToList());
         }
 
@@ -70,7 +70,7 @@ namespace SSCIS.Controllers
             if (Session["role"] == null) return View("Create_public");
 
             int? userID = (int)Session["userID"];
-            if (db.TutorApplication.Where(a => a.UserID == userID).Count() > 0)
+            if (db.TutorApplication.Where(a => a.UserID == userID && a.IsAccepted == null).Count() > 0)
             {
                 return RedirectToAction("ApplicationPending");
             }

@@ -294,6 +294,7 @@
     <Compile Include="Models\Meta\MetaInterval.cs" />
     <Compile Include="Models\Meta\MetaLogin.cs" />
     <Compile Include="Models\Meta\MetaNews.cs" />
+    <Compile Include="Models\Meta\MetaStore.cs" />
     <Compile Include="Models\Meta\MetaTutorApplication.cs" />
     <Compile Include="Models\Participation.cs">
       <DependentUpon>SSCISModel.tt</DependentUpon>
@@ -475,6 +476,7 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Feedbacks\Create.cshtml" />
+    <Content Include="Views\Entry\Logged.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

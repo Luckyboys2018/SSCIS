@@ -21,7 +21,7 @@ namespace SSCISTest.Class
             DateTime date = new DateTime(2018, 09, 10);
             dbMock.Setup(m => m.Event.Find(12)).Returns(new Event() { ID = 12, TimeFrom = date });
             string url = generator.GenerateURL(12, dbMock.Object);
-            Assert.IsTrue(url.EndsWith("Feedbacks/18091012"));
+            Assert.IsTrue(url.EndsWith("Feedbacks?code=18091012"));
         }
 
         [TestMethod]

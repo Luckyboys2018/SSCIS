@@ -32,7 +32,7 @@ namespace SSCIS.Class
         /// </summary>
         /// <param name="login">user login</param>
         /// <param name="httpSession">session in request context</param>
-        public void SessionStart(string login, HttpSessionStateBase httpSession)
+        public int SessionStart(string login, HttpSessionStateBase httpSession)
         {
             CleanSessions();
 
@@ -44,11 +44,13 @@ namespace SSCIS.Class
             session.User = db.SSCISUser.Where(u => u.Login.Equals(login)).Single();
             db.SaveChanges();
 
-            httpSession["sessionId"] = session.ID;
-            httpSession["role"] = session.User.Role.RoleCode;
-            httpSession["hash"] = session.Hash;
-            httpSession["login"] = login;
-            httpSession["userId"] = session.User.ID;
+            //httpSession["sessionId"] = session.ID;
+            //httpSession["role"] = session.User.Role.RoleCode;
+            ////httpSession["hash"] = session.Hash;
+            //httpSession["login"] = login;
+            //httpSession["userId"] = session.User.ID;
+
+            return session.ID;
         }
 
         /// <summary>
