@@ -38,7 +38,7 @@ namespace SSCIS.Class
 
             SSCISSession session = new SSCISSession();
             session.SessionStart = DateTime.Now;
-            session.Expiration = DateTime.Now.AddSeconds(long.Parse(db.SSCISParam.Where(p => p.ParamKey.Equals("SESSION_LENGTH")).Single().ParamValue));
+            session.Expiration = DateTime.Now.AddSeconds(long.Parse(db.SSCISParam.Where(p => p.ParamKey.Equals(SSCISParameters.SESSION_LENGTH)).Single().ParamValue));
             session.Hash = hashgenerator.GenerateHash();
             db.SSCISSession.Add(session);
             session.User = db.SSCISUser.Where(u => u.Login.Equals(login)).Single();
@@ -78,6 +78,7 @@ namespace SSCIS.Class
         {
             //SSCISSession dbSession = db.SSCISSession.Where(s => s.ID == (int)httpSession["sessionId"]).Single();
             SSCISSession dbSession = db.SSCISSession.Find(httpSession["sessionId"]);
+            if (dbSession.Expiration > DateTime.Now) return false;
             if (httpSession["hash"] != null)
             {
                 return dbSession.Hash.Equals((string)httpSession["hash"]);

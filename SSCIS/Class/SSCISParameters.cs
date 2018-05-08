@@ -14,5 +14,6 @@ namespace SSCIS.Class
         public const string WEB_AUTH_ON = "WEB_AUTH_ON";
         public const string WEB_AUTH_URL = "WEB_AUTH_URL";
         public const string VERSION = "VERSION";
+        public const string SESSION_LENGTH = "SESSION_LENGTH";
     }
 }
