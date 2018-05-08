@@ -13,6 +13,9 @@
 
             <h3>@SSCISResources.Resource.CONTENT_DELETE_CONFIRM</h3>
             <div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
                 <hr />
                 <dl class="dl-horizontal">
                     <dt>
@@ -62,16 +65,17 @@
                     <dd>
                         @Html.DisplayFor(model => model.EditedBy.Login)
                     </dd>
-
+                    <dd>
+                        <br />
+                        <div class="form-actions no-color">
+                            <input type="submit" value="@SSCISResources.Resource.DELETE" class="btn btn-default" />
+                        </div>
+                    </dd>
                 </dl>
 
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
+             
 
-                    <div class="form-actions no-color">
-                        <input type="submit" value="@SSCISResources.Resource.DELETE" class="btn btn-default" />
-                    </div>
+                 
                 }
             </div>
         </div>

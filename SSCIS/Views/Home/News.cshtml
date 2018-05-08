@@ -4,18 +4,18 @@
 }
 
     <div class="row content">
-        <div class="col-sm-2 sidenav">
-        </div>
+    <div class="col-sm-2 sidenav">
+    </div>
 
-        <div class="col-sm-8 text-left">
-            <h1>Novinky</h1>
-            @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
+    <div class="col-sm-8 text-left">
+        <h1>Novinky</h1>
+        @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
             {
-                @Html.ActionLink(SSCISResources.Resource.CREATE_NEWS, "Create", "Contents", new { area = "" }, null)
-            }
-            @foreach (var modelItem in Model.Contents)
+            @Html.ActionLink(SSCISResources.Resource.CREATE_NEWS, "Create", "Contents", new { area = "" }, null)
+        }
+        @foreach (var modelItem in Model.Contents)
             {
-                <hr />
+            <hr />
                 <div class="well">
                     <h3>@Html.DisplayFor(m => modelItem.Header) @Html.DisplayFor(m => modelItem.Created)</h3>
                     <p>
@@ -24,37 +24,22 @@
                     @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
                     {
                         @Html.ActionLink("Upravit", "Edit", "Contents", new { id = modelItem.ID }, null)
-                                <br>
+                        <br>
                         @Html.ActionLink("Smazat", "Delete", "Contents", new { id = modelItem.ID }, null)
                     }
                 </div>
-            }
-            <hr>
-        </div>
+        }
+        <hr>
+    </div>
 
-        @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
-        {
-            <div class="col-sm-2 sidenav">
-            </div>
-        }
-        @if (Session["role"] != null && Session["role"].Equals("USER"))
-        {
+    @{if (Session["role"] != null && (Session["role"].Equals("USER") || Session["role"].Equals("TUTOR")))
+            {
             <div class="col-sm-2 sidenav rozvrh">
                 <div class="well">
                     <p>
-                        ROZVRH
-                        EXTRA LEKCI
-                    </p>
-                </div>
-            </div>
-        }
-        @if (Session["role"] != null && Session["role"].Equals("TUTOR"))
-        {
-            <div class="col-sm-2 sidenav rozvrh">
-                <div class="well">
-                    <p>
-                        ROZVRH
-                        EXTRA LEKCI
+                        USER - rozvrh extra lekcí na které se přihlásil
+                        <br />
+                        TUTOR - rozvrh lekcí co bude vyučovat (pravidelné a nepravidelné)
                     </p>
                 </div>
             </div>
@@ -64,7 +49,14 @@
             <div class="col-sm-2 sidenav">
             </div>
         }
-    </div>
+    }
+
+
+</div>
+
+
+
+
 
 
 

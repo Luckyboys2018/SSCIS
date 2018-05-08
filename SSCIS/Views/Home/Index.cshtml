@@ -5,76 +5,63 @@
 
 
     <div class="row content">
-        <div class="col-sm-2 sidenav">
-        </div>
+    <div class="col-sm-2 sidenav">
+    </div>
 
-        <div class="col-sm-8 text-left">
-            <h1>Vítejte</h1>
-            <hr />
-            <div class="well">
-                <h3>Aktualita: @Html.DisplayFor(m => m.Header) @Html.DisplayFor(m => m.Created)</h3>
-                <p>
-                    @Html.DisplayFor(m => m.TextContent)
-                </p>
-            </div>
-            <hr />
-            <div class="well">
-                <p>
-                    ROZVRH PRAVIDELNÝCH HODIN
-                </p>
-                @ViewBag.PublicTimeTable
-            </div>
-            <p>
-                <strong>Student Support Centre (SSC)</strong> je společná aktivita kateder <a href="http://www.fav.zcu.cz/" target="_blank">Fakulty aplikovaných věd Západočeské univerzity v Plzni</a>.
-                <br /> <br />
-                Projekt startuje ve zkouškovém období zimního semestru 2017/2018. Cílem je podpora studentů prvního ročníku, kteří mohou mít problémy s úvodními matematickými a 
-                informatickými předměty. Podpory se studentům dostane od kolegů ve vyšších ročnících pod dohledem pedagogických pracovníků zúčastněných kateder. 
-                Každý den v týdnu mohou studenti přijít do <a href="https://goo.gl/r9ozbP" target="_blank">studovny FAV</a>, kde získají bezplatnou pomoc se základními předměty:
-    <ul>
-        <li><strong>matematika</strong> - KKMA/M1, KMA/M2, KMA/MA1, KMA/MA1, KMA/M1S, KMA/M2S, KMA/MA1E, KMA/M2E, KMA/ZM1, KMA/ZM2 (po dohodě také KMA/LAA)</li>
-
-        <li><strong>programování</strong> - KIV/PPA1, KIV/PPA2 a KIV/UPG</li>
-
-        <li><strong>mechanika</strong></li>
-    </ul>
-</p>
-            <hr>
-
-        </div>
-           
-            @if (Session["role"] != null && Session["role"].Equals("ADMIN"))
-                {
-                    <div class="col-sm-2 sidenav">
-                    </div>
-                }
-                @if (Session["role"] != null && Session["role"].Equals("USER"))
-                {
-                    <div class="col-sm-2 sidenav rozvrh">
-                        <div class="well">
-                            <p>
-                                ROZVRH
-                                EXTRA LEKCI
-                            </p>
-                        </div>
-                    </div>
-                }
-@if (Session["role"] != null && Session["role"].Equals("TUTOR"))
-{
-    <div class="col-sm-2 sidenav rozvrh">
+    <div class="col-sm-8 text-left">
+        <h1>Vítejte na stránkách Student Support Centre (SSC)</h1>
+        <hr />
         <div class="well">
+            <h3>Aktualita: @Html.DisplayFor(m => m.Header) @Html.DisplayFor(m => m.Created)</h3>
             <p>
-                ROZVRH
-                EXTRA LEKCI
+                @Html.DisplayFor(m => m.TextContent)
             </p>
         </div>
+        <hr />
+        <div class="well">
+            <p>
+                ROZVRH PRAVIDELNÝCH HODIN
+            </p>
+            @ViewBag.PublicTimeTable
+        </div>
+        <p>
+            <strong>Student Support Centre (SSC)</strong> je společná aktivita kateder <a href="http://www.fav.zcu.cz/" target="_blank">Fakulty aplikovaných věd Západočeské univerzity v Plzni</a>.
+            <br /> <br />
+            Projekt startuje ve zkouškovém období zimního semestru 2017/2018. Cílem je podpora studentů prvního ročníku, kteří mohou mít problémy s úvodními matematickými a
+            informatickými předměty. Podpory se studentům dostane od kolegů ve vyšších ročnících pod dohledem pedagogických pracovníků zúčastněných kateder.
+            Každý den v týdnu mohou studenti přijít do <a href="https://goo.gl/r9ozbP" target="_blank">studovny FAV</a>, kde získají bezplatnou pomoc se základními předměty:
+            <ul>
+                <li><strong>matematika</strong> - KKMA/M1, KMA/M2, KMA/MA1, KMA/MA1, KMA/M1S, KMA/M2S, KMA/MA1E, KMA/M2E, KMA/ZM1, KMA/ZM2 (po dohodě také KMA/LAA)</li>
+
+                <li><strong>programování</strong> - KIV/PPA1, KIV/PPA2 a KIV/UPG</li>
+
+                <li><strong>mechanika</strong></li>
+            </ul>
+        </p>
+        <hr>
+
     </div>
-}
-else
-{
-                    <div class="col-sm-2 sidenav">
+
+        @{if (Session["role"] != null && (Session["role"].Equals("USER") || Session["role"].Equals("TUTOR")))
+            {
+                <div class="col-sm-2 sidenav rozvrh">
+                    <div class="well">
+                        <p>
+                            USER - rozvrh extra lekcí na které se přihlásil
+                            <br />
+                            TUTOR - rozvrh lekcí co bude vyučovat (pravidelné a nepravidelné)
+                        </p>
                     </div>
-                }
-            
-             
+                </div>
+            }
+            else
+            {
+                <div class="col-sm-2 sidenav">
+                </div>
+            }
+        }
+
     </div>
+
+
 

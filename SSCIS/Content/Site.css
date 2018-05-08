@@ -1,4 +1,5 @@
 ﻿        /* Remove the navbar's default margin-bottom and rounded borders */
+        
 
         .navbar {
             margin-bottom: 0;
@@ -24,6 +25,8 @@
             padding-bottom: 38px;
             font-size: 20px;
             line-height: unset;
+            padding-left: 7px;
+            padding-right: 7px;
         }
 
         .row {
@@ -51,7 +54,7 @@
         }
 
         /* On small screens, set height to 'auto' for sidenav and grid */
-        @media screen and (max-width: 1284px) {
+        @media screen and (max-width: 1453px) {
              .navbar-nav>li>a {
             padding-top: 41px;
             padding-bottom: 41px;
@@ -61,7 +64,7 @@
         }
 
         /* On small screens, set height to 'auto' for sidenav and grid */
-        @media screen and (max-width: 1074px) and (min-width: 768px) {
+        @media screen and (max-width: 1165px) and (min-width: 768px) {
              .navbar-nav>li>a {
             padding-top: 31px;
             padding-bottom: 31px;
@@ -143,4 +146,44 @@
             background-color: #FFDDDD;
         }
 
+/*Menu button apear more quickly*/
+        @media (max-width: 950px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .navbar-nav{
+            padding-left: 0px;
+            min-height: 70px;
+        }
+    .navbar-collapse.in {
+    overflow-y: auto;
+}
+    .navbar-nav>li>a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 20px;
+}
+}
        

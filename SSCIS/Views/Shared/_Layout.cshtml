@@ -21,21 +21,12 @@
                 <a class="navbar-brand" href="https://www.zcu.cz/" target="_blank"><img src="~/Content/Images/logo2.png"></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar" style="margin-left: 20px">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">                  
                     <li class="menu-index">@Html.ActionLink(SSCISResources.Resource.HOME, "Index", "Home", new { area = "" }, null)</li>
-                    <li class="menu-news">@Html.ActionLink("Novinky", "News", "Home", new { area = "" }, null)</li>
-                    <li class="menu-contact">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, null)</li>
-                    <li class="menu-tutor">@Html.ActionLink("Chci pomáhat", "Create", "TutorApplications", new { area = "" }, null)</li>
-                    <li class="menu-helpme">@Html.ActionLink("Potřebuji pomoc", "HelpMe", "Home", new { area = "" }, null)</li>
-                    
-                    @{if (Request.RequestContext.HttpContext.Session["role"] == null || Request.RequestContext.HttpContext.Session["role"].Equals("USER"))
-                        {
-                            
-                        }
-                    }
 
                     @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals("ADMIN"))
                         {
+                            <li class="menu-news">@Html.ActionLink("Novinky", "News", "Home", new { area = "" }, null)</li>
                             <li class="menu-eventlist">@Html.ActionLink("Seznam lekcí", "Index", "Events", new { area = "" }, null)</li>
                             <li class="menu-params">@Html.ActionLink(SSCISResources.Resource.SYSTEM_PARAMS, "Index", "SSCISParams", new { area = "" }, null)</li>
                             <li class="menu-subjects">@Html.ActionLink(SSCISResources.Resource.SUBJECTS_MANAGEMENT, "Index", "Subjects", new { area = "" }, null)</li>
@@ -43,15 +34,32 @@
                             <li class="menu-statistics">@Html.ActionLink("Statistiky", "Statistics", "Home", new { area = "" }, null)</li>
                             <li class="menu-users">@Html.ActionLink("Uživatelé", "Index", "Users", new { area = "" }, null)</li>
                         }
-                    }
-
-                    @{if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals("TUTOR"))
+                        else if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals("TUTOR"))
                         {
+                            <li class="menu-news">@Html.ActionLink("Novinky", "News", "Home", new { area = "" }, null)</li>
                             <li class="menu-event">@Html.ActionLink("Vypsat lekci", "Create", "Events", new { area = "" }, null)</li>
                             <li class="menu-eventlist">@Html.ActionLink("Seznam lekcí", "Index", "Events", new { area = "" }, null)</li>
                             <li class="menu-tutorevents">@Html.ActionLink("Moje lekce", "TutorEvents", "Events", new { area = "" }, null)</li>
+                            <li class="menu-contact">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, null)</li>
+                        }
+                        else if (Request.RequestContext.HttpContext.Session["role"] != null && Request.RequestContext.HttpContext.Session["role"].Equals("USER"))
+                        {
+                            <li class="menu-news">@Html.ActionLink("Novinky", "News", "Home", new { area = "" }, null)</li>
+                            <li class="menu-tutor">@Html.ActionLink("Chci pomáhat", "Create", "TutorApplications", new { area = "" }, null)</li>
+                            <li class="menu-helpme">@Html.ActionLink("Potřebuji pomoc", "HelpMe", "Home", new { area = "" }, null)</li>
+                            <li class="menu-contact">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, null)</li>
+                        }
+                        else
+                        {
+                            <li class="menu-news">@Html.ActionLink("Novinky", "News", "Home", new { area = "" }, null)</li>
+                            <li class="menu-tutor">@Html.ActionLink("Chci pomáhat", "Create", "TutorApplications", new { area = "" }, null)</li>
+                            <li class="menu-helpme">@Html.ActionLink("Potřebuji pomoc", "HelpMe", "Home", new { area = "" }, null)</li>
+                            <li class="menu-contact">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, null)</li>
                         }
                     }
+
+                    
+                    
 
                 </ul>
 
@@ -62,7 +70,7 @@
                     }
                     else
                     {
-                        <li><a href="@Url.Action("Profil", "Users")">@Request.RequestContext.HttpContext.Session["login"]</a></li>
+                        <li><a class="user" href="@Url.Action("Profil", "Users")">@Request.RequestContext.HttpContext.Session["login"]</a></li>
                         <li><a href="@Url.Action("Logout", "Home")"><span class="glyphicon glyphicon-log-in"></span> Odhlásit se</a></li>
                     }
                 </ul>
@@ -75,7 +83,7 @@
     </div>
     <footer class="container-fluid text-center navbar-fixed-bottom">
         <p>Copyright © 2018 - @DateTime.Now.Year Západočeská univerzita v Plzni</p>
-        <a href="http://fav.zcu.cz/" target="_blank">Fakulta aplikovaných věd</a>  -  @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, null)
+        <a href="http://fav.zcu.cz/" target="_blank">Fakulta aplikovaných věd</a> - @Html.ActionLink("Chci pomáhat", "Create", "TutorApplications", new { area = "" }, null) - @Html.ActionLink("Potřebuji pomoc", "HelpMe", "Home", new { area = "" }, null) - @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, null)
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
