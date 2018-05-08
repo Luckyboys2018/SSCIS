@@ -256,6 +256,7 @@
     <Compile Include="Class\ApplicationDegrees.cs" />
     <Compile Include="Class\ApplicationSubjectsResolver.cs" />
     <Compile Include="Class\AuthorizationRoles.cs" />
+    <Compile Include="Class\BoolParser.cs" />
     <Compile Include="Class\FeedbacksCSVConverter.cs" />
     <Compile Include="Class\FeedbackUrlGenerator.cs" />
     <Compile Include="Class\SessionHashGenerator.cs" />

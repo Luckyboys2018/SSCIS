@@ -11,5 +11,7 @@ namespace SSCIS.Class
     public static class SSCISParameters
     {
         public const string MAX_SUBJECTS_COUNT = "MAX_SUBJECTS_COUNT";
+        public const string WEB_AUTH_ON = "WEB_AUTH_ON";
+        public const string WEB_AUTH_URL = "WEB_AUTH_URL";
     }
 }

@@ -96,7 +96,7 @@ namespace SSCIS.Controllers
                 model.Event.IsCancelled = false;
                 model.Event.IsAccepted = false;
                 model.Event.TimeFrom = new DateTime(model.Date.Year, model.Date.Month, model.Date.Day, model.TimeFrom.Hour, model.TimeFrom.Minute, 0);
-                model.Event.TimeFrom = new DateTime(model.Date.Year, model.Date.Month, model.Date.Day, model.TimeTo.Hour, model.TimeTo.Minute, 0);
+                model.Event.TimeTo = new DateTime(model.Date.Year, model.Date.Month, model.Date.Day, model.TimeTo.Hour, model.TimeTo.Minute, 0);
                 model.Event.Subject = db.Subject.Find(model.SubjectID);
                 db.Event.Add(model.Event);
                 db.SaveChanges();

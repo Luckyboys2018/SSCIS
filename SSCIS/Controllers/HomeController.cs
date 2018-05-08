@@ -111,11 +111,15 @@ namespace SSCIS.Controllers
         [HttpGet]
         public ActionResult Login(string validationMessage = null)
         {
+            bool webauth = BoolParser.Parse(db.SSCISParam.Where(p => p.ParamKey.Equals(SSCISParameters.WEB_AUTH_ON)).Single().ParamValue);
+            if (webauth)
+            {
+                return Redirect(db.SSCISParam.Where(p => p.ParamKey.Equals(SSCISParameters.WEB_AUTH_URL)).Single().ParamValue);
+            }
             ViewBag.Title = "Login";
             MetaLogin model = new MetaLogin();
             model.ValidationMessage = validationMessage;
             return View(model);
-            //return Redirect("https://fkmagion.zcu.cz/testauth");
         }
 
         /// <summary>

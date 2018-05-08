@@ -25,104 +25,84 @@ namespace SSCIS.Controllers
         private SSCISSessionManager sessionManager = new SSCISSessionManager();
 
         /// <summary>
-        /// Default entry point
+        /// Username request key
         /// </summary>
-        /// <returns>Sets sesison with login is correct and redirects to Home/Index</returns>
-        //[HttpPost]
-        //public ActionResult Index()
-        //{
-        //    string login = Request.Headers["login"];
-        //    if (login != null)
-        //    {
-        //        bool userExistInDatabase = db.SSCISUser.Where(o => o.IsActive.HasValue && o.IsActive.Value).Count() > 0;
-        //        if (!userExistInDatabase)
-        //        {
-        //            SSCISUser user = new SSCISUser();
-        //            user.Login = login;
-        //            user.Role = db.Role.Where(r => r.RoleCode.Equals("USER")).Single();
-        //            user.IsActive = true;
-        //            user.Created = DateTime.Now;
-        //            user.Activated = DateTime.Now;
-        //            db.SSCISUser.Add(user);
-        //            db.SaveChanges();
-        //            sessionManager.SessionStart(user, Session);
-        //        }
-        //        else
-        //        {
-        //            SSCISUser user = db.SSCISUser.Where(u => u.Login.Equals(login)).Single();
-        //            sessionManager.SessionStart(user, Session);
-        //        }
-        //    }
-        //    return RedirectToAction("Index", "Home");
-        //}
+        private const string USERNAME_KEY = "SHIB_REMOTEUSER";
 
         /// <summary>
-        /// Default entry point
-        /// TEST ONLY
+        /// Email request key
         /// </summary>
-        /// <returns>Sets sesison with login is correct and redirects to Home/Index</returns>
-        //[HttpGet]
-        //public ActionResult Index(string login)
-        //{
-        //    if (login != null)
-        //    {
-        //        bool userExistInDatabase = db.SSCISUser.Where(o => o.IsActive.HasValue && o.IsActive.Value && o.Login.Equals(login)).Count() > 0;
-        //        if (!userExistInDatabase)
-        //        {
-        //            SSCISUser user = new SSCISUser();
-        //            user.Login = login;
-        //            user.Role = db.Role.Where(r => r.RoleCode.Equals("USER")).Single();
-        //            user.IsActive = true;
-        //            user.Created = DateTime.Now;
-        //            user.Activated = DateTime.Now;
-        //            db.SSCISUser.Add(user);
-        //            db.SaveChanges();
-        //            sessionManager.SessionStart(user.Login, Session);
-        //        }
-        //        else
-        //        {
-        //            SSCISUser user = db.SSCISUser.Where(u => u.Login.Equals(login)).Single();
-        //            sessionManager.SessionStart(user.Login, Session);
-        //        }
-        //    }
-        //    return RedirectToAction("Index", "Home");
-        //}
+        private const string EMAIL_KEY = "SHIB_EMAIL";
+
 
         /// <summary>
-        /// Info for testing purposes
+        /// SSO Authentification
         /// </summary>
-        /// <returns>Content of request</returns>
+        /// <returns>HomePage</returns>
         public ActionResult Index()
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (var key in Request.Headers.AllKeys)
+            string username = Request.Headers[USERNAME_KEY];
+            var count = db.SSCISUser.Count(usr => usr.Login.Equals(username));
+            if (count < 1)
             {
-                var val = Request.Headers[key];
-                sb.Append(key);
-                sb.Append(" = ");
-                sb.Append(val);
-                sb.Append("\n");
+                string email = Request.Headers[EMAIL_KEY];
+                SSCISUser user = new SSCISUser();
+                user.Created = DateTime.Now;
+                user.Activated = DateTime.Now;
+                user.Login = username;
+                //user.Email = email; //TODO dodat do db
+                user.Role = db.Role.Where(r => r.RoleCode.Equals(AuthorizationRoles.User)).Single();
+                db.SSCISUser.Add(user);
+                db.SaveChanges();
             }
-            return Content(sb.ToString());
+            new SSCISSessionManager().SessionStart(username, Session);
+            return RedirectToAction("Index", "Home");
+
+            //StringBuilder sb = new StringBuilder();
+            //foreach (var key in Request.Headers.AllKeys)
+            //{
+            //    var val = Request.Headers[key];
+            //    sb.Append(key);
+            //    sb.Append(" = ");
+            //    sb.Append(val);
+            //    sb.Append("\n");
+            //}
+            //return Content(sb.ToString());
         }
 
         /// <summary>
-        /// Info for testing purposes
+        /// Info for testing purposes SSO authentification
         /// </summary>
-        /// <returns>Content of request</returns>
+        /// <returns>HomePage</returns>
         public ActionResult Info()
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (var key in Request.Headers.AllKeys)
+            string username = Request.Headers[USERNAME_KEY];
+            var count = db.SSCISUser.Count(usr => usr.Login.Equals(username));
+            if (count < 1)
             {
-                var val = Request.Headers[key];
-                sb.Append(key);
-                sb.Append(" = ");
-                sb.Append(val);
-                sb.Append("\n");
+                string email = Request.Headers[EMAIL_KEY];
+                SSCISUser user = new SSCISUser();
+                user.Created = DateTime.Now;
+                user.Login = username;
+                //user.Email = email; //TODO dodat do db
+                user.Role = db.Role.Where(r => r.RoleCode.Equals(AuthorizationRoles.User)).Single();
+                db.SSCISUser.Add(user);
+                db.SaveChanges();
             }
-            ViewData["infoContent"] = sb.ToString();
-            return View();
+            new SSCISSessionManager().SessionStart(username, Session);
+            return RedirectToAction("Index", "Home");
+
+            //StringBuilder sb = new StringBuilder();
+            //foreach (var key in Request.Headers.AllKeys)
+            //{
+            //    var val = Request.Headers[key];
+            //    sb.Append(key);
+            //    sb.Append(" = ");
+            //    sb.Append(val);
+            //    sb.Append("\n");
+            //}
+            //ViewData["infoContent"] = sb.ToString();
+            //return View();
         }
 
     }
