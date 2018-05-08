@@ -34,6 +34,8 @@ namespace SSCIS.Class
         /// <param name="httpSession">session in request context</param>
         public void SessionStart(string login, HttpSessionStateBase httpSession)
         {
+            CleanSessions();
+
             SSCISSession session = new SSCISSession();
             session.SessionStart = DateTime.Now;
             session.Expiration = DateTime.Now.AddSeconds(long.Parse(db.SSCISParam.Where(p => p.ParamKey.Equals("SESSION_LENGTH")).Single().ParamValue));
