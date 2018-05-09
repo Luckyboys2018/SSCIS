@@ -11,7 +11,8 @@ namespace SSCIS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SSCISContent
     {
         public int ID { get; set; }
@@ -19,7 +20,10 @@ namespace SSCIS.Models
         public Nullable<int> EditedByID { get; set; }
         public System.DateTime Created { get; set; }
         public Nullable<System.DateTime> Edited { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string TextContent { get; set; }
+
         public string Header { get; set; }
     
         public virtual SSCISUser Author { get; set; }

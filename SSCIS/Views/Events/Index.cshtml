@@ -79,12 +79,11 @@
                                         @if (item.IsCancelled == null || !item.IsCancelled.Value)
                                         {
                                             @Html.ActionLink(SSCISResources.Resource.CANCEL, "Cancel", new { id = item.ID })
-                                            |
                                         }
                                     </p>
                                 }
                             }
-                            <p>@Html.ActionLink(SSCISResources.Resource.DETAIL, "Details", new { id = item.ID })</p>
+                            <p>|@Html.ActionLink(SSCISResources.Resource.DETAIL, "Details", new { id = item.ID })</p>
                         </td>
                     </tr>
                                 }
