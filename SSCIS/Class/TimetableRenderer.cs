@@ -102,7 +102,7 @@ namespace SSCIS.Class
             DateTime start = _startOfWeek(now, DayOfWeek.Monday);
             DateTime end = start.AddDays(7);
 
-            List<Event> events = db.Event.Where(e => e.TimeFrom >= start && e.TimeTo <= end && e.TutorID == tutorId).OrderBy(e => e.TimeFrom).ToList();
+            List<Event> events = db.Event.Where(e => e.TimeFrom >= start && /*e.TimeTo <= end &&*/ e.TutorID == tutorId).OrderBy(e => e.TimeFrom).ToList();
             return Render(events, true);
         }
 
