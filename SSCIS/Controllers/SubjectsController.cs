@@ -115,15 +115,15 @@ namespace SSCIS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
-        public ActionResult Edit([Bind(Include = "ID,Code,Name")] Subject subject)
+        public ActionResult Edit(Subject model)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(subject).State = EntityState.Modified;
+                db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(subject);
+            return View(model);
         }
 
         /// <summary>
