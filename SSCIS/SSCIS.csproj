@@ -477,6 +477,7 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Feedbacks\Create.cshtml" />
     <Content Include="Views\Entry\Logged.cshtml" />
+    <Content Include="Views\Users\DeleteFailed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

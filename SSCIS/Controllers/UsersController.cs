@@ -150,10 +150,19 @@ namespace SSCIS.Controllers
         [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
         public ActionResult DeleteConfirmed(int id)
         {
+            db.Approval.RemoveRange(db.Approval.Where(a => a.TutorID == id));
             SSCISUser sSCISUser = db.SSCISUser.Find(id);
-            db.SSCISUser.Remove(sSCISUser);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.SSCISSession.RemoveRange(db.SSCISSession.Where(s => s.UserID == id));
+                db.SSCISUser.Remove(sSCISUser);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            } catch (Exception e)
+            {
+                return View("DeleteFailed");
+            }
+            
         }
 
         /// <summary>
