@@ -75,12 +75,11 @@
                                         @if (item.IsAccepted == null || !item.IsAccepted.Value)
                                         {
                                             @Html.ActionLink(SSCISResources.Resource.ACCEPT, "Accept", new { id = item.ID })
-                                        } else {
-                                            @Html.ActionLink("Detail", "Details", "Events", new { id = item.ID })
-                                        } |
+                                        }  |
                                         @if (item.IsCancelled == null || !item.IsCancelled.Value)
                                         {
                                             @Html.ActionLink(SSCISResources.Resource.CANCEL, "Cancel", new { id = item.ID })
+                                            |
                                         }
                                     </p>
                                 }
