@@ -44,12 +44,14 @@ namespace SSCIS.Class
             session.User = db.SSCISUser.Where(u => u.Login.Equals(login)).Single();
             db.SaveChanges();
 
-            //httpSession["sessionId"] = session.ID;
-            //httpSession["role"] = session.User.Role.RoleCode;
-            ////httpSession["hash"] = session.Hash;
-            //httpSession["login"] = login;
-            //httpSession["userId"] = session.User.ID;
-
+            if (!BoolParser.Parse(db.SSCISParam.Where(p => p.ParamKey.Equals(SSCISParameters.WEB_AUTH_ON)).Single().ParamValue))
+            {
+                httpSession["sessionId"] = session.ID;
+                httpSession["role"] = session.User.Role.RoleCode;
+                httpSession["hash"] = session.Hash;
+                httpSession["login"] = login;
+                httpSession["userId"] = session.User.ID;
+            }
             return session.ID;
         }
 

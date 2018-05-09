@@ -51,7 +51,6 @@ namespace SSCIS.Controllers
         public ActionResult Create()
         {
             SSCISContent model = new SSCISContent();
-            model.Author = db.SSCISUser.Find((int)Session["userID"]);
             return View(model);
         }
 
@@ -61,21 +60,18 @@ namespace SSCIS.Controllers
         /// <param name="sSCISContent">Content model</param>
         /// <returns>Redirection to List</returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
-        public ActionResult Create([Bind(Include = "ID,AuthorID,EditedByID,Created,Edited,TextContent")] SSCISContent sSCISContent)
+        public ActionResult Create(SSCISContent model)
         {
             if (ModelState.IsValid)
             {
-                sSCISContent.Created = DateTime.Now;
-                db.SSCISContent.Add(sSCISContent);
+                model.Created = DateTime.Now;
+                model.Author = db.SSCISUser.Find((int)Session["userID"]);
+                db.SSCISContent.Add(model);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("News", "Home");
             }
-
-            ViewBag.AuthorID = new SelectList(db.SSCISUser, "ID", "Login", sSCISContent.AuthorID);
-            ViewBag.EditedByID = new SelectList(db.SSCISUser, "ID", "Login", sSCISContent.EditedByID);
-            return View(sSCISContent);
+            return View(model);
         }
 
         /// <summary>
@@ -96,8 +92,6 @@ namespace SSCIS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AuthorID = new SelectList(db.SSCISUser, "ID", "Login", sSCISContent.AuthorID);
-            ViewBag.EditedByID = new SelectList(db.SSCISUser, "ID", "Login", sSCISContent.EditedByID);
             return View(sSCISContent);
         }
 
@@ -115,12 +109,9 @@ namespace SSCIS.Controllers
             {
                 sSCISContent.Edited = DateTime.Now;
                 sSCISContent.EditedBy = db.SSCISUser.Find((int)Session["userID"]);
-                db.Entry(sSCISContent).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("News", "Home");
             }
-            ViewBag.AuthorID = new SelectList(db.SSCISUser, "ID", "Login", sSCISContent.AuthorID);
-            ViewBag.EditedByID = new SelectList(db.SSCISUser, "ID", "Login", sSCISContent.EditedByID);
             return View(sSCISContent);
         }
 
@@ -158,7 +149,7 @@ namespace SSCIS.Controllers
             SSCISContent sSCISContent = db.SSCISContent.Find(id);
             db.SSCISContent.Remove(sSCISContent);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("News", "Home");
         }
 
         /// <summary>
