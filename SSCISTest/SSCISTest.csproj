@@ -99,6 +99,7 @@
     <Compile Include="Automated\TS_01\TC_01_01.cs" />
     <Compile Include="Automated\TS_01\TC_01_02.cs" />
     <Compile Include="Automated\TS_01\TC_01_03.cs" />
+    <Compile Include="Automated\TS_01\TC_01_04.cs" />
     <Compile Include="Class\ApplicationSubjectsResolverTest.cs" />
     <Compile Include="Class\BoolParserTest.cs" />
     <Compile Include="Class\FeedbacksCSVConverterTest.cs" />
