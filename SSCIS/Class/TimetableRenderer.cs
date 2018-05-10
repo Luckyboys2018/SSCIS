@@ -20,7 +20,7 @@ namespace SSCIS.Class
         /// <param name="events">List of events to display</param>
         /// <param name="showState">Show state of event</param>
         /// <returns>rendered component</returns>
-        public MvcHtmlString Render(List<Event> events, bool showState = false)
+        public MvcHtmlString Render(List<Event> events, string id = null, bool showState = false)
         {
             StringBuilder builder = new StringBuilder();
             builder.Append("<table class=\"table\">");
@@ -85,7 +85,7 @@ namespace SSCIS.Class
             DateTime end = start.AddDays(7);
 
             List<Event> events = db.Event.Where(e => e.TimeFrom >= start && e.TimeTo <= end && e.IsAccepted != null && e.IsAccepted.Value).OrderBy(e => e.TimeFrom).ToList();
-            return Render(events);
+            return Render(events, "public-timetable");
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace SSCIS.Class
             DateTime end = start.AddDays(7);
 
             List<Event> events = db.Event.Where(e => e.TimeFrom >= start && /*e.TimeTo <= end &&*/ e.TutorID == tutorId).OrderBy(e => e.TimeFrom).ToList();
-            return Render(events, true);
+            return Render(events, "tutor-timetable", true);
         }
 
         /// <summary>

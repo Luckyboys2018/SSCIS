@@ -47,19 +47,12 @@ namespace SSCISTest.Class
         [TestMethod]
         public void TestVerifySession()
         {
-            //TODO
-            // 1) Vytvorit mock object typu SSCISEntities
-            // 2) Vytvorit instanci tridy SSCISSession.SSCISSession a nastavit jeji ID a hash na libovone zvolene cislo a retezet
-            // 3) Nastavit chovani pri volani metody Find s parametrem ID, aby vracela vytvorenou instanci tridy SSCISSession
-            // 4) Vytvorit instanci SSCISSessionManageru a v konstruktoru predat mock object
-            // 5) Vytvorit instanci tridy HttpSessionStateBaseTO a nastavit hodnoty pro klice sessionId a hash na zvolene hodnoty
-            // 6) Zavolat metodu VerifySession na sessionManagerem a predat vytvoreny TO a jeji vysledek porovnat s hodnotou true
-
             Mock<SSCISEntities> dbMock = new Mock<SSCISEntities>();
             SSCISSession session = new SSCISSession();
             
             session.ID = 12;
             session.Hash = "123456878";
+            session.Expiration = new DateTime(9999, 1, 11, 0, 0, 0);
 
             dbMock.Setup(m => m.SSCISSession.Find(It.IsAny<int>())).Returns(session);
 
@@ -76,15 +69,6 @@ namespace SSCISTest.Class
         [TestMethod]
         public void TestVerifySession2()
         {
-            //TODO
-            // 1) Vytvorit mock object typu SSCISEntities
-            // 2) Vytvorit instanci tridy SSCISSession a nastavit jeji ID a hash na libovone zvolene cislo a retezet
-            // 3) Nastavit chovani pri volani metody SSCISSession.Find s parametrem ID, aby vracela vytvorenou instanci tridy SSCISSession
-            // 4) Vytvorit instanci SSCISSessionManageru a v konstruktoru predat mock object
-            // 5) Vytvorit instanci tridy HttpSessionStateBaseTO a nastavit hodnoty pro klic sessionId
-            // 6) Nastavit hodnotu pro klic hash na jinou hodnotu nez je puvodne zvoleny hash
-            // 7) Zavolat metodu VerifySession na sessionManagerem a predat vytvoreny TO a jeji vysledek porovnat s hodnotou false
-
             Mock<SSCISEntities> dbMock = new Mock<SSCISEntities>();
             SSCISSession session = new SSCISSession();
 

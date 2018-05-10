@@ -2,9 +2,8 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <ProductVersion>$(ProductVersion)</ProductVersion>
-    <ProjectGuid>
-    </ProjectGuid>
+    <ProductVersion>12.2.0.1</ProductVersion>
+    <ProjectGuid>f94c4551-0d98-48d4-8671-0104acc6ae29</ProjectGuid>
     <DBVERSION>
     </DBVERSION>
     <DEFAULTSCHEMANAME>
@@ -14,40 +13,38 @@
     <RootNamespace>DATABASE</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Functions\" />
-    <Folder Include="Packages\" />
-    <Folder Include="Procedures\" />
-    <Folder Include="Scripts\" />
-    <Folder Include="Security\" />
-    <Folder Include="Security\Permissions\" />
-    <Folder Include="Security\Roles\" />
-    <Folder Include="Security\Users\" />
-    <Folder Include="Sequences\" />
-    <Folder Include="Synonyms\" />
-    <Folder Include="Tables\" />
-    <Folder Include="Tables\Relational Tables" />
-    <Folder Include="Tables\Object Tables" />
-    <Folder Include="Tables\XML Tables" />
-    <Folder Include="User Defined Types\" />
-    <Folder Include="User Defined Types\Nested Tables\" />
-    <Folder Include="User Defined Types\Objects\" />
-    <Folder Include="User Defined Types\VARRAYs\" />
-    <Folder Include="Views\" />
-    <Folder Include="Views\Relational Views" />
-    <Folder Include="Views\Object Views" />
-    <Folder Include="Views\XML Views" />
-    <Folder Include="Views\Materialized Views" />
-    <Folder Include="XML Schemas\" />
-    <Folder Include="AQ\" />
-    <Folder Include="AQ\Queues\" />
-    <Folder Include="AQ\Queue Tables\" />
-    <Folder Include="Pluggable Databases\" />
-    <Folder Include="Triggers\" />
-    <Folder Include="Triggers\Table Triggers" />
-    <Folder Include="Triggers\View Triggers" />
-    <Folder Include="Triggers\Schema Triggers" />
-    <Folder Include="Triggers\Database Triggers" />
-    <Folder Include="Indexes\" />
     <DBRefs Include="Database References\" />
+    <Folder Include="Data" />
+    <Folder Include="Scripts\" />
+    <DBRefs Include="Database References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\01_ENUM_SUBJECT.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\00_CREATE_USER.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\01_CREATE_TABLES.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\02_CREATE_SEQUENCES.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\03_CREATE_TRIGGERS.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\04_FOREIGN_KEYS.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\05_INSERT_PARAM.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\06_ALTER_SUBJECTS.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\07_ALTER_CONTENT.sql">
+      <SubType>Content</SubType>
+    </Content>
   </ItemGroup>
 </Project>
