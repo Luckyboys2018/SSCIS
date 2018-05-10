@@ -400,7 +400,7 @@ namespace SSCISResources
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Události.
+        ///   Looks up a localized string similar to Lekce.
         /// </summary>
         public static string EVENTS
         {
@@ -444,7 +444,7 @@ namespace SSCISResources
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Píjmení.
+        ///   Looks up a localized string similar to Příjmení.
         /// </summary>
         public static string LASTNAME
         {
@@ -466,7 +466,7 @@ namespace SSCISResources
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Moje události.
+        ///   Looks up a localized string similar to Moje lekce.
         /// </summary>
         public static string MY_EVENTS
         {
@@ -631,7 +631,7 @@ namespace SSCISResources
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Příhlášky tutorů.
+        ///   Looks up a localized string similar to Přihlášky tutorů.
         /// </summary>
         public static string TUTOR_APPLICATIONS
         {

@@ -23,7 +23,14 @@ namespace SSCIS.Class
         public MvcHtmlString Render(List<Event> events, string id = null, bool showState = false)
         {
             StringBuilder builder = new StringBuilder();
-            builder.Append("<table class=\"table\">");
+            if (id != null)
+            {
+                builder.Append(string.Format("<table id=\"{0}\" class=\"table\">", id));
+            }
+            else
+            {
+                builder.Append("<table class=\"table\">");
+            }
             builder.Append("<tr>");
             builder.Append("<th>Čas od</th>");
             builder.Append("<th>Čas do</th>");
