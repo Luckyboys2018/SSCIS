@@ -100,7 +100,6 @@ namespace SSCIS.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Application.IsAccepted = false;
                 model.Application.ApplicationDate = DateTime.Now;
                 int? userID = (int)Session["userID"];
                 model.Application.Applicant = db.SSCISUser.Find(userID);
