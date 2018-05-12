@@ -169,7 +169,7 @@ namespace SSCIS.Controllers
         public ActionResult List(MetaInterval model)
         {
             List<Feedback> feedbacks = db.Feedback.Where(f => f.Participation.Event.TimeFrom >= model.From && f.Participation.Event.TimeTo <= model.To).ToList();
-            return View(model);
+            return View(feedbacks);
         }
 
         /// <summary>

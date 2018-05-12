@@ -40,8 +40,9 @@ namespace SSCISTest.Automated.TS_01
         }
 
         [TestMethod]
-        public void TheTC0106Test()
+        public void TC0106()
         {
+            driver.Navigate().GoToUrl("http://ourea98.zcu.cz/");
             driver.FindElement(By.LinkText("Přihlásit se")).Click();
             driver.FindElement(By.Id("Login")).Click();
             driver.FindElement(By.Id("Login")).Clear();
@@ -49,18 +50,9 @@ namespace SSCISTest.Automated.TS_01
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
             driver.FindElement(By.LinkText("Vypsat lekci")).Click();
             driver.FindElement(By.Id("Date")).Click();
-            driver.FindElement(By.Id("Date")).Clear();
-            driver.FindElement(By.Id("Date")).SendKeys("0009-01-01");
-            driver.FindElement(By.Id("Date")).Clear();
-            driver.FindElement(By.Id("Date")).SendKeys("0099-01-01");
-            driver.FindElement(By.Id("Date")).Clear();
-            driver.FindElement(By.Id("Date")).SendKeys("0999-01-01");
-            driver.FindElement(By.Id("Date")).Clear();
-            driver.FindElement(By.Id("Date")).SendKeys("9999-01-01");
-            driver.FindElement(By.Id("TimeFrom")).Clear();
-            driver.FindElement(By.Id("TimeFrom")).SendKeys("10:00");
-            driver.FindElement(By.Id("TimeTo")).Clear();
-            driver.FindElement(By.Id("TimeTo")).SendKeys("11:00");
+            driver.FindElement(By.Id("Date")).SendKeys("01019999");
+            driver.FindElement(By.Id("TimeFrom")).SendKeys("1000");
+            driver.FindElement(By.Id("TimeTo")).SendKeys("1100");
             driver.FindElement(By.Id("SubjectID")).Click();
             driver.FindElement(By.Id("SubjectID")).Click();
             driver.FindElement(By.XPath("//input[@value='Vytvořit událost']")).Click();

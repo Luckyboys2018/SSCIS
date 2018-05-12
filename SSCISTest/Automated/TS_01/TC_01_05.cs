@@ -40,7 +40,7 @@ namespace SSCISTest.Automated.TS_01
         }
 
         [TestMethod]
-        public void TheTC0105Test()
+        public void TC0105()
         {
             driver.Navigate().GoToUrl("http://ourea98.zcu.cz/");
             driver.FindElement(By.LinkText("Přihlásit se")).Click();
