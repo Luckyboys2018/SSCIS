@@ -103,16 +103,21 @@ namespace SSCIS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SSCISAuthorize(AccessLevel = AuthorizationRoles.Administrator)]
-        public ActionResult Edit([Bind(Include = "ID,AuthorID,EditedByID,Created,Edited,TextContent")] SSCISContent sSCISContent)
+        public ActionResult Edit([Bind(Include = "ID,AuthorID,EditedByID,Created,Edited,TextContent,Header")] SSCISContent model)
         {
             if (ModelState.IsValid)
             {
-                sSCISContent.Edited = DateTime.Now;
-                sSCISContent.EditedBy = db.SSCISUser.Find((int)Session["userID"]);
+                string header = model.Header;
+                string text = model.TextContent;
+                model = db.SSCISContent.Find(model.ID);
+                model.Header = header;
+                model.TextContent = text;
+                model.Edited = DateTime.Now;
+                model.EditedBy = db.SSCISUser.Find((int)Session["userID"]);
                 db.SaveChanges();
                 return RedirectToAction("News", "Home");
             }
-            return View(sSCISContent);
+            return View(model);
         }
 
         /// <summary>
